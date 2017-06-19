@@ -1,18 +1,20 @@
 \newpage
 \section{Lists}
 
-Formalizzazione in Coq di alcuni esercizi di Teoria dei tipi
+Tipo list a cui si riferiscono tutti gli esercizi:
+
+\lstinputlisting{listType.v}
 
 \subsection{Esercizio 1 pg. 11 - appendStart}
 
 Dato un tipo A semplice, ovvero non dipendente, per esempio A = N1, definire
 l'operazione appendStart: \\
 
-$appendStart(x, y) \in List(A) [x \in List(A), y \in A]$ \\
+$appendStart(x, y) \in List(A)\quad[x \in List(A), y \in A]$ \\
 
 tale che l’elemento y venga posto all'inizio della lista x.
 
-si traduce in
+Si traduce in:
 
 \lstinputlisting{appendStart.v}
 
@@ -21,26 +23,27 @@ si traduce in
 Dato un tipo A semplice, ovvero non dipendente, per esempio A = N1, definire
 l'operazione appendEnd: \\
 
-$appendEnd(x, y) = cons(x, y) \in List(A) [x \in List(A), y' \in List(A)]$ \\
+$appendEnd(x, y) = cons(x, y) \in List(A)\quad[x \in List(A), y' \in List(A)]$ \\
 
 tale che l’elemento y venga posto alla fine della lista x.
 Si definisce la funzione per ricorsione su x: \\
 
 $appendEnd(nil, y) = y :: nil$
+
 $appendEnd( s :: c, y) = s :: (appendEnd c y)$ \\
 
 e si traduce in:
 
 \lstinputlisting{appendEnd.v}
 
-Per rendere append1 ed append2 indipendenti dal tipo della lista:
+Per rendere appendStart ed appendEnd indipendenti dal tipo della lista:
 
 \lstinputlisting{appendGeneric.v}
 
 Definire l'operazione append di accostamento di una lista ad un'altra di un tipo
-A type [] usando le regole del tipo delle liste:
+A type [] usando le regole del tipo delle liste: \\
 
-$append(x,y) \in List(A) [x \in List(A), y \in List(A)]$ \\
+$append(x,y) \in List(A)\quad[x \in List(A), y \in List(A)]$ \\
 
 Si traduce in Coq:
 
@@ -50,16 +53,17 @@ Si traduce in Coq:
 
 I seguenti esercizi richiedono di scrivere funzioni che accettano tutte una
 lista non vuota (diversa da nil). Viene quindi preliminarmente definito un tipo
-notNil:
+notNil: \\
 
-$Definition notNil (A : Type) := { lt : list A | ~ lt = nil }.$ \\
+$notNil (A : Type) := \{ lt : list A | ~ lt = nil \}$ \\
 
 Specificare il tipo e definire le operazioni:
+
 (a) back, che di una lista non vuota ne estrae la lista meno il primo elemento
 
 \lstinputlisting{back.v}
 
-Nota: back accetta argomenti di tipo notNil!
+Nota: back accetta argomenti di tipo notNil.
 
 (b) l'operazione front che data una lista non vuota ne estrae la lista meno
 l'ultimo elemento
@@ -78,3 +82,5 @@ da completare
 elemento
 
 \lstinputlisting{first.v}
+
+Nota: first accetta argomenti di tipo notNil.
