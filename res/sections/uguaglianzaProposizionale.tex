@@ -1,0 +1,112 @@
+\section{Tipo dell'uguaglianza proposizionale alla Gentzen/Lawvere e alla Leibniz}
+\subsection{Esercizio 3}
+\begin{thm}[L'uguaglianza di Leibniz rispetta la sostituibilità degli uguali]\label{thm:ug3} Trovare un proof-term
+	\[ \mathbf{pf}\in P(b)\ [a\in A, b\in A, z\in P(a), w\in \Id{A}{a}{b}]\]
+\end{thm}
+\proof
+Basta applicare l'eliminatore dell'uguaglianza al tipo $C(x,y) \equiv P(x)\to P(y)$, infatti
+\begin{scriptsize}
+	\[ \infer{p \equiv \mathrm{El}_{\mathrm{Id}}(w, (x).\lambda y. y)) \in P(a)\to P(b)\ [a \in A, b\in A, z\in P(a), w\in \Id{A}{a}{b}]}{\begin{array}{l}P(x)\to P(y) type\ [\Gamma, x \in A, y \in A] \\ \lambda y. y \in P(x) \to P(x)  [\Gamma, x \in A] \\
+		a \in A [\Gamma], \quad b \in A [\Gamma] \\
+		w \in \Id{A}{a}{b}\ [\Gamma] \end{array}} \]
+\end{scriptsize}
+per cui 
+\[ \mathbf{pf} \equiv \mathrm{Ap}(p, z) \in P(b) \]
+\endproof
+
+Quindi il proof-term \[ \mathbf{pf}\in P(b)\ [a\in A, b\in A, z\in P(a), w\in \Id{A}{a}{b}]\] può essere derivato con l'uguaglianza proposizionale alla Leibniz.
+
+\subsection{Esercizio 4}
+\begin{thm}[L'uguaglianza di Leibniz è transitiva]
+	Trovare un proof-term
+	\[ \mathbf{pf} \in \Id{A}{a}{c}\ [a\in A, b\in A, c\in A, w_1 \in \Id{A}{a}{b}, w_2 \in \Id{A}{b}{c} ] \]
+\end{thm}
+
+\proof
+Segue da \ref{thm:ug3} in quanto si trova
+\[ \mathbf{pf} \in P(c)\ [b\in A, c \in A, w_1 \in P(b), w_2 \in \Id{A}{b}{c}] \]
+ponendo
+\[ P(c) \equiv \Id{A}{a}{c} \qquad P(b) \equiv \Id{A}{a}{b} \]
+e aggiungendo $a\in A$ al contesto.
+\endproof
+
+Quindi il proof-term \[ \mathbf{pf} \in \Id{A}{a}{c}\ [a\in A, b\in A, c\in A, w_1 \in \Id{A}{a}{b}, w_2 \in \Id{A}{b}{c} ] \] può essere derivato con l'uguaglianza proposizionale alla Leibniz.
+
+\subsection{Esercizio 8}
+\subsubsection{Parte 1 - Commutatività della somma}
+\begin{thm}[La somma di due naturali è commutativa]
+	Trovare un proof-term del tipo
+	\[ \mathrm{comm}(a, b) \in \Id{Nat}{a+b}{b+a}\ [a\in Nat,\ b\in Nat] \]
+\end{thm}
+\proof
+Definiamo il proof-term per induzione sull'addendo $b$.\\
+Posto $\Gamma \equiv a\in Nat,\ b\in Nat$
+
+\begin{scriptsize}
+	\[ \infer{\mathrm{comm}(a, b) \equiv \mathrm{El}_{Nat}(b, d, (x, y).e(x,y)) \in \Id{Nat}{a+b}{b+a}\ [\Gamma]}{\begin{array}{ll} b\in Nat\ [\Gamma] & \Id{Nat}{a+x}{x+a}\ type\ [\Gamma,\ x\in Nat] \\ d\in \Id{Nat}{a+0}{0+a}\ [\Gamma] & e(x, y)\in \Id{Nat}{a+\suc{x}}{\suc{x}+a}\ [\Gamma, x\in Nat, y\in \Id{Nat}{a+x}{x+a}]\end{array}} \]
+\end{scriptsize}
+
+Occorre quindi definire 
+\[ d\in \Id{Nat}{a+0}{0+a}\ [\Gamma] \]
+Notiamo intanto che
+
+\[ \infer[conv)]{d\in \Id{Nat}{a+0}{0+a}\ [\Gamma]}
+{	d\in \Id{Nat}{a}{0+a}\ [\Gamma] & 
+	\infer[sym)]{\Id{Nat}{a}{0+a} = \Id{Nat}{a+0}{0+a}\ type\ [\Gamma]}
+	{
+		\infer[sub-eq-typ)]{\Id{Nat}{a+0}{0+a}=\Id{Nat}{a}{0+a}\ type\ [\Gamma]}
+		{a+0 = a\in Nat\ [\Gamma] & \Id{Nat}{z}{0+a}\ type\ [\Gamma, z\in Nat]}
+	}
+}
+\]
+per cui è sufficiente dimostrare che esiste
+\[ d\in \Id{Nat}{a}{0+a}\ [\Gamma]\]
+Procediamo per induzione su $a\in Nat$.
+
+\begin{scriptsize}
+	\[ \infer{d \equiv \mathrm{El}_{Nat}(a, d_1, (x, y).e_1(x,y)) \in \Id{Nat}{a}{0+a}\ [\Gamma]}{\begin{array}{ll} a\in Nat\ [\Gamma] & \Id{Nat}{x}{0+x}\ type\ [\Gamma,\ x\in Nat] \\ d_1\in \Id{Nat}{0}{0+0}\ [\Gamma] & e_1(x, y)\in \Id{Nat}{\suc{x}}{0+\suc{x}}\ [\Gamma, x\in Nat, y\in \Id{Nat}{x}{0+x}]\end{array}} \]
+\end{scriptsize}
+dove $d_1 \equiv \mathrm{id}(0)$, infatti
+\[ \infer[conv)]{\mathrm{id}(0)\in \Id{Nat}{0}{0+0}\ [\Gamma]}
+{	\mathrm{id}(0)\in \Id{Nat}{0}{0}\ [\Gamma] & 
+	\infer[sym)]{\Id{Nat}{0}{0} = \Id{Nat}{0}{0+0}\ type\ [\Gamma]}
+	{
+		\infer[sub-eq-typ)]{\Id{Nat}{0}{0+0}=\Id{Nat}{0}{0}\ type\ [\Gamma]}
+		{0+0 = 0\in Nat\ [\Gamma] & \Id{Nat}{0}{z}\ type\ [\Gamma, z\in Nat]}
+	}
+}
+\]
+mentre sappiamo che
+\[ \mathrm{El}_{Id}(y, (x'').\mathrm{id}(\suc{x''})) \in \Id{Nat}{\suc{x}}{\suc{0+x}}\]
+e per conversione, dato che $0+\suc{x} = \suc{0+x}$, prendiamo
+\[ e_1(x, y) \equiv \mathrm{El}_{Id}(y, (x'').\mathrm{id}(\suc{x''})) \]
+pertanto
+\[d \equiv \mathrm{El}_{Nat}(a, \mathrm{id}(0), (x, y).\mathrm{El}_{Id}(y, (x'').\mathrm{id}(\suc{x''}))) \in \Id{Nat}{a}{0+a}\ [\Gamma]\]
+
+Mostriamo adesso l'esistenza del proof-term 
+
+\[e(x, y)\in \Id{Nat}{a+\suc{x}}{\suc{x}+a}\ [\Gamma, x\in Nat, y\in \Id{Nat}{a+x}{x+a}]\]
+
+Dato che $a+\suc{x} = \suc{a+x}$, applicando $sub-eq-typ),\ sym),\ conv)$ ci basta trovare un proof-term
+
+\[e(x, y)\in \Id{Nat}{\suc{a+x}}{\suc{x}+a}\ [\Gamma, x\in Nat, y\in \Id{Nat}{a+x}{x+a}]\]
+
+L'ipotesi $y \in \Id{Nat}{a+x}{x+a}$ ci consente di avere il proof-term
+\[ \mathrm{El}_{\mathrm{Id}}(y, (x'').\mathrm{id}(\suc{x''})) \in \Id{Nat}{\suc{a+x}}{\suc{x+a}}\]
+
+Per cui, se dimostrassimo che esiste $w \in \Id{Nat}{\suc{x+a}}{\suc{x}+a}$ potremmo concludere per la transitività dell'uguaglianza di Leibniz. Tale proof-term si può ottenere per induzione su $a\in Nat$.
+
+Posto $\Delta = \Gamma, x\in Nat, y\in \Id{Nat}{a+x}{x+a}$
+
+\begin{scriptsize}
+	\[ \infer{w \equiv \mathrm{El}_{Nat}(a, w_0, (x, y).w_1(x,y)) \in \Id{Nat}{\suc{x+a}}{\suc{x}+a}\ [\Delta]}{\begin{array}{l}
+		\Id{Nat}{\suc{z+x}}{\suc{x}+z}\ type\ [\Delta] \\ a\in Nat\ [\Delta] \\  w_0\in \Id{Nat}{\suc{x+0}}{\suc{x}+0}\ [\Delta] \\ w_1(z, r)\in \Id{Nat}{\suc{x+\suc{z}}}{\suc{x}+\suc{z}}\ [\Delta z\in Nat, r\in \Id{Nat}{\suc{x+z}}{\suc{x}+z}]\end{array}} \]
+\end{scriptsize}
+
+Si nota adesso che basta prendere
+\[ w_0 \equiv \mathrm{id}(\suc{x})\] poiché $x+0 = x$ e quindi $\suc{x+0} = \suc{x}$, e inoltre $\suc{x}+0 = \suc{x}$. Poi, dato che $\suc{\suc{x+z}} = \suc{x+\suc{z}}$ e $\suc{\suc{x}+z} = \suc{x}+\suc{z}$, applicando opportunamente conversioni e sostituzioni, è sufficiente porre
+\[ w_1(z, r) \equiv \mathrm{El}_{\mathrm{Id}}(r, (x'').\mathrm{id}(\suc{x''}))\]
+Per cui
+\[w \equiv \mathrm{El}_{\mathrm{Nat}}(a, \mathrm{id}(\suc{x}), (z,r).\mathrm{El}_{\mathrm{Id}}(r, (x'').\mathrm{id}(\suc{x''})) \]
+
+\endproof
