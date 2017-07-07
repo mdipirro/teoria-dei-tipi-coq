@@ -1,0 +1,41 @@
+\section{Come tradurre la logica predicativa con uguaglianza in teoria dei tipi}
+\subsection{Esercizio 1}
+\begin{thm}[Assioma di Scelta] Si mostri che la traduzione CHM della logica nella teoria dei tipi rende valido l'assioma di scelta
+	\[ (\forall x\in A)\ (\exists y\in B)\  R(x, y)\ \to\ (\exists f\in A\to B)\ (\forall x\in A)\ R(x, f(x))\ \mathrm{true}\ [\ ] \]
+	
+\end{thm}
+
+\proof
+Occorre trovare un proof-term $\textbf{pf}$ del tipo
+\[\textbf{pf} \equiv \lambda w.p(w) \in \Pi_{x\in A}\Sigma_{y\in B}R(x,y)\to\ \Sigma_{f\in {\Pi_A B}}\Pi_{x\in A}R(x, f(x))\ [\ ] \]
+per cui basta avere un proof-term del tipo (introduzione di $\to$)
+\[ p(w) \in \Sigma_{f\in {\Pi_A B}}\Pi_{x\in A}R(x, f(x))\ [w\in \Pi_{x\in A}\Sigma_{y\in B}R(x,y) ] \]
+Avendo $w\in \Pi_{x\in A}\Sigma_{y\in B}R(x,y)$, usando l'eliminatore del $\Pi$ si ottiene 
+\[ \mathrm{Ap}(w, x)\in \Sigma_{y\in B}R(x,y) \]
+e quindi, usando l'eliminatore del $\Sigma$,
+\[ \pi_1(\mathrm{Ap}(w,x))\in B \qquad \pi_2(\mathrm{Ap}(w,x))\in R(x, \pi_1(\mathrm{Ap}(w, x)))\]
+pertanto possiamo definire
+\[ p(w) \equiv \langle \lambda x. \pi_1(\mathrm{Ap}(w, x)), \lambda x.\pi_2(\mathrm{Ap}(w, x))\rangle \]
+\endproof
+
+\subsection{Esercizio 2}
+\begin{thm}
+	Dire se il seguente giudizio è derivabile
+	\begin{scriptsize}
+		\[(\forall x \in A)(\exists y \in B)R(x, y) \to (\forall x_1\in A)(\forall x_2\in A)(\exists y_1\in B)(\exists y_2\in B)(( R(x_1, y_1)\ \wedge\ R(x_2, y_2))\ \wedge\  (x_1 =_A x_2\ \to y_1 =_B y_2))\]
+	\end{scriptsize}
+\end{thm}
+\proof
+Dobbiamo trovare un proof-term del seguente tipo
+\begin{scriptsize}
+	\[ \Pi_{x\in A}\Sigma_{y\in B}R(x, y) \to \Pi_{x_1\in A}\Pi_{x_2\in A}\Sigma_{y_1\in B}\Sigma_{y_2\in B}(R(x_1, y_1)\times R(x_2, y_2)\times (\Id{A}{x_1}{x_2} \to \Id{B}{y_1}{y_2}))\]
+\end{scriptsize}
+Avendo un elemento di $\Pi_{x\in A}\Sigma_{y\in B}R(x,y)$, per via della validità dell'Assioma di Scelta possiamo ottenere un elemento $f \in A \to B$ tale per cui $R(x, f(x))$ risulta abitato per ogni $x \in A$. A questo punto, dati $x_1, x_2 \in A$ possiamo scegliere
+\[ y_1 := f(x_1) \qquad y_2 := f(x_2) \]
+in modo che $R(x_1, y_1)$ e $R(x_2, y_2)$ siano abitati, e inoltre, dato un proof-term
+\[ w \in \Id{A}{x_1}{x_2}\]
+otteniamo
+\[ \mathrm{El}_{\mathrm{Id}}(w, (x').\mathrm{id}(f(x'))) \in \Id{B}{f(x_1)}{f(x_2)}\] ovvero un proof-term di 
+\[ \Id{B}{y_1}{y_2} \]
+come richiesto.
+\endproof
