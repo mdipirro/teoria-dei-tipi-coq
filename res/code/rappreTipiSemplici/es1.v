@@ -8,4 +8,4 @@ Admitted.
 Definition pf {A} (a: A) (b: A) : eq a b.
 Proof.
 apply a_equal_b.
-Qed.
+Defined. 
