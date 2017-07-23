@@ -1,0 +1,18 @@
+\section{Rappresentazione dei tipi semplici in teoria dei tipi dipendenti}
+\subsection{Esercizio 1}
+\begin{thm}
+	Si dimostri che se $a~=~b~\in~A~[\Gamma]$ è derivabile nella teoria dei tipi con le regole finora introdotte allora esiste un proof-term \textbf{pf} tale che $pf~\in~Id(A,a,b)~[\Gamma]$.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/rappreTipiSemplici/es1.v}
+
+\subsection{Esercizio 2}
+\begin{thm}
+	La $\eta$-conversione del tipo prodotto, ovvero
+	\[<\pi_1(z),\pi_2(z)>~=~z~\in~A~\times~B~[z~\in~A~\times~B]\]
+	è derivabile?
+	
+	È derivabile la corrispondente uguaglianza proposizionale, ovvero esiste un proof-term \textbf{pf} tale che
+	\[pf~\in~Id(A\times B,<\pi_1(z),\pi_2(z)>,z)~[z~\in~A~\times~B]\]
+	è derivabile nella teoria dei tipi dipendenti?
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/rappreTipiSemplici/es2.v}
