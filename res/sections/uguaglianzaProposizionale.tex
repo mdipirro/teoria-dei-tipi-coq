@@ -1,5 +1,11 @@
 \newpage
 \section{Tipo dell'uguaglianza proposizionale alla Gentzen/Lawvere e alla Leibniz}
+\subsection{Esercizio 1}
+\begin{thm}
+	In che relazione stanno i due tipi di uguaglianza?
+\end{thm}
+L'uguaglianza a là Gentzen/Lawvere (utilizzata nel calcolo dei sequenti) è meno potente di quella a là Leibniz. Si nota, infatti, che nella regola di eliminazione della prima il termine $c~\in~C(a,a)~[\Gamma]$ non è dipendente da nessun elemento di A. Nella seconda, al contrario, questo termine è dipendete da un $x~\in~A$ dato nel contesto. Di conseguenza, con la prima la scelta del termine $a~\in~A~[\Gamma]$ vincola anche il termine $c~\in~C(a,a)~[\Gamma]$, cosa che non accade con la seconda, nella quale $x~\in~A$ è una variabile inserita nel contesto.
+
 \subsection{Esercizio 2}
 \begin{thm}
 	Con quale uguaglianza è possibile derivare un proof-term $q\in Id(B, f(x), f(y)) [x\in A, y\in A, w\in Id(A, x, y)]$, dove $f(x)\in B[x\in A]$?
@@ -62,13 +68,21 @@ Si deriva con l'uguaglianza alla Leibniz, infatti:
 Con l'uguaglianza alla Leibniz, infatti:
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es6.v}
 
-\subsection{Esercizio 8}
-\subsubsection{Parte 1 - Commutatività della somma}
-\begin{thm}[La somma di due naturali è commutativa]
-	Trovare un proof-term del tipo
-	\[ \mathrm{comm}(a, b) \in \Id{Nat}{a+b}{b+a}\ [a\in Nat,\ b\in Nat] \]
+\subsubsection{Esercizio 7}
+\begin{thm}
+	Quali assiomi dell'aritmetica di Peano sono derivabili con i tipi descritti finora?
 \end{thm}
-\proof
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es7.v}
+
+\subsection{Esercizio 8}
+\begin{thm}
+	Si dimostri che esiste un proof-term \textbf{pf} tale che
+	\[pf~\in~Id(Nat, x~+_1~y, x~+_2~y)~[x~\in~Nat,~y~\in~Nat]\]
+\end{thm}
+\subsubsection{Commutatività della somma a mano}
+Trovare un proof-term del tipo
+\[ \mathrm{comm}(a, b) \in \Id{Nat}{a+b}{b+a}\ [a\in Nat,\ b\in Nat] \]
+
 Definiamo il proof-term per induzione sull'addendo $b$.\\
 Posto $\Gamma \equiv a\in Nat,\ b\in Nat$
 
@@ -139,10 +153,26 @@ Si nota adesso che basta prendere
 Per cui
 \[w \equiv \mathrm{El}_{\mathrm{Nat}}(a, \mathrm{id}(\suc{x}), (z,r).\mathrm{El}_{\mathrm{Id}}(r, (x'').\mathrm{id}(\suc{x''})) \]
 
-\endproof
+\subsubsection{Esercizio completo in Coq}
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es8.v}
+
+
+\subsection{Esercizio 9}
+\begin{thm}
+	La regola di eliminazione del tipo uguaglianza proposizionale alla Leibniz rappresenta davvero una definizione per induzione sul tipo dei suoi elementi?
+\end{thm}
+No, infatti la regola di eliminazione non corrisponde direttamente alla regola di introduzione. Si nota, infatti, che la regola di introduzione crea un elemento canonico $id(a)~\in~Id(A,a,a)$, mentre l'eliminazione avviene su un elemento $x~\in~A$ dato nel contesto (e quindi, intuitivamente, passato come ``parametro''). Altri tipi di uguaglianza proposizionale, come quello a là Martin-Lof, cercano di mitigare questa disparità.
 
 \subsection{Esercizio 10}
 \begin{thm}
 	Definire l'insieme vuoto $N_0$.
 \end{thm}
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es10.v}
+
+\subsection{Esercizio 11}
+\begin{thm}
+	Nella teoria dei tipi con tipo singoletto, uguaglianza proposizionale alla Leibniz, liste, booleano e somma disgiunta, quale tipo è definibile a partire dagli altri?
+\end{thm}
+Il tipo booleano è definibile a partire dalla somma disgiunta e dal singoletto, infatti:
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es11.v}
+Dove $T \equiv inl (star)$ e $F \equiv inr (star)$.
