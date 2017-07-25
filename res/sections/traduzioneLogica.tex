@@ -40,3 +40,25 @@ otteniamo
 \[ \Id{B}{y_1}{y_2} \]
 come richiesto.
 \endproof
+
+\subsection{Esercizio 3}
+\begin{thm}
+	Supposto di rappresentare il tipo dei booleani come $Boole\equiv N_1~+~N_1$, con $0\equiv inl(*)$ e $1\equiv inr(*)$, e supposto che esista un proof-term $dis~\in~N_0~[z~\in~Id(Boole, 0, 1)]$, si dimostri che,dati due tipi \textit{A type} e \textit{B type} esiste una funzione
+	\[f(z)~\in~\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B))~[z~\in~A~+~B]\] \\
+	ed anche una funzione
+	\[g(w)~\in~A~+~B~[w~\in~\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B))]\]
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/traduzioneLogica/es3.v}
+
+\subsection{Esercizio 4}
+\begin{thm}
+	Le funzioni $f(z)$ e $g(w)$ stabiliscono un isomorfismo nel senso della definizione 9.6 tra $A~+~B$ e $\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B))$?
+\end{thm}
+Si, infatti è possibile definire due proof-terms \textbf{pf1} e \textbf{pf2} tali che $pf_1~\in~Id(A~+~B, x,g(f(x)))~[\Gamma,~x~\in~A~+~B]$ e $pf_2~\in~Id(\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B)), y,f(g(y)))~[\Gamma,~y~\in~\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B))]$
+\lstinputlisting[language=Coq]{res/code/traduzioneLogica/es4.v}
+
+\subsection{Esercizio 6}
+\begin{thm}
+	Si noti che in teoria dei tipi vale il seguente principio chiamato \textit{existence property under a context}: se $\exists y~\phi(y)~true~[\Gamma]$ allora esiste un proof-term \textbf{pf} tale che $\phi(pf)~true~[\Gamma]$.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/traduzioneLogica/es6.v}
