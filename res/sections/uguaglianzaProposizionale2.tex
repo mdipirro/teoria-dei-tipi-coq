@@ -1,0 +1,44 @@
+\section{Sull'uguaglianza proposizionale}
+\subsection{Esercizio 1}
+\begin{thm}
+	Per capire l'importanza della regola di eliminazione del tipo di uguaglianza proposizionale formulato da Martin-Lof, si dimostri che se si aggiungono alla teoria dei tipi le regole di \textit{unicità dei proof-terms di uguaglianza} allora si dimostra che dati $a~\in~A~[\Gamma]$ e $b~\in~A~[\Gamma]$ c'è un proof-term \textbf{pf} del tipo:
+	\[pf~\in~\forall_{w1~\in~Id(A,a,b)}~\forall_{w2~\in~Id(A,a,b)}~Id(Id(A,a,b),~w1,~w2)~[\Gamma] \]
+	ovvero i proof-terms di un tipo di uguaglianza proposizionale sono tutti uguali proposizionalmente.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es1.v}
+
+\subsection{Esercizio 2}
+\begin{thm}
+	Sia $k$ un numero naturale. Dare le regole del tipo $N_k$ con k elementi. Poi dimostrare che nella teoria dei tipi estesa con i tipi $N_k$, ognuno di questi tipi risulta isomorfo ad un tipo definibile a partire dai costrutti di tipo precedentemente descritti.
+\end{thm}
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$F-N_k$}
+\UnaryInfC{$N_k~type~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$I_1-N_k$}
+\UnaryInfC{$0~\in~N_k~[\Gamma]$}
+\DisplayProof\dots
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$I_k-N_k$}
+\UnaryInfC{$k-1~\in~N_k~[\Gamma]$}
+\DisplayProof
+\vspace{0.2in}
+
+Si nota che le regole di introduzione sono corrispondenti al numero $k$, e vanno da $0$ a $k-1$.
+
+\vspace{0.2in}
+\AxiomC{$c~\in~N_k[\Gamma]$}
+\AxiomC{$c_0~\in~C(0)~[\Gamma]~\dots~c_{k-1}~\in~C(k-1)~[\Gamma]$}
+\RightLabel{$E-N_k$}
+\BinaryInfC{$El_k(c,~c_0,\dots,c_{k-1})~\in~C(c)~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$c_0~\in~C(0)~[\Gamma]~\dots~c_{k-1}~\in~C(k-1)~[\Gamma]$}
+\RightLabel{$C-N_k$}
+\UnaryInfC{$EL_k(0,~c_0,\dots,c_{k-1})~=~c_m~\in~C(c)~[\Gamma]$}
+\DisplayProof
+\vspace{0.2in}
+
+Si nota che le regole di computazione sono tante quante $k$, con valori da $0$ a $k-1$.
