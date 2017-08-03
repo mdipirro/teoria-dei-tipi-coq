@@ -1,6 +1,8 @@
 From mathcomp Require Import ssreflect.
 
-Inductive MartinLof (A: Type) : A -> A -> Prop :=
+(* Da rivedere *)
+
+Inductive MartinLof (A: Type) : A -> A -> (CM A) :=
 | ml_refl x : MartinLof A x x.
 
 Inductive Leibniz (A: Type) : A -> A -> Prop :=
