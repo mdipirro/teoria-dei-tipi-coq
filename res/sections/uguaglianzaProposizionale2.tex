@@ -42,3 +42,19 @@ Si nota che le regole di introduzione sono corrispondenti al numero $k$, e vanno
 \vspace{0.2in}
 
 Si nota che le regole di computazione sono tante quante $k$, con valori da $0$ a $k-1$.
+
+\subsection{Esercizio 3}
+\begin{thm}
+	Si dimostri che il tipo dell'uguaglianza proposizionale di Martin-Lof è isomorfo a quello dell'uguaglianza proposizionale con Path Induction.
+\end{thm}
+Soluzione definendo le due uguaglianze con gli assiomi:
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es3.v}
+
+Soluzione definendo le due uguaglianze come tipi induttivi di Coq:
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es3-breve.v}
+
+\subsection{Esercizio 5}
+\begin{thm}
+	Si stabilisca se dato un tipo $A~type~[\Gamma]$ e termini $a~\in~A~[\Gamma]$ e $b~\in~A~[\Gamma]$, il tipo uguaglianza proposizionale à la Leibniz è equivalente a quello di Martin-Lof. I due tipi sono anche isomorfi tra loro?
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es5.v}
