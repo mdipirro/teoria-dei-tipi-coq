@@ -10,3 +10,9 @@
 	Si dimostri che le quantificazioni universale ed esistenziale definite sopra sono effettivamente proposizioni ben tipate in \texttt{Prop} e mostrare che rendono valide le regole dei sequenti della logica intuizionista predicativa.
 \end{thm}
 \lstinputlisting[language=Coq]{res/code/prop/es2.v}
+
+\subsection{Esercizio 3}
+\begin{thm}
+	Che tipo di uguaglianza è definita con l'universo delle proposizioni?
+\end{thm}
+L'uguaglianza proposizionale con \texttt{Prop} è definita come $Id_{CoC}(A,a,b)~\equiv~\forall_{p~\in~A\to Prop}~(p(a)~\to~p(b)$, dati due  elementi di un tipo $A$: $a~\in~A~[\Gamma]$ e $b~\in~A~[\Gamma]$. $p$ è quindi un elemento di un tipo funzione che prende un elemento di A e ritorna un elemento di \texttt{Prop}, ovvero una proposizione. La definizione richiede che \textit{per ogni} $p~\in~A\to Prop$ valga che $p(a)~\to~p(b)$, cioè che per ogni funzione che, dato un elemento di A, ritorna una proposizione, la proposizione ottenuta da $a$ implica \textit{sempre} la proposizione ottenuta da $b$. L'eliminazione dell'uguaglianza così definita è verso altri abitanti di \texttt{Prop} e non verso abitanti di altri tipi (ad esempio $A$). Quindi l'uguaglianza non somiglia a quelle già viste, dove l'eliminazione poteva avvenire verso un tipo qualsiasi ($C$), dipendente da parametri differenti a seconda della definizione.
