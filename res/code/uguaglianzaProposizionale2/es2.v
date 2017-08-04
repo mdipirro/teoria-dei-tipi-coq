@@ -54,8 +54,6 @@ Proof.
 case: x.
 move=> n p.
 simpl.
-apply (erefl (g zero)).
-auto.
 case: x.
 move=> x p0.
 apply: erefl.
@@ -64,4 +62,4 @@ Defined.*)
 Definition pf2 (n: N5) : f (g n) = n.
 Proof.
 by case n.
-Qed.
+Defined.
