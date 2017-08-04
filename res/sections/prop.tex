@@ -16,3 +16,15 @@
 	Che tipo di uguaglianza è definita con l'universo delle proposizioni?
 \end{thm}
 L'uguaglianza proposizionale con \texttt{Prop} è definita come $Id_{CoC}(A,a,b)~\equiv~\forall_{p~\in~A\to Prop}~(p(a)~\to~p(b)$, dati due  elementi di un tipo $A$: $a~\in~A~[\Gamma]$ e $b~\in~A~[\Gamma]$. $p$ è quindi un elemento di un tipo funzione che prende un elemento di A e ritorna un elemento di \texttt{Prop}, ovvero una proposizione. La definizione richiede che \textit{per ogni} $p~\in~A\to Prop$ valga che $p(a)~\to~p(b)$, cioè che per ogni funzione che, dato un elemento di A, ritorna una proposizione, la proposizione ottenuta da $a$ implica \textit{sempre} la proposizione ottenuta da $b$. L'eliminazione dell'uguaglianza così definita è verso altri abitanti di \texttt{Prop} e non verso abitanti di altri tipi (ad esempio $A$). Quindi l'uguaglianza non somiglia a quelle già viste, dove l'eliminazione poteva avvenire verso un tipo qualsiasi ($C$), dipendente da parametri differenti a seconda della definizione.
+
+\subsection{Esercizio 4}
+\begin{thm}
+	In che relazione stanno le costruzioni delle proposizioni sopra viste come tipi rispetto alle proposizioni definite secondo l'isomorfismo ``proposizioni come tipi'' della sezione 9?
+\end{thm}
+Una differenza fondamentale risiede nell'interpretazione dell'uguaglianza. Infatti, nel caso dell'interpretazione della logica in teoria dei tipi, l'eliminazione dell'uguaglianza può andare verso un qualsiasi tipo $A$. Questo rende possibile dimostrare un assioma di scelta. Al contrario, in \texttt{Prop}, l'eliminazione può avvenire solo verso \texttt{Prop} stesso. Di conseguenza non vale l'assioma di scelta.
+
+Un'altra differenza è rappresentata dall'interpretazione del falso ($\perp$). Nell'interpretazione in teoria dei tipi il falso corrisponde ad $N_0$, e quindi ad un tipo non abitato, mentre in \texttt{Prop} corrisponde a $\forall_{p~\in~Prop}~p$. 
+
+Tutte i connettivi logici e il quantificatore esistenziale sono poi definiti con il supporto di $\forall$ e dell'implicazione. Nell'interpretazione CHM, invece, i connettivi logici e il quantificatore esistenziale sono definiti con il supporto di altri tipi esistenti, quali $\Sigma$, $\prod$, $\times$ e $\oplus$. 
+
+Infine, l'interpretazione ``libera'' delle proposizioni come tipi può portare ad inconsistenze, e quindi a poter derivare il falso. Un esempio è dato dall'esercizio 11.2, dove è possibile derivare $Id(A, 0, 1)~true~[\Gamma]$. Al contrario, in \texttt{Prop}, questa inconsistenza non è presente.
