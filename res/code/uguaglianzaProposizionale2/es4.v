@@ -1,61 +1,79 @@
 From mathcomp Require Import ssreflect.
 
-Module Leibniz.
-(*
-Variables (A : Type) (C : A -> A -> Prop).
-
-Definition e_id_l {a b : A} (p : a = b) (c : forall x, C x x) : C a b :=
-  match p with eq_refl => c a end.
-
-Definition c_id_l (a : A) (c : forall x, C x x) :
-                  e_id_l (eq_refl a) c = c a :=
-  eq_refl.*)
-
-Axiom eq : forall A, A -> A -> Prop.
-Axiom refl : forall A, forall x : A, eq A x x.
-Axiom el : forall (A : Type) (C : A -> A -> Prop),
-  (forall x : A, C x x) ->
-    forall a b : A, forall p : eq A a b, C a b.
-Axiom el_refl : forall (A : Type) (C : A -> A -> Prop)
-    (CR : forall x : A, C x x),
-    forall x : A, el A C CR x x (refl A x) = CR x.
-
-End Leibniz.
-
 Module LeibnizR.
-(*
-Variables (A : Type) (C : A -> A -> Type).
 
-Definition e_id_g {a b : A} (p : a = b) (c : C a a) : C a b :=
-  match p with eq_refl => fun c => c end c.
+Definition eq {A} (a b : A) : Prop :=
+  forall P : A -> Prop, P a -> P b.
 
-Definition c_id_g (a : A) (c : C a a) : e_id_g (eq_refl a) c = c :=
-  eq_refl.*)
+Definition refl {A} (a : A) : eq a a :=
+  fun P x => x.
 
+Definition e_id_r (A : Type) (C : A -> A -> Prop) (a b : A) (p : eq a b) 
+(c : C a a) : C a b := p (C a) c.
 
-Axiom eq : forall A, A -> A -> Prop.
-Axiom refl : forall A, forall x : A, eq A x x.
-Axiom el : forall (A : Type) (a: A) (C : A -> A -> Prop),
-  C a a -> forall b : A, forall p : eq A a b, C a b.
-Axiom el_refl : forall (A : Type) (a: A) (C : A -> A -> Prop)
-    (CR : C a a), el A a C CR a (refl A a) = CR.
+Definition c_id_r (A : Type) (C : A -> A -> Prop) (a : A) (c : C a a)
+: e_id_r A C a a (refl a) c = c := eq_refl.
+
+Axiom UIP : forall (A: Type) (x y: A) (p1 p2: eq x y), p1 = p2. 
 
 End LeibnizR.
 
-Definition f {A} (x y: A) (l: Leibniz.eq A x y) : LeibnizR.eq A x y.
+Module Leibniz.
+
+Definition eq {A} (a b : A) : Prop :=
+  forall P : A -> Prop, P a -> P b.
+
+Definition refl {A} (a : A) : eq a a :=
+  fun P x => x.
+
+Definition e_id_l (A : Type) (C : A -> A -> Prop) (a b : A) (p : eq a b)
+(c : forall x, C x x) : C a b := p (C a) (c a).
+
+Definition c_id_l (A : Type) (C : A -> A -> Prop) (a : A) (c : forall x, C x x) 
+: e_id_l A C a a (refl a) c = c a := eq_refl.
+
+Axiom UIP : forall (A: Type) (x y: A) (p1 p2: eq x y), p1 = p2. 
+
+End Leibniz.
+
+Definition f {A} (x y: A) (l: Leibniz.eq x y) : LeibnizR.eq x y.
 Proof.
-Check (Leibniz.el A (fun a b => LeibnizR.eq A a b) _ x y).
-apply: (Leibniz.el A (fun a b => LeibnizR.eq A a b) _ x y).
+apply: (Leibniz.e_id_l A (fun a b => LeibnizR.eq a b) x y l).
 move=> x0.
-apply: LeibnizR.refl A x0.
-apply l.
+apply: LeibnizR.refl x0.
 Defined.
 
-Definition g {A} (x y: A) (g: LeibnizR.eq A x y) : Leibniz.eq A x y.
+Definition g {A} (x y: A) (r: LeibnizR.eq x y) : Leibniz.eq x y.
 Proof.
-Check (LeibnizR.el A x (fun a b => Leibniz.eq A x a) _ y g).
-apply: (LeibnizR.el A x (fun a p => Leibniz.eq A x a) _ y g).
+apply: (LeibnizR.e_id_r A (fun a b => Leibniz.eq a b) x y r).
 move=> x0.
-exact: Leibniz.refl A x0.
-apply l.
+apply: Leibniz.refl x0.
+Defined.
+
+(* Equivalenza *)
+Lemma equiv_ml_l (A: Type) : forall x y: A, Leibniz.eq x y <-> LeibnizR.eq x y.
+Proof.
+move=> x y.
+split.
+  move=> l.
+  apply (f x y l).
+move=> r.
+apply (g x y r).
+Qed.
+
+(* Isomorfismo *)
+
+Definition pf1 {A} (x y: A) (l: Leibniz.eq x y) : eq l (g x y (f x y l)).
+Proof.
+Check (Leibniz.e_id_l A (fun x y => forall l, l = f x y (g x y l)) x y l).
+apply: (Leibniz.e_id_l A (fun x y => forall l, l = f x y (g x y l)) x y l).
+move=> x0 l0.
+apply: (LeibnizR.UIP A x0 x0 l0 (f x0 x0 (g x0 x0 l0))).
+Defined.
+
+Definition pf2 {A} (x y: A) (r: Leibniz.eq x y) : eq r (f x y (g x y r)).
+Proof.
+apply: (LeibnizR.e_id_r A (fun x y => forall r, r = f x y (g x y r)) x y r).
+move=> r0.
+apply: (Leibniz.UIP A x x r0 (f x x (g x x r0))).
 Defined.
