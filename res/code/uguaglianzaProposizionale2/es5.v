@@ -52,13 +52,14 @@ move=> l.
 apply (g x y l).
 Qed.
 
+(* Isomorfismo *)
+
 Definition pf1 {A} (x y: A) (m: MartinLof.eq A x y) : eq m (g x y (f x y m)).
 Proof.
 apply: (MartinLof.el A (fun x y p => p = g x y (f x y p))).
 move=> x0.
 by rewrite /f MartinLof.el_refl /g Leibniz.el_refl.
 Defined.
-
 
 Definition pf2 {A} (x y: A) (m: Leibniz.eq A x y) : eq m (f x y (g x y m)).
 Proof.
