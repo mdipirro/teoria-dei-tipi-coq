@@ -57,4 +57,18 @@ Soluzione definendo le due uguaglianze come tipi induttivi di Coq:
 \begin{thm}
 	Si stabilisca se dato un tipo $A~type~[\Gamma]$ e termini $a~\in~A~[\Gamma]$ e $b~\in~A~[\Gamma]$, il tipo uguaglianza proposizionale à la Leibniz è equivalente a quello di Martin-Lof. I due tipi sono anche isomorfi tra loro?
 \end{thm}
+I due tipi sono equivalenti tra loro, come si può notare dalla dimostrazione sottostante. Al contrario i due tipi non sono isomorfi. Si nota come, rispetto alla definizione di $pf1$, nella definizione di $pf2$ la prova di \texttt{eq z z} non è più nota (è una variabile $p$) mentre prima era $refl$. Per far si che il termine dato ad apply: sia ben tipato si dove usare un $C$ molto più forte. Infatti, l'eliminatore di Martin Lof consente di usare un $C$ che non ha tale quantificazione, ma ha un parametro $p$, e si deve poi poi dimostrare tale $C$ non su un $p$ qualunque, ma su $refl$.  E in tale caso la regola computazionale lo permette.
+
+Un altro modo per leggere i due eliminatori è il seguente. Quello di Leibniz dice ``si sa che $(p : x = y)$. Si può quindi rimpiazzare $x$ per $y$''. Quello Martin Lof, invece, dice ``si sa che $(p : x = y)$. Si può quindi rimpiazzare simultaneamente $x$ per $y$ e $p$ per $refl$``. Quindi nel caso di Martin Lof si ha a disposizione un'informazione concreta sul proof-term, mentre nel caso di Leibniz no. Di conseguenza non si può definire $pf2$.
+
+I due tipi non sono quindi isomorfi, a meno di aggiungere l'assioma di Streicher, che dice che tutti i $(p : x = x)$ sono uguali a $refl$ (e di fatto riporta alle condizioni favorevoli di $pf1$). In Coq questo assioma è definito come:
+\begin{lstlisting}[language=Coq]
+Axiom Streicher_K : 
+	forall (A:Type) (x:A) (P: x=x -> Prop), 
+	P (refl_equal x) -> forall p: x=x, P p. 
+\end{lstlisting}
+Ed è equivalente all'assioma di Unicità delle Prove di Identità, definito in Coq come segue:
+\begin{lstlisting}[language=Coq]
+Axiom UIP : forall (A:Set) (x y:A) (p1 p2: x=y), p1 = p2. 
+\end{lstlisting}
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es5.v}
