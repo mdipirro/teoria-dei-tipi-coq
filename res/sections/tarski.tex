@@ -3,53 +3,19 @@
 \begin{thm}
 	Dare la definizione di eliminazione induttiva dell'universo $U_0$.
 \end{thm}
-Casi base:
-\begin{scriptsize}
-\AxiomC{$D(z)~type~[\Gamma,~z~\in~U_0]$}
-\RightLabel{$E_1-Un_0$}
-\UnaryInfC{$d_0~\in~D(N_0)~[\Gamma]$}
-\DisplayProof\qquad
-\AxiomC{$D(z)~type~[\Gamma,~z~\in~U_0]$}
-\RightLabel{$E_2-Un_0$}
-\UnaryInfC{$d_1~\in~D(N_1)~[\Gamma]$}
-\DisplayProof\qquad
-\AxiomC{$D(z)~type~[\Gamma,~z~\in~U_0]$}
-\RightLabel{$E_3-Un_0$}
-\UnaryInfC{$d_Nat~\in~D(Nat)~[\Gamma]$}
-\DisplayProof
-
-\vspace{0.2in}
-\AxiomC{$D(x)~type~[\Gamma,~x~\in~U_0]$}
-\RightLabel{$E_4-Un_0$}
-\UnaryInfC{$El_{List}(x,~y)~\in~D(List(x))~[\Gamma,~x~\in~U_0,~y~\in~D(x)]$}
-\DisplayProof
-
-\vspace{0.2in}
-\AxiomC{$D(x)~type~[\Gamma,~x~\in~U_0]$}
-\RightLabel{$E_5-Un_0$}
-\UnaryInfC{$El_{+}(x,~x',~y,~y')~\in~D(x~+~x')~[\Gamma,~x~\in~U_0,~y~\in~D(x),~x'~\in~U_0,~y'~\in~D(x')]$}
-\DisplayProof\qquad
-
-\vspace{0.2in}
-\AxiomC{$D(x)~type~[\Gamma,~x~\in~U_0]$}
-\RightLabel{$E_6-Un_0$}
-\UnaryInfC{$El_{\Sigma}(x,~y,~c,~y')~\in~D(\Sigma_{z~\in~T(x)}c(z))~[\Gamma,~x~\in~U_0,~y~\in~D(x),~c~\in~T(x)~\to~U_0,~y'~\in~D(c(x))]$}
-\DisplayProof\qquad
-
-\vspace{0.2in}
-\AxiomC{$D(x)~type~[\Gamma,~x~\in~U_0]$}
-\RightLabel{$E_7-Un_0$}
-\UnaryInfC{$El_{\Pi}(x,~y,~c,~y')~\in~D(\Pi_{z~\in~T(x)}c(z))~[\Gamma,~x~\in~U_0,~y~\in~D(x),~c~\in~T(x)~\to~U_0,~y'~\in~D(c(x))]$}
-\DisplayProof\qquad
-
-\vspace{0.2in}
-\AxiomC{$D(x)~type~[\Gamma,~x~\in~U_0]$}
-\RightLabel{$E_8-Un_0$}
-\UnaryInfC{$El_{Id}(x,~y,~w_1,~w_2)~\in~D(Id(x,~w_1,~w_2))~[\Gamma,~x~\in~U_0,~y~\in~D(x),~w_1~\in~T(x),~w_2~\in~T(x)]$}
-\DisplayProof\qquad
-\end{scriptsize}
-
-% mettere ^ sopra tipi
+Premesse:
+\[a~\in~U_0~[\Gamma]\]
+\[D(z)~type~[\Gamma,~z~\in~U_0]\]
+\[a_1~\in~D(\stackrel{\wedge}{N_0})~[\Gamma]\]
+\[a_2~\in~D(\stackrel{\wedge}{N_1})~[\Gamma]\]
+\[a_3~\in~D(\stackrel{\wedge}{Nat})~[\Gamma]\]
+\[a_4(x,y)~\in~D(\stackrel{\wedge}{List(x)})~[\Gamma,x~in~U_0,y\in D(x)]\]
+\[a_5(x,y,z,u)~\in~D(\stackrel{\wedge}{Id}(x,y,z))~[\Gamma,x~\in~U_0,y\in T(x),z\in T(x), u\in D(x)]\]
+\[a_6(x,y,z,u)~\in~D(x\stackrel{\wedge}{+}y)~[\Gamma,x\in U_0,y\in U_0,z\in D(x), u\in D(y)]\]
+\[a_7(x,y,z,u)~\in~D(\stackrel{\wedge}{\Pi}_{w~\in~T(x)}y(w)))~[\Gamma,x\in U_0,y\in~T(x)~\to~U_0,z\in D(x), u\in D(c(x))]\]
+\[a_8(x,y,z,u)~\in~D(\stackrel{\wedge}{\Sigma}_{w~\in~T(x)}y(w)))~[\Gamma,x\in U_0,y\in~T(x)~\to~U_0,z\in D(x), u\in D(c(x))]\]
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+\[El(a,a_1,a_2,a_3,a_4,a_5,a_6,a_7,a_8)~\in~D(a)\]
 
 \subsection{Esercizio 2}
 \begin{thm}
