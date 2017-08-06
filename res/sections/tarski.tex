@@ -1,7 +1,68 @@
 \section{Il tipo universo ``predicativo'' à la Tarski}
+\subsection{Esercizio 1}
+\begin{thm}
+	Dare la definizione di eliminazione induttiva dell'universo $U_0$.
+\end{thm}
+Casi base:
+\begin{scriptsize}
+\AxiomC{$D(z)~type~[\Gamma,~z~\in~U_0]$}
+\RightLabel{$E_1-Un_0$}
+\UnaryInfC{$d_0~\in~D(N_0)~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$D(z)~type~[\Gamma,~z~\in~U_0]$}
+\RightLabel{$E_2-Un_0$}
+\UnaryInfC{$d_1~\in~D(N_1)~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$D(z)~type~[\Gamma,~z~\in~U_0]$}
+\RightLabel{$E_3-Un_0$}
+\UnaryInfC{$d_Nat~\in~D(Nat)~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$D(x)~type~[\Gamma,~x~\in~U_0]$}
+\RightLabel{$E_4-Un_0$}
+\UnaryInfC{$El_{List}(x,~y)~\in~D(List(x))~[\Gamma,~x~\in~U_0,~y~\in~D(x)]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$D(x)~type~[\Gamma,~x~\in~U_0]$}
+\RightLabel{$E_5-Un_0$}
+\UnaryInfC{$El_{+}(x,~x',~y,~y')~\in~D(x~+~x')~[\Gamma,~x~\in~U_0,~y~\in~D(x),~x'~\in~U_0,~y'~\in~D(x')]$}
+\DisplayProof\qquad
+
+\vspace{0.2in}
+\AxiomC{$D(x)~type~[\Gamma,~x~\in~U_0]$}
+\RightLabel{$E_6-Un_0$}
+\UnaryInfC{$El_{\Sigma}(x,~y,~c,~y')~\in~D(\Sigma_{z~\in~T(x)}c(z))~[\Gamma,~x~\in~U_0,~y~\in~D(x),~c~\in~T(x)~\to~U_0,~y'~\in~D(c(x))]$}
+\DisplayProof\qquad
+
+\vspace{0.2in}
+\AxiomC{$D(x)~type~[\Gamma,~x~\in~U_0]$}
+\RightLabel{$E_7-Un_0$}
+\UnaryInfC{$El_{\Pi}(x,~y,~c,~y')~\in~D(\Pi_{z~\in~T(x)}c(z))~[\Gamma,~x~\in~U_0,~y~\in~D(x),~c~\in~T(x)~\to~U_0,~y'~\in~D(c(x))]$}
+\DisplayProof\qquad
+
+\vspace{0.2in}
+\AxiomC{$D(x)~type~[\Gamma,~x~\in~U_0]$}
+\RightLabel{$E_8-Un_0$}
+\UnaryInfC{$El_{Id}(x,~y,~w_1,~w_2)~\in~D(Id(x,~w_1,~w_2))~[\Gamma,~x~\in~U_0,~y~\in~D(x),~w_1~\in~T(x),~w_2~\in~T(x)]$}
+\DisplayProof\qquad
+\end{scriptsize}
+
+% mettere ^ sopra tipi
+
+\subsection{Esercizio 2}
+\begin{thm}
+	Dimostrare che nella teoria dei tipi con tutti i costrutti introdotti \textit{senza il tipo universo $U_0$} si possono interpretare i tipi o nell'insieme vuoto $N_0~type~[\Gamma]$ o nell'insieme singoletto $N_1~type~[\Gamma]$ e i termini come elementi dell'interpretazione in modo tale che vengano soddisfatte le definizioni a pagina 29.
+	
+	Dimostrare poi che questa interpretazione \textit{rende vero} $Id(Nat,~0~1)~[]$ e quindi \textit{rende falso} $\neg Id(Nat,~0~1)~[]$. Ovvero l'interpretazione costruita è un \textit{modello in teoria dei tipi della proposizione} $0~=_{Nat}~1$ ed è un \textit{contromodello in teoria dei tipi della proposizione} $\neg 0~=_{Nat}~1$.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/tarski/es2.v}
+
 \subsection{Esercizio 3}
 \begin{thm}
 	Dimostrare in teoria dei tipi con un universo, ad esempio $U_0$, che si può derivare
 	\[\not~Id(Nat, 0, 1)~true~[]\]
 \end{thm}
+Viene definita una funzione $k:~Nat~\to~U_0$ tale che $k(0)~=~N_0$ e $k(1)~=~N_1$. Dopodiché si dimostra che vale $T(x)~\iff~T(y)~[\Gamma,~x~\in~U_0,~y~\in~U_0,~w~\in~Id(U_0,~x,~y)]$. Se è possibile dimostrare questo allora, ponendo $x~=~k(0)$ e $y~=~k(1)$ si ottiene una prova $w$ di $Id(U_0,~N_0,~N_1)$ e di conseguenza $T(x)~\iff~T(y)~\equiv~T(N_0)~\iff~T(N_1)~\equiv~N_0~\iff~N_1~\equiv~False$. È possibile definire $k$ e provare l'equivalenza come segue.
 \lstinputlisting[language=Coq]{res/code/tarski/es3.v}
