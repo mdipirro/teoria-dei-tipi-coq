@@ -53,6 +53,25 @@ Soluzione definendo le due uguaglianze con gli assiomi:
 Soluzione definendo le due uguaglianze come tipi induttivi di Coq:
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es3-breve.v}
 
+\subsection{Esercizio 4}
+\begin{thm}
+	Si provi a stabilire se il tipo dell'uguaglianza proposizionale di Leibniz rende ammissibili le regole del tipo di uguaglianza proposizionale di Leibniz con eliminazione ristretta (che ricorda la regola di eliminazione della deduzione naturale dell'uguaglianza in logica predicativa o equivalentemente la regola a sinistra dell'uguaglianza nel calcolo dei sequenti per la logica predicativa) e poi si stabilisca se i due tipi sono isomorfi.
+\end{thm}
+I due tipi sono equivalenti tra loro, quindi il tipo dell'uguaglianza di Leibniz rende ammissibili le regole del tipo di uguaglianza proposizionale di Leibniz con eliminazione ristretta. I due tipi non sono isomorfi, a meno di non aggiungere ad entrambi i tipi l'assioma di Streicher, che dice che tutti i $(p : x = x)$ sono uguali a $refl$. In Coq questo assioma è definito come:
+\begin{lstlisting}[language=Coq]
+Axiom Streicher_K : 
+forall (A:Type) (x:A) (P: x=x -> Prop), 
+P (refl_equal x) -> forall p: x=x, P p. 
+\end{lstlisting}
+O, equivalentemente,l'assioma di Unicità delle Prove di Identità, definito in Coq come segue:
+\begin{lstlisting}[language=Coq]
+Axiom UIP : forall (A:Set) (x y:A) (p1 p2: x=y), p1 = p2. 
+\end{lstlisting}
+
+Con quest'ultimo assioma è possibile dimostrare l'isomorfismo tra i due tipi.
+
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es4.v}
+
 \subsection{Esercizio 5}
 \begin{thm}
 	Si stabilisca se dato un tipo $A~type~[\Gamma]$ e termini $a~\in~A~[\Gamma]$ e $b~\in~A~[\Gamma]$, il tipo uguaglianza proposizionale à la Leibniz è equivalente a quello di Martin-Lof. I due tipi sono anche isomorfi tra loro?
@@ -61,14 +80,5 @@ I due tipi sono equivalenti tra loro, come si può notare dalla dimostrazione so
 
 Un altro modo per leggere i due eliminatori è il seguente. Quello di Leibniz dice ``si sa che $(p : x = y)$. Si può quindi rimpiazzare $x$ per $y$''. Quello Martin Lof, invece, dice ``si sa che $(p : x = y)$. Si può quindi rimpiazzare simultaneamente $x$ per $y$ e $p$ per $refl$``. Quindi nel caso di Martin Lof si ha a disposizione un'informazione concreta sul proof-term, mentre nel caso di Leibniz no. Di conseguenza non si può definire $pf2$.
 
-I due tipi non sono quindi isomorfi, a meno di aggiungere l'assioma di Streicher, che dice che tutti i $(p : x = x)$ sono uguali a $refl$ (e di fatto riporta alle condizioni favorevoli di $pf1$). In Coq questo assioma è definito come:
-\begin{lstlisting}[language=Coq]
-Axiom Streicher_K : 
-	forall (A:Type) (x:A) (P: x=x -> Prop), 
-	P (refl_equal x) -> forall p: x=x, P p. 
-\end{lstlisting}
-Ed è equivalente all'assioma di Unicità delle Prove di Identità, definito in Coq come segue:
-\begin{lstlisting}[language=Coq]
-Axiom UIP : forall (A:Set) (x y:A) (p1 p2: x=y), p1 = p2. 
-\end{lstlisting}
+I due tipi non sono quindi isomorfi, a meno di aggiungere l'assioma di Streicher, che di fatto riporta alle condizioni favorevoli di $pf1$, o, equivalentemente, l'assioma di Unicità delle Prove di Identità.
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es5.v}
