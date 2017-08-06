@@ -1,18 +1,40 @@
 From mathcomp Require Import ssreflect.
-Notation erefl := refl_equal.
 
-(*Lemma not_eq_0_1 : ~ (0 = 1).
+Lemma ex_falso P : False -> P.
 Proof.
-by [].
-Qed.*)
+move=> abs.
+case: abs.
+Qed.
 
-Definition f (x: nat) : Set :=
+(* Dimostrazione base di 0 <> 1 *)
+Lemma not_id_0_1_base : 0 = 1 -> Empty_set.
+Proof.
+move=> abs.
+by apply ex_falso.
+Qed.
+
+Definition k (x: nat) : Set :=
 match x with
   | 0 => Empty_set
-  | S _ => unit
+  | S n => unit
 end.
 
-Lemma not_eq_0_1 (x: Set) (y: Set) (w: eq x y) : (eq 0 1) -> Empty_set.
+Definition T (u: Set) : Type := u.
+
+Lemma eq_simm (A: Type) (x y: A) : (x = y) -> (y = x).
 Proof.
-move=> hp.
+move=> xy.
+by rewrite //=.
+Qed.
+
+Lemma Tx_Ty (x y: Set) (w: x = y) : forall z: T x, T y.
+Proof.
+move=> Tx.
+by rewrite (eq_simm Set x y w).
+Qed.
+
+Lemma Ty_Tx (x y: Set) (w: x = y) : forall z: T y, T x.
+Proof.
+move=> Ty.
+by rewrite w.
 Qed.
