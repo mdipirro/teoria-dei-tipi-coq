@@ -51,12 +51,15 @@ Defined.
 (* TODO *)
 Definition pf2 {A} {B} 
   (y: sigT (fun x: Boole => prod ((eq x (inrb tt)) -> A) (eq x (inlb tt) -> B))) :
-  eq y (f (g (y))).
+  eq y (f (g y)).
 Proof.
 case: (f (g y)).
   move=> x p.
-  destruct p.
-  destruct x.
+  destruct y.
+  Check (eq_inla_inltt a0).
+  apply: (eq_inla_inltt a0).
+Check (b (inlb a0)).
+  apply: b.
   exists b.
   
 Defined.
