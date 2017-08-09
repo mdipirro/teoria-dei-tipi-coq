@@ -1,0 +1,164 @@
+Regole ``classiche'' modificate per tenere conto di infiniti universi:
+
+\vspace{0.2in}
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$F-U_i$}
+\UnaryInfC{$U_i~type~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$I_1-U_i$}
+\UnaryInfC{$\stackrel{\wedge_i}{N_0}~\in~U_i~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$I_2-U_i$}
+\UnaryInfC{$\stackrel{\wedge_i}{N_1}~\in~U_i~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$I_3-U_i$}
+\UnaryInfC{$\stackrel{\wedge_i}{Nat}~\in~U_i~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$c(x)~\in~U_i~[\Gamma,x\in T(b)]$}
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\RightLabel{$I_4-U_i$}
+\BinaryInfC{$\stackrel{\wedge_i}{\Sigma}_{x\in b}c(x)~\in~U_i~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$c(x)~\in~U_i~[\Gamma,x\in T(b)]$}
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\RightLabel{$I_5-U_i$}
+\BinaryInfC{$\stackrel{\wedge_i}{\Pi}_{x\in b}c(x)~\in~U_i~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\AxiomC{$c~\in~U_i~[\Gamma]$}
+\RightLabel{$I_6-U_i$}
+\BinaryInfC{$b\stackrel{\wedge_i}{+}c~\in~U_i~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\RightLabel{$I_7-U_i$}
+\UnaryInfC{$\stackrel{\wedge_i}{List}(b)~\in~U_i~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\AxiomC{$c~\in~T(b)~[\Gamma]$}
+\AxiomC{$d~\in~T(b)~[\Gamma]$}
+\RightLabel{$I_8-U_i$}
+\TrinaryInfC{$\stackrel{\wedge_i}{Id}(b,c,d)~\in~U_i~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$a~\in~U_i~[\Gamma]$}
+\RightLabel{$E-U_i$}
+\UnaryInfC{$T_i(a)~type~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$\Gamma~cont~$}
+\RightLabel{$C_1-U_i$}
+\UnaryInfC{$T_i(\stackrel{\wedge_i}{N_0})=N_0~type~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$\Gamma~cont~$}
+\RightLabel{$C_2-U_i$}
+\UnaryInfC{$T_i(\stackrel{\wedge_i}{N_1})=N_1~type~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$\Gamma~cont~$}
+\RightLabel{$C_3-U_i$}
+\UnaryInfC{$T_i(\stackrel{\wedge_i}{Nat})=Nat~type~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$c(x)~\in~U_i~[\Gamma,x\in T(b)]$}
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\RightLabel{$C_4-U_i$}
+\BinaryInfC{$T_i(\stackrel{\wedge_i}{\Sigma}_{x\in T(b)}c(x))=\Sigma_{x\in T(b)}T(c)~type~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$c(x)~\in~U_i~[\Gamma,x\in T(b)]$}
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\RightLabel{$C_5-U_i$}
+\BinaryInfC{$T_i(\stackrel{\wedge_i}{\Pi}_{x\in T(b)}c(x))=\Pi{x\in T(b)}T(c)~type~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\AxiomC{$c~\in~U_i~[\Gamma]$}
+\RightLabel{$C_6-U_i$}
+\BinaryInfC{$T_i(b\stackrel{\wedge_i}{+}c)=T(b)+T(c)~type~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\RightLabel{$C_7-U_i$}
+\UnaryInfC{$T_i(\stackrel{\wedge_i}{List}(b))=List(T(b))~type~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\AxiomC{$c~\in~T(b)~[\Gamma]$}
+\AxiomC{$d~\in~T(b)~[\Gamma]$}
+\RightLabel{$C_8-U_i$}
+\TrinaryInfC{$T_i(\stackrel{\wedge_i}{Id}(b,c,d))=Id(T(b),c,d)~type~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+Regole per la gerarchia di universi:
+
+\vspace{0.2in}
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$I_9-U_i$}
+\UnaryInfC{$\stackrel{\wedge_i}{U_i}~\in~U_{i+1}~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$C_9-U_i$}
+\UnaryInfC{$T_{i+1}(\stackrel{\wedge_i}{U_i})=U_i~type~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+Regole per l'operatore di innalzamento:
+
+\vspace{0.2in}
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$C_1-U_{i+1}$}
+\UnaryInfC{$t_{i+1}(\stackrel{\wedge_i}{N_0})=\stackrel{\wedge_{i+1}}{N_0}~\in~U_{i+1}~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$C_2-U_{i+1}$}
+\UnaryInfC{$t_{i+1}(\stackrel{\wedge_i}{N_1})=\stackrel{\wedge_{i+1}}{N_1}~\in~U_{i+1}~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$C_3-U_{i+1}$}
+\UnaryInfC{$t_{i+1}(\stackrel{\wedge_i}{Nat})=\stackrel{\wedge_{i+1}}{Nat}~\in~U_{i+1}~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$c(x)~\in~U_i~[\Gamma,x\in T(b)]$}
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\RightLabel{$C_4-U_{i+1}$}
+\BinaryInfC{$t_{i+1}(\stackrel{\wedge_i}{\Sigma}_{x\in T(b)}c(x))=\stackrel{\wedge_{i+1}}{\Sigma}_{x\in T(b)}c(x)~\in~U_{i+1}~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$c(x)~\in~U_i~[\Gamma,x\in T(b)]$}
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\RightLabel{$C_5-U_{i+1}$}
+\BinaryInfC{$t_{i+1}(\stackrel{\wedge_i}{\Pi}_{x\in T(b)}c(x))=\stackrel{\wedge_{i+1}}{\Pi}_{x\in T(b)}c(x)~\in~U_{i+1}~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\AxiomC{$c~\in~U_i~[\Gamma]$}
+\RightLabel{$C_6-U_{i+1}$}
+\BinaryInfC{$t_{i+1}(b\stackrel{\wedge_i}{+}c)=b\stackrel{\wedge_{i+1}}{+}c~\in~U_{i+1}~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\RightLabel{$C_7-U_{i+1}$}
+\UnaryInfC{$t_{i+1}(\stackrel{\wedge_i}{List}(b))=\stackrel{\wedge_{i+1}}{List}(b)~\in~U_{i+1}~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$b~\in~U_i~[\Gamma]$}
+\AxiomC{$c~\in~T(b)~[\Gamma]$}
+\AxiomC{$d~\in~T(b)~[\Gamma]$}
+\RightLabel{$C_8-U_{i+1}$}
+\TrinaryInfC{$t_{i+1}(\stackrel{\wedge_i}{Id}(b,c,d))=\stackrel{\wedge_{i+1}}{Id}(b,c,d)~\in~U_{i+1}~[\Gamma]$}
+\DisplayProof
