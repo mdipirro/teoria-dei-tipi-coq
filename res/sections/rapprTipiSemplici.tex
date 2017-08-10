@@ -15,4 +15,7 @@
 	\[pf~\in~Id(A\times B,<\pi_1(z),\pi_2(z)>,z)~[z~\in~A~\times~B]\]
 	è derivabile nella teoria dei tipi dipendenti?
 \end{thm}
+La $\eta$-conversione del prodotto non è derivabile in teoria dei tipi in quanto $z$ è una variabile, e quindi è in forma normale non canonica, mentre la coppia è in forma normale canonica. Qui il teorema di forma normale non serve, visto che $z$ non è termine chiuso. Infatti, se due termini sono convertibili (uguali definizionalmente), allora le loro forme normali (che in teoria dei tipi esistono e sono uniche) devono essere identiche (sintatticamente). Siccome i due termini della $\eta$-conversione sono già in forma normale, e chiaramente non identici, l’uguaglianza definizionale non può valere.
+
+Al contrario si deriva abbastanza facilmente che esiste un proof-term per la relativa uguaglianza proposizionale.
 \lstinputlisting[language=Coq]{res/code/rappreTipiSemplici/es2.v}
