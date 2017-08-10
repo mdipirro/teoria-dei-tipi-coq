@@ -114,3 +114,28 @@ destruct h.
   apply (inl (inr s)).
 auto.
 Qed.
+
+(* Uguaglianza *)
+Lemma eq_s_1 S A (G: A -> Type) (D: A -> Type) D' : forall (t s: A)
+(h: (forall c': S * ((G s) * (t = s)), D s)) (si: S) (e: t = s) (gt: G s), (D t) + D'.
+Proof.
+move=> t s h si e gt.
+rewrite e.
+apply (inl (h (pair si (pair gt e)))). (* Risolvere questione G t / G s in ipotesi: 
+adesso è G s, ma va G t *)
+Qed.
+
+Lemma eq_s_2 S A (G: A -> Type) (D: A -> Type) D' : forall (t s: A)
+(h: (forall c': S * ((G t) * (s = t)), D t)) (si: S) (e: s = t) (gs: G t), (D s) + D'.
+Proof.
+move=> t s h si e gs.
+rewrite e.
+apply (inl (h (pair si (pair gs e)))). (* Risolvere questione G t / G s in ipotesi: 
+adesso è G t, ma va G s *)
+Qed.
+
+Lemma ax_eq G D A : forall g: G, forall t: A, (t = t) + D.
+Proof.
+move=> g t.
+apply (inl (eq_refl t)).
+Qed.
