@@ -57,6 +57,12 @@ come richiesto.
 Si, infatti è possibile definire due proof-terms \textbf{pf1} e \textbf{pf2} tali che $pf_1~\in~Id(A~+~B, x,g(f(x)))~[\Gamma,~x~\in~A~+~B]$ e $pf_2~\in~Id(\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B)), y,f(g(y)))~[\Gamma,~y~\in~\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B))]$
 \lstinputlisting[language=Coq]{res/code/traduzioneLogica/es4.v}
 
+\subsection{Esercizio 5}
+\begin{thm}
+	Quali regole di inferenza del calcolo dei sequenti della logica classica predicativa nelle dispense in http://www.math.unipd.it/~maietti/2lo16.html sono valide in teoria dei tipi, nel senso che conservano la validità dei sequenti coinvolti nella regola?
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/traduzioneLogica/es5.v}
+
 \subsection{Esercizio 6}
 \begin{thm}
 	Si noti che in teoria dei tipi vale il seguente principio chiamato \textit{existence property under a context}: se $\exists y~\phi(y)~true~[\Gamma]$ allora esiste un proof-term \textbf{pf} tale che $\phi(pf)~true~[\Gamma]$.
