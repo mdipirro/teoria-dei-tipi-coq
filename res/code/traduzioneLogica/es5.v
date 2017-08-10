@@ -94,4 +94,23 @@ apply (inr d).
 Qed.
 
 (* Esiste *)
+Inductive sig (A : Type) (P : A -> Type) :=
+  sigI (a : A) (p : P a).
+Arguments sigI {_ _} _ _.
 
+Lemma esiste_s G A (Ax: A -> Type) D: forall (h: forall c': G * (sig A Ax), D) (w: A)
+(c: G * Ax w), D.
+Proof.
+move=> h w c.
+apply (h (pair (fst c) (sigI w (snd c)))).
+Qed.
+
+Lemma esiste_d G A (Ax: A -> Type) D: forall (h: (forall c': G, (sig A Ax) + D)) (g: G)
+(t: A), (Ax t) + (sig A Ax) + D.
+Proof.
+move=> h g t.
+destruct h.
+    apply g.
+  apply (inl (inr s)).
+auto.
+Qed.
