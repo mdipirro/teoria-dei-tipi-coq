@@ -1,4 +1,68 @@
 \section{Rappresentazione dei tipi semplici in teoria dei tipi dipendenti}
+\subsection{Lemma 8.1}
+\begin{lem}
+	Supposto che $A~type~[]$ e $B~type~[]$ siano derivabili nella teoria dei tipi con le regole finora introdotte, allora in tal teoria è derivabile anche $\Pi_{x\in A}B~type~[]$, e lo si può usare per interpretare il tipo semplice $A\to B$ con le sue regole di introduzione, eliminazione e relativa $\beta$-conversione.
+\end{lem}
+
+\proof
+%TODO
+\endproof
+
+\subsection{Lemma 8.2}
+\begin{lem}
+	Supposto che $A~type~[]$ e $B~type~[]$ siano derivabili nella teoria dei tipi con le regole finora introdotte, allora in tal teoria è derivabile anche $\Sigma_{x\in A}B~type~[]$, e lo si può usare per interpretare il tipo semplice $A\times B$ con le sue regole di introduzione, eliminazione e relative $\beta$-conversioni.
+\end{lem}
+
+\proof
+
+Dato che $A$ e $B$ sono tipi semplici, la premessa di $F-\Sigma$ non necessita della variabile $x\in A~[\Gamma]$. La regola diventa:
+
+\begin{center}
+	\AxiomC{$A~type~[\Gamma]$}
+	\AxiomC{$B~type~[\Gamma]$}
+	\RightLabel{$F-\times$}
+	\BinaryInfC{$A\times B~type~[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+\vspace{0.3in}
+Per lo stesso motivo anche la regola di introduzione non necessita delle premesse riguardanti il tipo dipendente C, e diventa:
+
+\begin{center}
+	\AxiomC{$a\in A~[\Gamma]$}
+	\AxiomC{$b\in B~[\Gamma]$}
+	\RightLabel{$I-\times$}
+	\BinaryInfC{$<a,b>\in A\times B~[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+\vspace{0.3in}
+La regola di eliminazione del tipo $\Sigma$ è la seguente:
+
+\begin{center}
+	\AxiomC{$M(z)type[\Gamma,z\in\Sigma_{x\in A}C(x)]$}
+	\AxiomC{$d\in\Sigma_{x\in A}C(x[\Gamma])$}
+	\AxiomC{$m(x,y)\in M(<x,y>)[\Gamma,x\in B,y\in C(x)]$}
+	\RightLabel{$E-\Sigma$}
+	\TrinaryInfC{$El_{\Sigma}(d,m)\in M(d)[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+In questa regola non è più necessaria la premessa $M(z)type[\Gamma,z\in\Sigma_{x\in A}C(x)]$, dato che siamo in presenza di tipi semplici. Inoltre $d\in\Sigma_{x\in A}C(x[\Gamma])$ diventa $d\in B\times C [\Gamma]$, per lo stesso motivo. L'ultima premessa, $m(x,y)\in M(<x,y>)[\Gamma,x\in B,y\in C(x)]$, cambia a seconda del termine $m$ che consideriamo. Ci sono due casi, corrispondenti alle due proiezioni della coppia rappresentata dall'elemento canonico. Se $m(x,y)\equiv x$ si ha $M(<x,y>)\equiv B$ e $y\in C$ nel contesto. Se invece $m(x,y)\equiv y$, allora $M(<x,y>)\equiv C$. $m$ diventa quindi un termine costante e può essere definito direttamente all'interno dell'eliminatore, ottenendo due varianti della regola di eliminazione:
+\AxiomC{$d\in B\times C [\Gamma]$}
+\RightLabel{$E_1-\times$}
+\UnaryInfC{$El(d,~(x,y).x)\in B[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$d\in B\times C [\Gamma]$}
+\RightLabel{$E_2-\times$}
+\UnaryInfC{$El(d,~(x,y).y)\in C[\Gamma]$}
+\DisplayProof
+
+Possiamo rinominare, per chiarezza, i due eliminatori come segue: $El(d,~(x,y).x)\equiv\pi_1(d)$ e $El(d,~(x,y).y)\equiv\pi_2(d)$.
+
+%TODO: beta conversioni
+\endproof
+
 \subsection{Esercizio 1}
 \begin{thm}
 	Si dimostri che se $a~=~b~\in~A~[\Gamma]$ è derivabile nella teoria dei tipi con le regole finora introdotte allora esiste un proof-term \textbf{pf} tale che $pf~\in~Id(A,a,b)~[\Gamma]$.
