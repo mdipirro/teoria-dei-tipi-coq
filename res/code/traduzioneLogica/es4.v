@@ -48,28 +48,8 @@ Proof.
 by case x.
 Defined.
 
-Axiom functional_estensionality : forall A B: Type, forall f g : A -> B,
-  (forall x : A, f x = g x) -> f = g.
-
-Lemma boole_equality {A} {B} : forall x y: Boole, x = y ->
-(prod ((eq x (inrb tt)) -> A) (eq x (inlb tt) -> B)) =
-(prod ((eq y (inrb tt)) -> A) (eq y (inlb tt) -> B)).
-Proof.
-move=> x y exy.
-destruct x.
-  destruct y.
-    by rewrite (eq_inla_inltt a) (eq_inla_inltt a0).
-  by rewrite (eq_inla_inltt a) (eq_inra_inrtt b).
-by rewrite exy.
-Qed.
-
-(* TODO *)
 Definition pf2 {A} {B} 
   (y: sigT (fun x: Boole => prod ((eq x (inrb tt)) -> A) (eq x (inlb tt) -> B))) :
   eq y (f (g y)).
 Proof.
-case: (f (g y)).
-  move=> x p.
-  destruct y.
-  
-Defined.
+Admitted.
