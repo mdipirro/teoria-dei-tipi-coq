@@ -1,9 +1,7 @@
 From mathcomp Require Import ssreflect.
 Notation erefl := refl_equal.
 
-Lemma phi_y {A}:
-  forall (phi: A -> Prop),
-    (exists y: A, phi y).
+Lemma phi_y {A}: forall (phi: A -> Prop), (exists y: A, phi y).
 Proof.
 Admitted.
 
