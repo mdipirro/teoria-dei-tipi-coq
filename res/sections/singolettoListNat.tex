@@ -20,6 +20,210 @@
 	\end{small}
 \end{center}
 
+\subsection{Proposizione 3.1}
+\begin{prop}
+	La teoria dei tipi che include tutte le regole finora descritte eccetto quelle di sostituzione e di indebolimento rende ammissibili le regole di sostituzione della sezione 3.0.1 e quelle di indebolimento della sezione 2.3.3.
+\end{prop}
+\proof \mbox{} \\
+\textbf{Singoletto}
+
+\textbf{ind-type-1} Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\DisplayProof
+\end{center}
+
+Se si applica S a $\pi_2$ si ottiene $N_1~type~[\Gamma,z\in N_1]$, cioè la conclusione di $ind-type-1$:
+
+\begin{center}
+	\AxiomC{$\pi_1$}
+	\noLine
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\AxiomC{$\pi_2$}
+	\noLine
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\BinaryInfC{$N_1~type~[\Gamma,z\in N_1]$}
+	\DisplayProof
+\end{center}
+
+\textbf{ind-type-2} Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$N_1=N_1 type [\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\DisplayProof
+\end{center}
+
+Se si applicano S e Ref a $\pi_2$ si ottiene $N_1=N_1~type~[\Gamma,z\in N_1]$, cioè la conclusione di $ind-type-2$:
+
+\begin{center}
+	\AxiomC{$\pi_1$}
+	\noLine
+	\UnaryInfC{$N_1=N_1 type [\Gamma]$}
+	\AxiomC{$\pi_2$}
+	\noLine
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\BinaryInfC{$N_1=N_1~type~[\Gamma,z\in N_1]$}
+	\DisplayProof
+\end{center}
+
+\textbf{ind-type-3} Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\DisplayProof
+\end{center}
+
+Se si applica I-S a $\pi_2$ si ottiene $\star\in N_1 [\Gamma,z\in N_1]$, cioè la conclusione di $ind-type-3$:
+
+\begin{center}
+	\AxiomC{$\pi_1$}
+	\noLine
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\AxiomC{$\pi_2$}
+	\noLine
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\BinaryInfC{$\star\in N_1 [\Gamma,z\in N_1]$}
+	\DisplayProof
+\end{center}
+
+\textbf{ind-type-4} Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$\star=\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\DisplayProof
+\end{center}
+
+Se si applicano S, I-S e Ref a $\pi_2$ si ottiene $\star=\star\in N_1 [\Gamma,z\in N_1]$, cioè la conclusione di $ind-type-4$:
+
+\begin{center}
+	\AxiomC{$\pi_1$}
+	\noLine
+	\UnaryInfC{$\star=\star\in N_1[\Gamma]$}
+	\AxiomC{$\pi_2$}
+	\noLine
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\BinaryInfC{$\star=\star\in N_1 [\Gamma,z\in N_1]$}
+	\DisplayProof
+\end{center}
+
+\textbf{sub-typ} Dato che il tipo singoletto non è dipendente, i tipi $A_1,\dots,A_n(a_1,\dots,a_{n-1}), C$ sono tutti $N_1$. Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~x_1\in N_1~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma,~x_1\in N_1]$}
+	\UnaryInfC{\vdots}
+	\UnaryInfC{$N_1~type~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\DisplayProof
+\end{center}
+
+Applicando $ind-typ-1$ a $\pi_2$ si ottiene $N_1~type~[\Gamma]$, cioè la conclusione di $sub-typ$:
+
+\begin{center}
+	\AxiomC{$\pi_1$}
+	\noLine
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\AxiomC{$\pi_2$}
+	\noLine
+	\UnaryInfC{$N_1~type~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\BinaryInfC{$N_1~type~[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+\textbf{sub-eq-typ} Dato che il tipo singoletto non è dipendente, i tipi $A_1,\dots,A_n(a_1,\dots,a_{n-1}), C$ sono tutti $N_1$. Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$\star=\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~x_1\in N_1~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma,~x_1\in N_1]$}
+	\UnaryInfC{\vdots}
+	\UnaryInfC{$N_1~type~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\DisplayProof
+\end{center}
+
+Applicando Ref a $\pi_2$ si ottiene $N_1=N_1~type~[\Gamma]$, cioè la conclusione di $sub-eq-typ$:
+
+\begin{center}
+	\AxiomC{$\pi_1$}
+	\noLine
+	\UnaryInfC{$\star=\star\in N_1[\Gamma]$}
+	\AxiomC{$\pi_2$}
+	\noLine
+	\UnaryInfC{$N_1~type~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\BinaryInfC{$N_1=N_1~[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+%TODO altre regole per singoletto
+
+\textbf{List e Nat}
+
+La dimostrazione di ammissibilità per i tipi $List$ e $Nat$ è uguale a quella per il tipo $N_1$.
+\endproof
+
 \subsection{Esercizio 1}
 \begin{thm}
 	Dati i tipi singoletto e delle liste è possibile definire il tipo dei numeri naturali Nat?
