@@ -5,7 +5,67 @@
 \end{lem}
 
 \proof
-%TODO
+Dato che $A$ e $B$ sono tipi semplici, la premessa di $F-\Pi$ non necessita della variabile $x\in A$. La regola diventa:
+
+\begin{center}
+	\AxiomC{$A~type~[\Gamma]$}
+	\AxiomC{$B~type~[\Gamma]$}
+	\RightLabel{$F-\to$}
+	\BinaryInfC{$A\to B~type~[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+\vspace{0.3in}
+La regola di introduzione resta simile, con l'unica differenza legata al tipo $B$, e non $B(x)~[x\in A]$:
+
+\begin{center}
+	\AxiomC{$b(x)\in B~[\Gamma,~x\in A]$}
+	\RightLabel{$I-\to$}
+	\UnaryInfC{$\lambda x^A.b(x)\in A\to B~[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+\vspace{0.3in}
+La regola di eliminazione del tipo $\Pi$ è la seguente:
+
+\begin{center}
+	\AxiomC{$a\in A[\Gamma]$}
+	\AxiomC{$f\in \Pi_{x\in A}B(x)[\Gamma]$}
+	\RightLabel{$E-\Pi$}
+	\BinaryInfC{$Ap(f,a)\in B(a)[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+Anche questa regola resta simile, con l'unico cambiamento legato a $B$:
+
+\begin{center}
+	\AxiomC{$a\in A[\Gamma]$}
+	\AxiomC{$f\in A\to B[\Gamma]$}
+	\RightLabel{$E-\to$}
+	\BinaryInfC{$Ap(f,a)\in B[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+\vspace{0.3in}
+La regola di computazione del tipo $\Pi$ è la seguente:
+
+\begin{center}
+	\AxiomC{$a\in A[\Gamma]$}
+	\AxiomC{$b(x)\in B(x)[\Gamma,x\in A]$}
+	\RightLabel{$\beta C-\Pi$}
+	\BinaryInfC{$Ap(\lambda x^A.b(x),a)=b(a)\in B(a)[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+Anche in questo caso non ci sono grosse modifiche alla regola:
+
+\begin{center}
+	\AxiomC{$a\in A[\Gamma]$}
+	\AxiomC{$b(x)\in B[\Gamma,x\in A]$}
+	\RightLabel{$\beta C-\to$}
+	\BinaryInfC{$Ap(\lambda x^A.b(x),a)=b(a)\in B[\Gamma]$}
+	\DisplayProof
+\end{center}
 \endproof
 
 \subsection{Lemma 8.2}
@@ -15,7 +75,7 @@
 
 \proof
 
-Dato che $A$ e $B$ sono tipi semplici, la premessa di $F-\Sigma$ non necessita della variabile $x\in A~[\Gamma]$. La regola diventa:
+Dato che $A$ e $B$ sono tipi semplici, la premessa di $F-\Sigma$ non necessita della variabile $x\in A$. La regola diventa:
 
 \begin{center}
 	\AxiomC{$A~type~[\Gamma]$}
@@ -26,13 +86,13 @@ Dato che $A$ e $B$ sono tipi semplici, la premessa di $F-\Sigma$ non necessita d
 \end{center}
 
 \vspace{0.3in}
-Per lo stesso motivo anche la regola di introduzione non necessita delle premesse riguardanti il tipo dipendente C, e diventa:
+Per lo stesso motivo anche la regola di introduzione non necessita delle premesse riguardanti il tipo dipendente B, e diventa:
 
 \begin{center}
 	\AxiomC{$a\in A~[\Gamma]$}
 	\AxiomC{$b\in B~[\Gamma]$}
 	\RightLabel{$I-\times$}
-	\BinaryInfC{$<a,b>\in A\times B~[\Gamma]$}
+	\BinaryInfC{$<a,b>~\in A\times B~[\Gamma]$}
 	\DisplayProof
 \end{center}
 
@@ -40,24 +100,24 @@ Per lo stesso motivo anche la regola di introduzione non necessita delle premess
 La regola di eliminazione del tipo $\Sigma$ è la seguente:
 
 \begin{center}
-	\AxiomC{$M(z)type[\Gamma,z\in\Sigma_{x\in A}C(x)]$}
-	\AxiomC{$d\in\Sigma_{x\in A}C(x)[\Gamma]$}
-	\AxiomC{$m(x,y)\in M(<x,y>)[\Gamma,x\in B,y\in C(x)]$}
+	\AxiomC{$M(z)type[\Gamma,z\in\Sigma_{x\in A}B(x)]$}
+	\AxiomC{$d\in\Sigma_{x\in A}B(x)[\Gamma]$}
+	\AxiomC{$m(x,y)\in M(<x,y>)[\Gamma,x\in A,y\in B(x)]$}
 	\RightLabel{$E-\Sigma$}
 	\TrinaryInfC{$El_{\Sigma}(d,m)\in M(d)[\Gamma]$}
 	\DisplayProof
 \end{center}
 
-In questa regola non è più necessaria la premessa $M(z)type[\Gamma,z\in\Sigma_{x\in A}C(x)]$, dato che siamo in presenza di tipi semplici. Inoltre $d\in\Sigma_{x\in A}C(x[\Gamma])$ diventa $d\in B\times C [\Gamma]$, per lo stesso motivo. L'ultima premessa, $m(x,y)\in M(<x,y>)[\Gamma,x\in B,y\in C(x)]$, cambia a seconda del termine $m$ che consideriamo. Ci sono due casi, corrispondenti alle due proiezioni della coppia rappresentata dall'elemento canonico. Se $m(x,y)\equiv x$ si ha $M(<x,y>)\equiv B$ e $y\in C$ nel contesto. Se invece $m(x,y)\equiv y$, allora $M(<x,y>)\equiv C$. $m$ diventa quindi un termine costante e può essere definito direttamente all'interno dell'eliminatore, ottenendo due varianti della regola di eliminazione:
+In questa regola non è più necessaria la premessa $M(z)type[\Gamma,z\in\Sigma_{x\in A}B(x)]$, dato che siamo in presenza di tipi semplici. Inoltre $d\in\Sigma_{x\in A}B(x)[\Gamma]$ diventa $d\in A\times B [\Gamma]$, per lo stesso motivo. L'ultima premessa, $m(x,y)\in M(<x,y>)[\Gamma,x\in A,y\in B(x)]$, cambia a seconda del termine $m$ che consideriamo. Ci sono due casi, corrispondenti alle due proiezioni della coppia rappresentata dall'elemento canonico. Se $m(x,y)\equiv x$ si ha $M(<x,y>)\equiv A$ e $y\in B$ nel contesto. Se invece $m(x,y)\equiv y$, allora $M(<x,y>)\equiv B$. $m$ diventa quindi un termine costante e può essere definito direttamente all'interno dell'eliminatore, ottenendo due varianti della regola di eliminazione:
 
 \begin{center}
-	\AxiomC{$d\in B\times C [\Gamma]$}
+	\AxiomC{$d\in A\times B [\Gamma]$}
 	\RightLabel{$E_1-\times$}
-	\UnaryInfC{$El(d,~(x,y).x)\in B[\Gamma]$}
+	\UnaryInfC{$El(d,~(x,y).x)\in A[\Gamma]$}
 	\DisplayProof\qquad
-	\AxiomC{$d\in B\times C [\Gamma]$}
+	\AxiomC{$d\in A\times B [\Gamma]$}
 	\RightLabel{$E_2-\times$}
-	\UnaryInfC{$El(d,~(x,y).y)\in C[\Gamma]$}
+	\UnaryInfC{$El(d,~(x,y).y)\in B[\Gamma]$}
 	\DisplayProof
 \end{center}
 
@@ -67,27 +127,27 @@ Possiamo rinominare, per chiarezza, i due eliminatori come segue: $El(d,~(x,y).x
 La regola di computazione del tipo $\Sigma$ è la seguente:
 
 \begin{center}
-	\AxiomC{$M(z)type[\Gamma,z\in\Sigma_{x\in A}C(x)]$}
-	\AxiomC{$b\in B[\Gamma]$}
-	\AxiomC{$c\in C(b)[\Gamma]$}
-	\AxiomC{$m(x,y)\in M(<x,y>)[\Gamma,x\in B,y\in C(x)]$}
+	\AxiomC{$M(z)type[\Gamma,z\in\Sigma_{x\in A}B(x)]$}
+	\AxiomC{$a\in A[\Gamma]$}
+	\AxiomC{$b\in B(a)[\Gamma]$}
+	\AxiomC{$m(x,y)\in M(<x,y>)[\Gamma,x\in A,y\in B(x)]$}
 	\RightLabel{$C\Sigma$}
-	\QuaternaryInfC{$El_{\Sigma}(<b,c>,m)=m(b,c)\in M(<b,c>)[\Gamma]$}
+	\QuaternaryInfC{$El_{\Sigma}(<a,b>,m)=m(a,b)\in M(<a,b>)[\Gamma]$}
 	\DisplayProof
 \end{center}
 
-Anche in questo caso non è più necessaria la premessa $M(z)type[\Gamma,z\in\Sigma_{x\in A}C(x)]$, dato che siamo in presenza di tipi semplici. L'ultima premessa, $m(x,y)\in M(<x,y>)[\Gamma,x\in B,y\in C(x)]$, cambia a seconda del termine $m$ che consideriamo, come con le regola di eliminazione. Ci sono due casi, corrispondenti alle due proiezioni della coppia rappresentata dall'elemento canonico. Se $m(x,y)\equiv x$ si ha $M(<x,y>)\equiv B$ e $y\in C$ nel contesto. Se invece $m(x,y)\equiv y$, allora $M(<x,y>)\equiv C$. $m$ diventa quindi un termine costante e può essere definito direttamente all'interno dell'eliminatore, ottenendo due varianti della regola di computazione, nelle quali, naturalmente, $C$ non è un tipo dipendente:
+Anche in questo caso non è più necessaria la premessa $M(z)type[\Gamma,z\in\Sigma_{x\in A}B(x)]$, dato che siamo in presenza di tipi semplici. L'ultima premessa, $m(x,y)\in M(<x,y>)[\Gamma,x\in A,y\in B(x)]$, cambia a seconda del termine $m$ che consideriamo, come con le regola di eliminazione. Ci sono due casi, corrispondenti alle due proiezioni della coppia rappresentata dall'elemento canonico. Se $m(x,y)\equiv x$ si ha $M(<x,y>)\equiv A$ e $y\in B$ nel contesto. Se invece $m(x,y)\equiv y$, allora $M(<x,y>)\equiv B$. $m$ diventa quindi un termine costante e può essere definito direttamente all'interno dell'eliminatore, ottenendo due varianti della regola di computazione, nelle quali, naturalmente, $B$ non è un tipo dipendente:
 
 \begin{center}
+	\AxiomC{$a\in A[\Gamma]$}
 	\AxiomC{$b\in B[\Gamma]$}
-	\AxiomC{$c\in C[\Gamma]$}
 	\RightLabel{$\beta_1-\times$}
-	\BinaryInfC{$\pi_1(<b,c>)=b\in B[\Gamma]$}
+	\BinaryInfC{$\pi_1(<a,b>)=a\in A[\Gamma]$}
 	\DisplayProof\qquad
+	\AxiomC{$a\in A[\Gamma]$}
 	\AxiomC{$b\in B[\Gamma]$}
-	\AxiomC{$c\in C[\Gamma]$}
 	\RightLabel{$\beta_2-\times$}
-	\BinaryInfC{$\pi_2(<b,c>)=c\in C[\Gamma]$}
+	\BinaryInfC{$\pi_2(<a,b>)=b\in B[\Gamma]$}
 	\DisplayProof
 \end{center}
 \endproof
