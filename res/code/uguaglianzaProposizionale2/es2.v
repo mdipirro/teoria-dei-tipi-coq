@@ -4,9 +4,20 @@ Inductive N3 := zero | uno | due.
 
 Definition minore_di_tre := {x| x < 3}.
 
-Axiom l_0_3 : 0 < 3.
-Axiom l_1_3 : 1 < 3.
-Axiom l_2_3 : 2 < 3.
+Lemma l_0_3 : 0 < 3.
+Proof.
+by [].
+Qed.
+
+Lemma l_1_3 : 1 < 3.
+Proof.
+by [].
+Qed.
+
+Lemma l_2_3 : 2 < 3.
+Proof.
+by [].
+Qed.
 
 (* Trovo l'isomorfismo rispetto a {x| x<5} *)
 Definition f (n: minore_di_tre) : N3 :=
