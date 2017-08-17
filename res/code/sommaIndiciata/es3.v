@@ -1,12 +1,9 @@
 From mathcomp Require Import ssreflect.
-Notation erefl := refl_equal.
 Open Scope list_scope.
-
-Lemma ex_falso P : False -> P.
-Proof. move=> abs. case: abs. Qed.
 
 (*Naturali positivi*)
 Definition nat_positivo := {n: nat | ~ n = 0}.
+
 Lemma not_Sn_zero (n: nat): ~((S n) = 0).
 Proof.
 case n.
@@ -15,6 +12,7 @@ by [].
 Qed.
 
 Definition tre_positivo : nat_positivo := exist _ 3 (not_Sn_zero 2).
+
 (*
 Non corretta (giustamente):
 Definition zero_positivo: nat_positivo := exist _ 0 (not_Sn_zero 0).
