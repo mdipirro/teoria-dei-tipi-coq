@@ -24,7 +24,7 @@ Le regole sono le seguenti:
 		
 		\vspace{0.2in}
 		\AxiomC{$M(x)~type~[\Gamma,~x~\in~B]$}
-		\AxiomC{$z~\in~B~[\Gamma,~x~\in~B]$}
+		\AxiomC{$z~\in~B~[\Gamma]$}
 		\AxiomC{$a~\in~M(0)~[\Gamma]$}
 		\AxiomC{$b~\in~M(1)~[\Gamma]$}
 		\RightLabel{$E-B$}
@@ -32,7 +32,7 @@ Le regole sono le seguenti:
 		\DisplayProof
 		
 		\vspace{0.2in}
-		\AxiomC{$M(x)~type~[\Gamma,~x~\in~B]$}
+		\AxiomC{$M(z)~type~[\Gamma,~z~\in~B]$}
 		\AxiomC{$a~\in~M(0)~[\Gamma]$}
 		\AxiomC{$b~\in~M(1)~[\Gamma]$}
 		\RightLabel{$C_1-B$}
@@ -40,7 +40,7 @@ Le regole sono le seguenti:
 		\DisplayProof
 		
 		\vspace{0.2in}
-		\AxiomC{$M(x)~type~[\Gamma,~x~\in~B]$}
+		\AxiomC{$M(z)~type~[\Gamma,~z~\in~B]$}
 		\AxiomC{$a~\in~M(0)~[\Gamma]$}
 		\AxiomC{$b~\in~M(1)~[\Gamma]$}
 		\RightLabel{$C_2-B$}
@@ -67,28 +67,28 @@ Le regole sono le seguenti:
 	
 	\vspace{0.2in}
 	\AxiomC{$M(z)~type~[\Gamma,~z~\in~B]$}
-	\AxiomC{$w~\in~B~[\Gamma,~x~\in~B]$}
-	\AxiomC{$a(x)~\in~M(inl(x))~[\Gamma,x~\in~B]$}
-	\AxiomC{$b(x)~\in~M(inr(x))~[\Gamma,x~\in~B]$}
+	\AxiomC{$w~\in~B~[\Gamma]$}
+	\AxiomC{$a(x)~\in~M(inl(x))~[\Gamma,x~\in~N_1]$}
+	\AxiomC{$b(x)~\in~M(inr(x))~[\Gamma,x~\in~N_1]$}
 	\RightLabel{$E-B$}
 	\QuaternaryInfC{$\mathrm{El}_B(w, a, b) \in M(w)~[\Gamma]$}
 	\DisplayProof
 	
 	\vspace{0.2in}
-	\AxiomC{$M(x)~type~[\Gamma,~x~\in~B]$}
+	\AxiomC{$M(z)~type~[\Gamma,~z~\in~B]$}
 	\AxiomC{$c~\in~N_1~[\Gamma]$}
-	\AxiomC{$a(x)~\in~M(inl(x))~[\Gamma,x~\in~B]$}
-	\AxiomC{$b(x)~\in~M(inr(x))~[\Gamma,x~\in~B]$}
+	\AxiomC{$a(x)~\in~M(inl(x))~[\Gamma,x~\in~N_1]$}
+	\AxiomC{$b(x)~\in~M(inr(x))~[\Gamma,x~\in~N_1]$}
 	\RightLabel{$C_1-B$}
 	\QuaternaryInfC{$\mathrm{El}_B(inl(c), a, b)~=~a \in M(inl(c))~[\Gamma]$}
 	\DisplayProof
 	
 	\vspace{0.2in}
-	\AxiomC{$M(x)~type~[\Gamma,~x~\in~B]$}
+	\AxiomC{$M(z)~type~[\Gamma,~z~\in~B]$}
 	\AxiomC{$c~\in~N_1~[\Gamma]$}
-	\AxiomC{$a(x)~\in~M(inl(x))~[\Gamma,x~\in~B]$}
-	\AxiomC{$b(x)~\in~M(inr(x))~[\Gamma,x~\in~B]$}
-	\RightLabel{$C_1-B$}
+	\AxiomC{$a(x)~\in~M(inl(x))~[\Gamma,x~\in~N_1]$}
+	\AxiomC{$b(x)~\in~M(inr(x))~[\Gamma,x~\in~N_1]$}
+	\RightLabel{$C_2-B$}
 	\QuaternaryInfC{$\mathrm{El}_B(inr(c), a, b)~=~b \in M(inr(c))~[\Gamma]$}
 	\DisplayProof
 \end{scriptsize}

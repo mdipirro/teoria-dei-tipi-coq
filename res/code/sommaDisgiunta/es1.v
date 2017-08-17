@@ -2,7 +2,6 @@
 Inductive B := T | F.
 
 (*Definizione a partire dal singoletto*)
-
 Inductive BS :=
   | inl (a: unit)
   | inr (b: unit).
