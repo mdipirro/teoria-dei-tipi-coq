@@ -1,5 +1,4 @@
 From mathcomp Require Import ssreflect.
-Notation erefl := refl_equal.
 Open Scope list_scope.
 
 Fixpoint append {A} (l: list A) (a: A): list A :=

@@ -1,5 +1,4 @@
 From mathcomp Require Import ssreflect.
-Notation erefl := refl_equal.
 Open Scope list_scope.
 
 Inductive vec (A : Type) : nat -> Type :=
