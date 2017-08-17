@@ -1,0 +1,82 @@
+\section{Tipi somma indiciata e prodotto dipendente}
+\subsection{Esercizio 1}
+\begin{thm}
+	Provare a scrivere le regole del prodotto cartesiano $A \times B$ di un tipo A con un tipo B.
+\end{thm}
+Le regole sono le seguenti:
+
+\vspace{0.2in}
+\AxiomC{$A~type~[\Gamma]$}
+\AxiomC{$B~type~[\Gamma]$}
+\RightLabel{$F-\times$}
+\BinaryInfC{$A~\times~B~type~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$a~\in~A~[\Gamma]$}
+\AxiomC{$b~\in~B~[\Gamma]$}
+\RightLabel{$I-\times$}
+\BinaryInfC{$<a,b>~\in~A~\times~B~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$d~\in~A~\times~B~[\Gamma]$}
+\RightLabel{$E_1-\times$}
+\UnaryInfC{$\pi_1(d)~\in~A~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$d~\in~A~\times~B~[\Gamma]$}
+\RightLabel{$E_2-\times$}
+\UnaryInfC{$\pi_2(d)~\in~B~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$a~\in~A~[\Gamma]$}
+\AxiomC{$b~\in~B~[\Gamma]$}
+\RightLabel{$\beta_1-\times$}
+\BinaryInfC{$\pi_1(<a,b>)~=~a~\in~A[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$a~\in~A~[\Gamma]$}
+\AxiomC{$b~\in~B~[\Gamma]$}
+\RightLabel{$\beta_2-\times$}
+\BinaryInfC{$\pi_2(<a,b>)~=~b~\in~B[\Gamma]$}
+\DisplayProof
+
+\subsection{Esercizio 2}
+\begin{thm}
+	Provare a scrivere le regole del tipo delle funzioni $A \rightarrow B$ da un tipo A ad un tipo B.
+\end{thm}
+Le regole sono le seguenti:
+
+\vspace{0.2in}
+\AxiomC{$A~type~[\Gamma]$}
+\AxiomC{$B~type~[\Gamma]$}
+\RightLabel{$F-\rightarrow$}
+\BinaryInfC{$A~\rightarrow~B~type~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$b(x)~\in~B~[\Gamma,~x~\in~A]$}
+\RightLabel{$I-\rightarrow$}
+\UnaryInfC{$\lambda~x^A.b(x)~\in~A~\rightarrow~B~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$a~\in~A~[\Gamma]$}
+\AxiomC{$f~\in~A~\rightarrow~B~[\Gamma]$}
+\RightLabel{$E-\rightarrow$}
+\BinaryInfC{$Ap(f,a)~\in~B(a)~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$a~\in~A~[\Gamma]$}
+\AxiomC{$b(x)~\in~B~[\Gamma,~x~\in~A]$}
+\RightLabel{$\beta C-\times$}
+\BinaryInfC{$Ap(\lambda~x^A.b(x),a)~=~b(a)~\in~B~[\Gamma]$}
+\DisplayProof
+
+
+\subsection{Esercizio 3}
+\begin{thm}
+	Come rappresentare con i tipi finora descritti il tipo dei naturali positivi? E delle liste non vuote?
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/sommaIndiciata/es3.v}
+
+\subsection{Esercizio 4}
+\begin{thm}
+	Come rappresentare con i tipi finora descritti il tipo delle funzioni tra naturali positivi?
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/sommaIndiciata/es4.v}
