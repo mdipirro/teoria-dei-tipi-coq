@@ -1,0 +1,156 @@
+\newpage
+\section{Tipo dell'uguaglianza proposizionale alla Gentzen/Lawvere e alla Leibniz}
+\subsection{Esercizio 1}
+\begin{thm}
+	In che relazione stanno i due tipi di uguaglianza?
+\end{thm}
+L'uguaglianza a là Gentzen/Lawvere (utilizzata nel calcolo dei sequenti) è meno potente di quella a là Leibniz. Si nota, infatti, che nella regola di eliminazione della prima il termine $c~\in~C(a,a)~[\Gamma]$ non è dipendente da nessun elemento di A. Nella seconda, al contrario, questo termine è dipendete da un $x~\in~A$ dato nel contesto. Di conseguenza, con la prima la scelta del termine $a~\in~A~[\Gamma]$ vincola anche il termine $c~\in~C(a,a)~[\Gamma]$, cosa che non accade con la seconda, nella quale $x~\in~A$ è una variabile inserita nel contesto.
+
+\subsection{Esercizio 2}
+\begin{thm}
+	Con quale uguaglianza è possibile derivare un proof-term $q\in Id(B, f(x), f(y)) [x\in A, y\in A, w\in Id(A, x, y)]$, dove $f(x)\in B[x\in A]$?
+\end{thm}
+Può essere derivato con entrambe le uguaglianze, infatti:
+
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es2corretto.v}
+
+\subsection{Esercizio 3}
+\begin{thm} Trovare un proof-term
+	\[ \mathbf{pf}\in P(b)\ [a\in A, b\in A, z\in P(a), w\in \Id{A}{a}{b}]\]
+\end{thm}
+Può essere derivato con entrambe le uguaglianze, infatti:
+
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es3corretto.v}
+
+\subsection{Esercizio 4}
+\begin{thm}
+	Trovare un proof-term
+	\[ \mathbf{pf} \in \Id{A}{a}{c}\ [a\in A, b\in A, c\in A, w_1 \in \Id{A}{a}{b}, w_2 \in \Id{A}{b}{c} ] \]
+\end{thm}
+
+Può essere derivato con entrambe le uguaglianze, infatti:
+
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es4corretto.v}
+
+\subsection{Esercizio 5}
+\begin{thm}
+	Con quale uguaglianza è derivabile il proof-term $pf\in Id(N_1, x, \ast)~[x\in N_1]$?
+\end{thm}
+Si deriva con entrambe le uguaglianze, infatti:
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es5corretto.v}
+
+\subsubsection{Esercizio 6}
+\begin{thm}
+	Con quale uguaglianza è possibile definire l'addizione tra naturali e derivare i due proof-terms $pf_1\in Id(nat, x+0,x)~[x\in Nat]$ e $pf_2\in Id(nat, 0+x,x)~[x\in Nat]$?
+\end{thm}
+Con entrambe le uguaglianze, infatti:
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es6corretto.v}
+
+\subsubsection{Esercizio 7}
+\begin{thm}
+	Quali assiomi dell'aritmetica di Peano sono derivabili con i tipi descritti finora?
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es7.v}
+
+\subsection{Esercizio 8}
+\begin{thm}
+	Si dimostri che esiste un proof-term \textbf{pf} tale che
+	\[pf~\in~Id(Nat, x~+_1~y, x~+_2~y)~[x~\in~Nat,~y~\in~Nat]\]
+\end{thm}
+\subsubsection{Commutatività della somma a mano}
+Trovare un proof-term del tipo
+\[ \mathrm{comm}(a, b) \in \Id{Nat}{a+b}{b+a}\ [a\in Nat,\ b\in Nat] \]
+
+Definiamo il proof-term per induzione sull'addendo $b$.\\
+Posto $\Gamma \equiv a\in Nat,\ b\in Nat$
+
+\begin{scriptsize}
+	\[ \infer{\mathrm{comm}(a, b) \equiv \mathrm{El}_{Nat}(b, d, (x, y).e(x,y)) \in \Id{Nat}{a+b}{b+a}\ [\Gamma]}{\begin{array}{ll} b\in Nat\ [\Gamma] & \Id{Nat}{a+x}{x+a}\ type\ [\Gamma,\ x\in Nat] \\ d\in \Id{Nat}{a+0}{0+a}\ [\Gamma] & e(x, y)\in \Id{Nat}{a+\suc{x}}{\suc{x}+a}\ [\Gamma, x\in Nat, y\in \Id{Nat}{a+x}{x+a}]\end{array}} \]
+\end{scriptsize}
+
+Occorre quindi definire 
+\[ d\in \Id{Nat}{a+0}{0+a}\ [\Gamma] \]
+Notiamo intanto che
+
+\[ \infer[conv)]{d\in \Id{Nat}{a+0}{0+a}\ [\Gamma]}
+{	d\in \Id{Nat}{a}{0+a}\ [\Gamma] & 
+	\infer[sym)]{\Id{Nat}{a}{0+a} = \Id{Nat}{a+0}{0+a}\ type\ [\Gamma]}
+	{
+		\infer[sub-eq-typ)]{\Id{Nat}{a+0}{0+a}=\Id{Nat}{a}{0+a}\ type\ [\Gamma]}
+		{a+0 = a\in Nat\ [\Gamma] & \Id{Nat}{z}{0+a}\ type\ [\Gamma, z\in Nat]}
+	}
+}
+\]
+per cui è sufficiente dimostrare che esiste
+\[ d\in \Id{Nat}{a}{0+a}\ [\Gamma]\]
+Procediamo per induzione su $a\in Nat$.
+
+\begin{scriptsize}
+	\[ \infer{d \equiv \mathrm{El}_{Nat}(a, d_1, (x, y).e_1(x,y)) \in \Id{Nat}{a}{0+a}\ [\Gamma]}{\begin{array}{ll} a\in Nat\ [\Gamma] & \Id{Nat}{x}{0+x}\ type\ [\Gamma,\ x\in Nat] \\ d_1\in \Id{Nat}{0}{0+0}\ [\Gamma] & e_1(x, y)\in \Id{Nat}{\suc{x}}{0+\suc{x}}\ [\Gamma, x\in Nat, y\in \Id{Nat}{x}{0+x}]\end{array}} \]
+\end{scriptsize}
+dove $d_1 \equiv \mathrm{id}(0)$, infatti
+\[ \infer[conv)]{\mathrm{id}(0)\in \Id{Nat}{0}{0+0}\ [\Gamma]}
+{	\mathrm{id}(0)\in \Id{Nat}{0}{0}\ [\Gamma] & 
+	\infer[sym)]{\Id{Nat}{0}{0} = \Id{Nat}{0}{0+0}\ type\ [\Gamma]}
+	{
+		\infer[sub-eq-typ)]{\Id{Nat}{0}{0+0}=\Id{Nat}{0}{0}\ type\ [\Gamma]}
+		{0+0 = 0\in Nat\ [\Gamma] & \Id{Nat}{0}{z}\ type\ [\Gamma, z\in Nat]}
+	}
+}
+\]
+mentre sappiamo che
+\[ \mathrm{El}_{Id}(y, (x'').\mathrm{id}(\suc{x''})) \in \Id{Nat}{\suc{x}}{\suc{0+x}}\]
+e per conversione, dato che $0+\suc{x} = \suc{0+x}$, prendiamo
+\[ e_1(x, y) \equiv \mathrm{El}_{Id}(y, (x'').\mathrm{id}(\suc{x''})) \]
+pertanto
+\[d \equiv \mathrm{El}_{Nat}(a, \mathrm{id}(0), (x, y).\mathrm{El}_{Id}(y, (x'').\mathrm{id}(\suc{x''}))) \in \Id{Nat}{a}{0+a}\ [\Gamma]\]
+
+Mostriamo adesso l'esistenza del proof-term 
+
+\[e(x, y)\in \Id{Nat}{a+\suc{x}}{\suc{x}+a}\ [\Gamma, x\in Nat, y\in \Id{Nat}{a+x}{x+a}]\]
+
+Dato che $a+\suc{x} = \suc{a+x}$, applicando $sub-eq-typ),\ sym),\ conv)$ ci basta trovare un proof-term
+
+\[e(x, y)\in \Id{Nat}{\suc{a+x}}{\suc{x}+a}\ [\Gamma, x\in Nat, y\in \Id{Nat}{a+x}{x+a}]\]
+
+L'ipotesi $y \in \Id{Nat}{a+x}{x+a}$ ci consente di avere il proof-term
+\[ \mathrm{El}_{\mathrm{Id}}(y, (x'').\mathrm{id}(\suc{x''})) \in \Id{Nat}{\suc{a+x}}{\suc{x+a}}\]
+
+Per cui, se dimostrassimo che esiste $w \in \Id{Nat}{\suc{x+a}}{\suc{x}+a}$ potremmo concludere per la transitività dell'uguaglianza di Leibniz. Tale proof-term si può ottenere per induzione su $a\in Nat$.
+
+Posto $\Delta = \Gamma, x\in Nat, y\in \Id{Nat}{a+x}{x+a}$
+
+\begin{scriptsize}
+	\[ \infer{w \equiv \mathrm{El}_{Nat}(a, w_0, (x, y).w_1(x,y)) \in \Id{Nat}{\suc{x+a}}{\suc{x}+a}\ [\Delta]}{\begin{array}{l}
+		\Id{Nat}{\suc{z+x}}{\suc{x}+z}\ type\ [\Delta] \\ a\in Nat\ [\Delta] \\  w_0\in \Id{Nat}{\suc{x+0}}{\suc{x}+0}\ [\Delta] \\ w_1(z, r)\in \Id{Nat}{\suc{x+\suc{z}}}{\suc{x}+\suc{z}}\ [\Delta z\in Nat, r\in \Id{Nat}{\suc{x+z}}{\suc{x}+z}]\end{array}} \]
+\end{scriptsize}
+
+Si nota adesso che basta prendere
+\[ w_0 \equiv \mathrm{id}(\suc{x})\] poiché $x+0 = x$ e quindi $\suc{x+0} = \suc{x}$, e inoltre $\suc{x}+0 = \suc{x}$. Poi, dato che $\suc{\suc{x+z}} = \suc{x+\suc{z}}$ e $\suc{\suc{x}+z} = \suc{x}+\suc{z}$, applicando opportunamente conversioni e sostituzioni, è sufficiente porre
+\[ w_1(z, r) \equiv \mathrm{El}_{\mathrm{Id}}(r, (x'').\mathrm{id}(\suc{x''}))\]
+Per cui
+\[w \equiv \mathrm{El}_{\mathrm{Nat}}(a, \mathrm{id}(\suc{x}), (z,r).\mathrm{El}_{\mathrm{Id}}(r, (x'').\mathrm{id}(\suc{x''})) \]
+
+\subsubsection{Esercizio completo in Coq}
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es8.v}
+
+
+\subsection{Esercizio 9}
+\begin{thm}
+	La regola di eliminazione del tipo uguaglianza proposizionale alla Leibniz rappresenta davvero una definizione per induzione sul tipo dei suoi elementi?
+\end{thm}
+No, infatti la regola di eliminazione non corrisponde direttamente alla regola di introduzione. Si nota, infatti, che la regola di introduzione crea un elemento canonico $id(a)~\in~Id(A,a,a)$, mentre l'eliminazione avviene su un elemento $x~\in~A$ dato nel contesto (e quindi, intuitivamente, passato come ``parametro''). Altri tipi di uguaglianza proposizionale, come quello a là Martin-Lof, cercano di mitigare questa disparità.
+
+\subsection{Esercizio 10}
+\begin{thm}
+	Definire l'insieme vuoto $N_0$.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es10.v}
+
+\subsection{Esercizio 11}
+\begin{thm}
+	Nella teoria dei tipi con tipo singoletto, uguaglianza proposizionale alla Leibniz, liste, booleano e somma disgiunta, quale tipo è definibile a partire dagli altri?
+\end{thm}
+Il tipo booleano è definibile a partire dalla somma disgiunta e dal singoletto, infatti:
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es11.v}
+Dove $T \equiv inl (star)$ e $F \equiv inr (star)$.
