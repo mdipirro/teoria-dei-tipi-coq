@@ -25,7 +25,6 @@ apply (h c).
 Qed.
 
 (* Quantificatore universale *)
-(* Definito come primitivo dalle regole di Prop *)
 
 Lemma perogni_f (A: Type) (G: Prop) (Ax : A -> Prop) : 
 forall h: (forall c: G, forall z: A, Ax z), forall c: G, forall x: A, Ax x.
