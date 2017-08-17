@@ -1,5 +1,4 @@
 From mathcomp Require Import ssreflect.
-Notation erefl := refl_equal.
 
 Lemma a_equal_b {A} (a b: A) : a = b.
 Proof.
