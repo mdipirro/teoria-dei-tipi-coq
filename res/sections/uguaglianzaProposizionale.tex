@@ -10,56 +10,34 @@ L'uguaglianza a là Gentzen/Lawvere (utilizzata nel calcolo dei sequenti) è men
 \begin{thm}
 	Con quale uguaglianza è possibile derivare un proof-term $q\in Id(B, f(x), f(y)) [x\in A, y\in A, w\in Id(A, x, y)]$, dove $f(x)\in B[x\in A]$?
 \end{thm}
-Può essere derivato con l'uguaglianza alla Leibniz, infatti:
+Può essere derivato con entrambe le uguaglianze, infatti:
 
-\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es2.v}
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es2corretto.v}
 
 \subsection{Esercizio 3}
-\begin{thm}[L'uguaglianza di Leibniz rispetta la sostituibilità degli uguali]\label{thm:ug3} Trovare un proof-term
+\begin{thm} Trovare un proof-term
 	\[ \mathbf{pf}\in P(b)\ [a\in A, b\in A, z\in P(a), w\in \Id{A}{a}{b}]\]
 \end{thm}
-Può essere derivato con l'uguaglianza alla Leibniz, infatti:
+Può essere derivato con entrambe le uguaglianze, infatti:
 
-\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es3.v}
-%\proof
-%Basta applicare l'eliminatore dell'uguaglianza al tipo $C(x,y) \equiv P(x)\to P(y)$, infatti
-%\begin{scriptsize}
-%	\[ \infer{p \equiv \mathrm{El}_{\mathrm{Id}}(w, (x).\lambda y. y)) \in P(a)\to P(b)\ [a \in A, b\in A, z\in P(a), w\in \Id{A}{a}{b}]}{\begin{array}{l}P(x)\to P(y) type\ [\Gamma, x \in A, y \in A] \\ \lambda y. y \in P(x) \to P(x)  [\Gamma, x \in A] \\
-%		a \in A [\Gamma], \quad b \in A [\Gamma] \\
-%		w \in \Id{A}{a}{b}\ [\Gamma] \end{array}} \]
-%\end{scriptsize}
-%per cui 
-%\[ \mathbf{pf} \equiv \mathrm{Ap}(p, z) \in P(b) \]
-%\endproof
-%
-%Quindi il proof-term \[ \mathbf{pf}\in P(b)\ [a\in A, b\in A, z\in P(a), w\in \Id{A}{a}{b}]\] può essere derivato con l'uguaglianza proposizionale alla Leibniz.
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es3corretto.v}
 
 \subsection{Esercizio 4}
-\begin{thm}[L'uguaglianza di Leibniz è transitiva]
+\begin{thm}
 	Trovare un proof-term
 	\[ \mathbf{pf} \in \Id{A}{a}{c}\ [a\in A, b\in A, c\in A, w_1 \in \Id{A}{a}{b}, w_2 \in \Id{A}{b}{c} ] \]
 \end{thm}
 
-Può essere derivato con l'uguaglianza alla Leibniz, infatti:
+Può essere derivato con entrambe le uguaglianze, infatti:
 
-\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es4.v}
-
-%\proof
-%Segue da \ref{thm:ug3} in quanto si trova
-%\[ \mathbf{pf} \in P(c)\ [b\in A, c \in A, w_1 \in P(b), w_2 \in \Id{A}{b}{c}] \]
-%ponendo
-%\[ P(c) \equiv \Id{A}{a}{c} \qquad P(b) \equiv \Id{A}{a}{b} \]
-%e aggiungendo $a\in A$ al contesto.
-%\endproof
-%
-%Quindi il proof-term \[ \mathbf{pf} \in \Id{A}{a}{c}\ [a\in A, b\in A, c\in A, w_1 \in \Id{A}{a}{b}, w_2 \in \Id{A}{b}{c} ] \] può essere derivato con l'uguaglianza proposizionale alla Leibniz.
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es4corretto.v}
 
 \subsection{Esercizio 5}
 \begin{thm}
 	Con quale uguaglianza è derivabile il proof-term $pf\in Id(N_1, x, \ast)~[x\in N_1]$?
 \end{thm}
-Si deriva con l'uguaglianza alla Leibniz, infatti:
-\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es5.v}
+Si deriva con entrambe le uguaglianze, infatti:
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es5corretto.v}
 
 \subsubsection{Esercizio 6}
 \begin{thm}
