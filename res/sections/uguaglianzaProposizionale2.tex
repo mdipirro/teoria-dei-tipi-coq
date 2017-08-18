@@ -1,0 +1,84 @@
+\section{Sull'uguaglianza proposizionale}
+\subsection{Esercizio 1}
+\begin{thm}
+	Per capire l'importanza della regola di eliminazione del tipo di uguaglianza proposizionale formulato da Martin-Lof, si dimostri che se si aggiungono alla teoria dei tipi le regole di \textit{unicità dei proof-terms di uguaglianza} allora si dimostra che dati $a~\in~A~[\Gamma]$ e $b~\in~A~[\Gamma]$ c'è un proof-term \textbf{pf} del tipo:
+	\[pf~\in~\forall_{w1~\in~Id(A,a,b)}~\forall_{w2~\in~Id(A,a,b)}~Id(Id(A,a,b),~w1,~w2)~[\Gamma] \]
+	ovvero i proof-terms di un tipo di uguaglianza proposizionale sono tutti uguali proposizionalmente.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es1.v}
+
+\subsection{Esercizio 2}
+\begin{thm}
+	Sia $k$ un numero naturale. Dare le regole del tipo $N_k$ con k elementi. Poi dimostrare che nella teoria dei tipi estesa con i tipi $N_k$, ognuno di questi tipi risulta isomorfo ad un tipo definibile a partire dai costrutti di tipo precedentemente descritti.
+\end{thm}
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$F-N_k$}
+\UnaryInfC{$N_k~type~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$I_1-N_k$}
+\UnaryInfC{$0~\in~N_k~[\Gamma]$}
+\DisplayProof\dots
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$I_k-N_k$}
+\UnaryInfC{$k-1~\in~N_k~[\Gamma]$}
+\DisplayProof
+\vspace{0.2in}
+
+Si nota che le regole di introduzione sono corrispondenti al numero $k$, e vanno da $0$ a $k-1$.
+
+\vspace{0.2in}
+\AxiomC{$c~\in~N_k[\Gamma]$}
+\AxiomC{$c_0~\in~C(0)~[\Gamma]~\dots~c_{k-1}~\in~C(k-1)~[\Gamma]$}
+\RightLabel{$E-N_k$}
+\BinaryInfC{$El_k(c,~c_0,\dots,c_{k-1})~\in~C(c)~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$c_0~\in~C(0)~[\Gamma]~\dots~c_{k-1}~\in~C(k-1)~[\Gamma]$}
+\RightLabel{$C-N_k$}
+\UnaryInfC{$EL_k(0,~c_0,\dots,c_{k-1})~=~c_m~\in~C(c)~[\Gamma]$}
+\DisplayProof
+\vspace{0.2in}
+
+Si nota che le regole di computazione sono tante quante $k$, con valori da $0$ a $k-1$.
+
+\subsection{Esercizio 3}
+\begin{thm}
+	Si dimostri che il tipo dell'uguaglianza proposizionale di Martin-Lof è isomorfo a quello dell'uguaglianza proposizionale con Path Induction.
+\end{thm}
+Soluzione definendo le due uguaglianze con gli assiomi:
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es3.v}
+
+Soluzione definendo le due uguaglianze come tipi induttivi di Coq:
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es3-breve.v}
+
+\subsection{Esercizio 4}
+\begin{thm}
+	Si provi a stabilire se il tipo dell'uguaglianza proposizionale di Leibniz rende ammissibili le regole del tipo di uguaglianza proposizionale di Leibniz con eliminazione ristretta (che ricorda la regola di eliminazione della deduzione naturale dell'uguaglianza in logica predicativa o equivalentemente la regola a sinistra dell'uguaglianza nel calcolo dei sequenti per la logica predicativa) e poi si stabilisca se i due tipi sono isomorfi.
+\end{thm}
+I due tipi sono equivalenti tra loro, quindi il tipo dell'uguaglianza di Leibniz rende ammissibili le regole del tipo di uguaglianza proposizionale di Leibniz con eliminazione ristretta. I due tipi non sono isomorfi, a meno di non aggiungere ad entrambi i tipi l'assioma di Streicher, che dice che tutti i $(p : x = x)$ sono uguali a $refl$. In Coq questo assioma è definito come:
+\begin{lstlisting}[language=Coq]
+Axiom Streicher_K : 
+forall (A:Type) (x:A) (P: x=x -> Prop), 
+P (refl_equal x) -> forall p: x=x, P p. 
+\end{lstlisting}
+O, equivalentemente,l'assioma di Unicità delle Prove di Identità, definito in Coq come segue:
+\begin{lstlisting}[language=Coq]
+Axiom UIP : forall (A:Set) (x y:A) (p1 p2: x=y), p1 = p2. 
+\end{lstlisting}
+
+Con quest'ultimo assioma è possibile dimostrare l'isomorfismo tra i due tipi.
+
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es4.v}
+
+\subsection{Esercizio 5}
+\begin{thm}
+	Si stabilisca se dato un tipo $A~type~[\Gamma]$ e termini $a~\in~A~[\Gamma]$ e $b~\in~A~[\Gamma]$, il tipo uguaglianza proposizionale à la Leibniz è equivalente a quello di Martin-Lof. I due tipi sono anche isomorfi tra loro?
+\end{thm}
+I due tipi sono equivalenti tra loro, come si può notare dalla dimostrazione sottostante. Al contrario i due tipi non sono isomorfi. Si nota come, rispetto alla definizione di $pf1$, nella definizione di $pf2$ la prova di \texttt{eq z z} non è più nota (è una variabile $p$) mentre prima era $refl$. Per far si che il termine dato ad apply: sia ben tipato si dove usare un $C$ molto più forte. Infatti, l'eliminatore di Martin Lof consente di usare un $C$ che non ha tale quantificazione, ma ha un parametro $p$, e si deve poi poi dimostrare tale $C$ non su un $p$ qualunque, ma su $refl$.  E in tale caso la regola computazionale lo permette.
+
+Un altro modo per leggere i due eliminatori è il seguente. Quello di Leibniz dice ``si sa che $(p : x = y)$. Si può quindi rimpiazzare $x$ per $y$''. Quello Martin Lof, invece, dice ``si sa che $(p : x = y)$. Si può quindi rimpiazzare simultaneamente $x$ per $y$ e $p$ per $refl$``. Quindi nel caso di Martin Lof si ha a disposizione un'informazione concreta sul proof-term, mentre nel caso di Leibniz no. Di conseguenza non si può definire $pf2$.
+
+I due tipi non sono quindi isomorfi, a meno di aggiungere l'assioma di Streicher, che di fatto riporta alle condizioni favorevoli di $pf1$, o, equivalentemente, l'assioma di Unicità delle Prove di Identità.
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es5.v}
