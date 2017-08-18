@@ -15,7 +15,9 @@
 \begin{thm}
 	Che tipo di uguaglianza è definita con l'universo delle proposizioni?
 \end{thm}
-L'uguaglianza proposizionale con \texttt{Prop} è definita come $Id_{CoC}(A,a,b)~\equiv~\forall_{p~\in~A\to Prop}~(p(a)~\to~p(b)$, dati due  elementi di un tipo $A$: $a~\in~A~[\Gamma]$ e $b~\in~A~[\Gamma]$. $p$ è quindi un elemento di un tipo funzione che prende un elemento di A e ritorna un elemento di \texttt{Prop}, ovvero una proposizione. La definizione richiede che \textit{per ogni} $p~\in~A\to Prop$ valga che $p(a)~\to~p(b)$, cioè che per ogni funzione che, dato un elemento di A, ritorna una proposizione, la proposizione ottenuta da $a$ implica \textit{sempre} la proposizione ottenuta da $b$. L'eliminazione dell'uguaglianza così definita è verso altri abitanti di \texttt{Prop} e non verso abitanti di altri tipi (ad esempio $A$). Quindi l'uguaglianza non somiglia a quelle già viste, dove l'eliminazione poteva avvenire verso un tipo qualsiasi ($C$), dipendente da parametri differenti a seconda della definizione.
+L'uguaglianza proposizionale con \texttt{Prop} è definita come $Id_{CoC}(A,a,b)~\equiv~\forall_{p~\in~A\to Prop}~(p(a)~\to~p(b)$, dati due  elementi di un tipo $A$: $a~\in~A~[\Gamma]$ e $b~\in~A~[\Gamma]$. $p$ è quindi un elemento di un tipo funzione che prende un elemento di A e ritorna un elemento di \texttt{Prop}, ovvero una proposizione. La definizione richiede che \textit{per ogni} $p~\in~A\to Prop$ valga che $p(a)~\to~p(b)$, cioè che per ogni funzione che, dato un elemento di A, ritorna una proposizione, la proposizione ottenuta da $a$ implica \textit{sempre} la proposizione ottenuta da $b$. Quindi $a$ e $b$ sono uguali se $p(a)~\to~p(b)$, indipendentemente da $p$ proposizione ottenuta.
+
+L'eliminazione dell'uguaglianza così definita è verso altri abitanti di \texttt{Prop} e non verso abitanti di altri tipi (ad esempio $A$). Quindi l'uguaglianza non somiglia a quelle già viste, dove l'eliminazione poteva avvenire verso un tipo qualsiasi ($C$), dipendente da parametri differenti a seconda della definizione.
 
 \subsection{Esercizio 4}
 \begin{thm}
@@ -25,6 +27,6 @@ Una differenza fondamentale risiede nell'interpretazione dell'uguaglianza. Infat
 
 Un'altra differenza è rappresentata dall'interpretazione del falso ($\perp$). Nell'interpretazione in teoria dei tipi il falso corrisponde ad $N_0$, e quindi ad un tipo non abitato, mentre in \texttt{Prop} corrisponde a $\forall_{p~\in~Prop}~p$. 
 
-Tutte i connettivi logici e il quantificatore esistenziale sono poi definiti con il supporto di $\forall$ e dell'implicazione. Nell'interpretazione CHM, invece, i connettivi logici e il quantificatore esistenziale sono definiti con il supporto di altri tipi esistenti, quali $\Sigma$, $\prod$, $\times$ e $\oplus$. 
+Tutti i connettivi logici e il quantificatore esistenziale sono poi definiti con il supporto di $\forall$ (decodificato in $\Pi$) e dell'implicazione. Nell'interpretazione CHM, invece, i connettivi logici e il quantificatore esistenziale sono definiti con il supporto di altri tipi esistenti, quali $\Sigma$, $\prod$, $\times$ e $\oplus$. Per interpretare le proposizioni è necessaria una funzione di decodifica $T~:~Prop~\to~Type$ che, data una proposizione, definisca un tipo preciso.
 
 Infine, l'interpretazione ``libera'' delle proposizioni come tipi può portare ad inconsistenze, e quindi a poter derivare il falso. Un esempio è dato dall'esercizio 11.2, dove è possibile derivare $Id(A, 0, 1)~true~[\Gamma]$. Al contrario, in \texttt{Prop}, questa inconsistenza non è presente.
