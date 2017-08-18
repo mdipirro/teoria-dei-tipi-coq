@@ -13,10 +13,10 @@
 $\to$ L'interpretazione CHM di un sequente $\Sigma~\vdash~\Delta$ è il tipo $(\Delta^{\vee})^I~type~[\Gamma,~(\Sigma^{\&})^I]$, e il sequente è valido se e solo se esiste un proof-term $pf'$ tale che 
 $pf'~\in~(\Delta^{\vee})^I~[\Gamma,~(\Sigma^{\&})^I]$. Visto che l'interpretazione CHM è valida per ipotesi, si ha che $(\Delta^{\vee})^I$ è abitato sulla base di $\Gamma$ e di $(\Sigma^{\&})^I$, ed esiste un tale $pf'$.
 
-Questo rende vera la premessa di $I-\to$, cioè $c(x)~\in~(\Delta^{\vee})^I~[\Gamma,~(\Sigma^{\&})^I]$, ovvero $c(x)~\equiv~pf'$. Di conseguenza il tipo $(\Sigma^{\&})^I~\to~(\Delta^{\vee})^I$ è abitato, perché è valida la premessa della sua regola di introduzione. È quindi possibile definire $pf$ a partire da quest'ultima, cioè $pf~\equiv~\lambda x^{(\Delta^{\vee})^I}.c(x)$.
+Questo rende vera la premessa di $I-\to$, cioè $c(x)~\in~(\Delta^{\vee})^I~[\Gamma,~x\in(\Sigma^{\&})^I]$, ovvero $c(x)~\equiv~pf'$. Di conseguenza il tipo $(\Sigma^{\&})^I~\to~(\Delta^{\vee})^I$ è abitato, perché è valida la premessa della sua regola di introduzione. È quindi possibile definire $pf$ a partire da quest'ultima, cioè $pf~\equiv~\lambda x^{(\Sigma^{\&})^I}.c(x)$.
 
 \vspace{0.2in}
-$\leftarrow$ Si ha per ipotesi un proof-term $pf$ tale che $pf~\in~(\Sigma^{\&})^I~\to~(\Delta^{\vee})^I~[\Gamma]$. $pf$ è stato derivato utilizzando $I-\to$., e quindi è del tipo $\lambda x^{(\Delta^{\vee})^I}.c(x)$, dato un $c(x)~\in~C~[\Gamma,~x~\in~(\Sigma^{\&})^I]$. Di conseguenza l'interpretazione è valida, perché il proof-term $pf'$ abitante del tipo 
+$\leftarrow$ Si ha per ipotesi un proof-term $pf$ tale che $pf~\in~(\Sigma^{\&})^I~\to~(\Delta^{\vee})^I~[\Gamma]$. $pf$ è stato derivato utilizzando $I-\to$, e quindi è del tipo $\lambda x^{(\Sigma^{\&})^I}.c(x)$, dato un $c(x)~\in~C~[\Gamma,~x~\in~(\Sigma^{\&})^I]$. Di conseguenza l'interpretazione è valida, perché il proof-term $pf'$ abitante del tipo 
 $(\Delta^{\vee})^I~type~[\Gamma,~(\Sigma^{\&})^I]$ è esattamente $c(x)$.
 
 \endproof
@@ -75,7 +75,11 @@ come richiesto.
 \begin{thm}
 	Le funzioni $f(z)$ e $g(w)$ stabiliscono un isomorfismo nel senso della definizione 9.6 tra $A~+~B$ e $\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B))$?
 \end{thm}
-Si, infatti è possibile definire due proof-terms \textbf{pf1} e \textbf{pf2} tali che $pf_1~\in~Id(A~+~B, x,g(f(x)))~[\Gamma,~x~\in~A~+~B]$ e $pf_2~\in~Id(\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B)), y,f(g(y)))~[\Gamma,~y~\in~\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B))]$
+Si, infatti è possibile definire due proof-terms \textbf{pf1} e \textbf{pf2} tali che \[pf_1~\in~Id(A~+~B, x,g(f(x)))~[\Gamma,~x~\in~A~+~B]\] e 
+\begin{scriptsize}
+\[pf_2~\in~Id(\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B)), y,f(g(y)))\]
+\[[\Gamma,~y~\in~\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B))]\]
+\end{scriptsize}
 \lstinputlisting[language=Coq]{res/code/traduzioneLogica/es4.v}
 Tuttavia, in Coq, è impossibile provare l'esistenza di $pf2$ a causa della nozione troppo debole di uguaglianza estensionale delle funzioni. Quest'ultima è definita come
 \begin{lstlisting}[language=Coq]

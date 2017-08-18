@@ -1,3 +1,12 @@
+\paragraph{Falso} \mbox{} \\
+\AxiomC{$\perp~prop[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$a\in\perp[\Gamma]$}
+\AxiomC{$X~prop[\Gamma]$}
+\RightLabel{$E-\perp$}
+\BinaryInfC{$El_{\perp}\in X[\Gamma]$}
+\DisplayProof
+
 \paragraph{And} \mbox{} \\
 \AxiomC{$\Phi~prop~[\Gamma]$}
 \AxiomC{$\Psi~prop~[\Gamma]$}
@@ -70,7 +79,7 @@
 \AxiomC{$d(u)~\in~X~[\Gamma,~u~\in~\Phi]$}
 \AxiomC{$c(w)~\in~X~[\Gamma,~w~\in~\Psi]$}
 \RightLabel{$E-\vee$}
-\QuaternaryInfC{$case(p,~(u).d,~(w).c)~\in~X~[\Gamma]$}
+\QuaternaryInfC{$case(p,~d,~c)~\in~X~[\Gamma]$}
 \DisplayProof
 
 \vspace{0.2in}
@@ -83,13 +92,16 @@
 \UnaryInfC{$inr(b)~=~inr(b')~\in~\Phi~\vee~\Psi~[\Gamma]$}
 \DisplayProof
 
-\vspace{0.2in}
-\AxiomC{$X~prop~[\Gamma]$}
-\AxiomC{$p~=~q~\in~\Phi~\vee~\Psi~[\Gamma]$}
-\AxiomC{$c(w)~=~d(u)~\in~X~[\Gamma,~w~\in~\Psi,~u~\in~\Phi]$}
-\RightLabel{$U_3-\vee$}
-\TrinaryInfC{$case(p,~(u).d,~(w).c)~=~case(q,~(u).d,~(w).c)~\in~\Phi~\vee~\Psi~[\Gamma]$}
-\DisplayProof
+\begin{scriptsize}
+	\vspace{0.2in}
+	\AxiomC{$X~prop~[\Gamma]$}
+	\AxiomC{$p~=~q~\in~\Phi~\vee~\Psi~[\Gamma]$}
+	\AxiomC{$c(w)~=~c'(w)~\in~X~[\Gamma,~w~\in~\Psi]$}
+	\AxiomC{$d(u)~=~d'(u)~\in~X~[\Gamma,~u~\in~\Phi]$}
+	\RightLabel{$U_3-\vee$}
+	\QuaternaryInfC{$case(p,~d,~c)~=~case(q,~d',~c')~\in~\Phi~\vee~\Psi~[\Gamma]$}
+	\DisplayProof
+\end{scriptsize}
 
 \vspace{0.2in}
 \AxiomC{$a~\in~\Phi~[\Gamma]$}
@@ -97,7 +109,7 @@
 \AxiomC{$d(u)~\in~X~[\Gamma,~u~\in~\Phi]$}
 \AxiomC{$c(w)~\in~X~[\Gamma,~w~\in~\Psi]$}
 \RightLabel{$C_1-\vee$}
-\QuaternaryInfC{$case(inl(a),~(u).d,~(w).c)~=~d(u)~\in~\Phi~[\Gamma]$}
+\QuaternaryInfC{$case(inl(a),~d,~c)~=~d(u)~\in~\Phi~[\Gamma]$}
 \DisplayProof
 
 \vspace{0.2in}
@@ -106,7 +118,7 @@
 \AxiomC{$d(u)~\in~X~[\Gamma,~u~\in~\Phi]$}
 \AxiomC{$c(w)~\in~X~[\Gamma,~w~\in~\Psi]$}
 \RightLabel{$C_2-\vee$}
-\QuaternaryInfC{$case(inr(b),~(u).d,~(w).c)~=~c(w)~\in~\Psi~[\Gamma]$}
+\QuaternaryInfC{$case(inr(b),~d,~c)~=~c(w)~\in~\Psi~[\Gamma]$}
 \DisplayProof
 
 \paragraph{Implicazione} \mbox{} \\
@@ -148,17 +160,17 @@
 \paragraph{Per ogni} \mbox{} \\
 \AxiomC{$\Phi(x)~prop~[\Gamma,~x~\in~A]$}
 \RightLabel{$F-\forall$}
-\UnaryInfC{$(\forall x~\in~A)\Phi(x)~prop~[\Gamma]$}
+\UnaryInfC{$\forall_{x~\in~A}\Phi(x)~prop~[\Gamma]$}
 \DisplayProof\qquad
 \AxiomC{$A~type~[\Gamma]$}
 \AxiomC{$b(w)~\in~\Phi(w)~[\Gamma,~w~\in~A]$}
 \RightLabel{$I-\forall$}
-\BinaryInfC{$\lambda w.b(w)~\in~(\forall x~\in~A)\Phi(x)~[\Gamma]$}
+\BinaryInfC{$\lambda w.b(w)~\in~\forall_{x~\in~A}\Phi(x)~[\Gamma]$}
 \DisplayProof
 
 \vspace{0.2in}
 \AxiomC{$A~type~[\Gamma]$}
-\AxiomC{$f~\in~(\forall x~\in~A)\Phi(x)~[\Gamma]$}
+\AxiomC{$f~\in~\forall_{x~\in~A}\Phi(x)~[\Gamma]$}
 \AxiomC{$t~\in~A~[\Gamma]$}
 \RightLabel{$E-\forall$}
 \TrinaryInfC{$Ap(f, t)~\in~\Phi(t)~[\Gamma]$}
@@ -168,12 +180,12 @@
 \AxiomC{$A~type~[\Gamma]$}
 \AxiomC{$b(w)~=b'(w)~\in~\Phi(w)~[\Gamma,~w~\in~A]$}
 \RightLabel{$U_1-\forall$}
-\BinaryInfC{$\lambda w.b(w)~=~\lambda w.b'(w)~\in~(\forall x~\in~A)\Phi(x)~[\Gamma]$}
+\BinaryInfC{$\lambda w.b(w)~=~\lambda w.b'(w)~\in~\forall_{x~\in~A}\Phi(x)~[\Gamma]$}
 \DisplayProof
 
 \vspace{0.2in}
 \AxiomC{$A~type~[\Gamma]$}
-\AxiomC{$f~=~f'~\in~(\forall x~\in~A)\Phi(x)~[\Gamma]$}
+\AxiomC{$f~=~f'~\in~\forall_{x~\in~A}\Phi(x)~[\Gamma]$}
 \AxiomC{$t~=~t'~\in~A~[\Gamma]$}
 \RightLabel{$U_2-\forall$}
 \TrinaryInfC{$Ap(f, t)~=~Ap(f',t')~\in~\Phi(t)~[\Gamma]$}
@@ -190,22 +202,22 @@
 \paragraph{Esiste} \mbox{} \\
 \AxiomC{$\Phi(x)~prop~[\Gamma,~x~\in~A]$}
 \RightLabel{$F-\exists$}
-\UnaryInfC{$(\exists x~\in~A)\Phi(x)~prop~[\Gamma]$}
+\UnaryInfC{$\exists_{x~\in~A}\Phi(x)~prop~[\Gamma]$}
 \DisplayProof\qquad
 \AxiomC{$A~type~[\Gamma]$}
 \AxiomC{$t~\in~A~[\Gamma]$}
 \AxiomC{$p~\in~\Phi(t)~[\Gamma]$}
 \RightLabel{$I-\exists$}
-\TrinaryInfC{$<t, p>~\in~(\exists x~\in~A)\Phi(x)~[\Gamma]$}
+\TrinaryInfC{$<t, p>~\in~\exists_{x~\in~A}\Phi(x)~[\Gamma]$}
 \DisplayProof
 
 \vspace{0.2in}
 \AxiomC{$A~type~[\Gamma]$}
 \AxiomC{$\Psi~prop~[\Gamma]$}
-\AxiomC{$p~\in~(\exists x~\in~A)\Phi(x)~[\Gamma]$}
+\AxiomC{$p~\in~\exists_{x~\in~A}\Phi(x)~[\Gamma]$}
 \AxiomC{$q(w,~y)~\in~\Psi~[\Gamma,~w~\in~A,~y~\in~\Phi(x)]$}
 \RightLabel{$E-\exists$}
-\QuaternaryInfC{$unpack(p, (w,~y)q)~\in~\Psi~[\Gamma]$}
+\QuaternaryInfC{$unpack(p, q)~\in~\Psi~[\Gamma]$}
 \DisplayProof
 
 \vspace{0.2in}
@@ -213,17 +225,17 @@
 \AxiomC{$t~=~t'~\in~A~[\Gamma]$}
 \AxiomC{$p~=~p'~\in~\Phi(t)~[\Gamma]$}
 \RightLabel{$U_1-\exists$}
-\TrinaryInfC{$unpack(<t, p>, )~=~<t',p'>~\in~(\exists x~\in~A)\Phi(x)~[\Gamma]$}
+\TrinaryInfC{$<t, p>~=~<t',p'>~\in~\exists_{x~\in~A}\Phi(x)~[\Gamma]$}
 \DisplayProof
 
 \begin{scriptsize}
 	\vspace{0.2in}
 	\AxiomC{$A~type~[\Gamma]$}
 	\AxiomC{$\Psi~prop~[\Gamma]$}
-	\AxiomC{$p~=~p'~\in~(\exists x~\in~A)\Phi(x)~[\Gamma]$}
+	\AxiomC{$p~=~p'~\in~\exists_{x~\in~A}\Phi(x)~[\Gamma]$}
 	\AxiomC{$q(w,~y)~=~q'(w,~y)~\in~\Psi~[\Gamma,~w~\in~A,~y~\in~\Phi(x)]$}
 	\RightLabel{$U_2-\exists$}
-	\QuaternaryInfC{$unpack(p, (w,~y)q)~=~unpack(p', (w,~y)q')~\in~\Psi~[\Gamma]$}
+	\QuaternaryInfC{$unpack(p, q)~=~unpack(p',q')~\in~\Psi~[\Gamma]$}
 	\DisplayProof
 	
 	\vspace{0.2in}
@@ -241,9 +253,9 @@
 \AxiomC{$a~\in~\Psi~[\Gamma]$}
 \AxiomC{$b~\in~\Psi~[\Gamma]$}
 \RightLabel{$F-Id$}
-\TrinaryInfC{$\Id(\Phi, a, b)~prop~[\Gamma]$}
+\TrinaryInfC{$Id(\Phi, a, b)~prop~[\Gamma]$}
 \DisplayProof\qquad
-\AxiomC{$a~\in~Phi$}
+\AxiomC{$a~\in~\Phi$}
 \RightLabel{$I-Id$}
 \UnaryInfC{$id(a)~\in~Id(\Phi,a,a)~[\Gamma]$}
 \DisplayProof
@@ -256,7 +268,7 @@
 	\AxiomC{$p~\in~Id(\Phi,a,b)~[\Gamma]$}
 	\AxiomC{$c(x)~\in~C(x,x)~[\Gamma,~x\in~\Phi]$}
 	\RightLabel{$E-Id$}
-	\QuinaryInfC{$El(p,~(x).c)~\in~C(a,b)~[\Gamma]$}
+	\QuinaryInfC{$El(p,~c)~\in~C(a,b)~[\Gamma]$}
 	\DisplayProof
 \end{scriptsize}
 
@@ -273,7 +285,7 @@
 	\AxiomC{$p~=~q~\in~\Phi~=~\Phi~[\Gamma]$}
 	\AxiomC{$c(x)~=~d(x)~\in~C(x,x)~[\Gamma,~x\in~\Phi,~c~\in~C(x,x),~d~\in~C(x,x)]$}
 	\RightLabel{$U_2-Id$}
-	\QuaternaryInfC{$El(p,~(a).c)=~sse(q,~(b).d)~\in~C(a,~p)~[\Gamma]$}
+	\QuaternaryInfC{$El(p,~c)=~sse(q,~(b).d)~\in~C(a,~p)~[\Gamma]$}
 	\DisplayProof
 	
 	\vspace{0.2in}
@@ -281,6 +293,6 @@
 	\AxiomC{$a~\in~\Phi~[\Gamma]$}
 	\AxiomC{$c(x)~\in~C(x,x)~[\Gamma,~x\in~\Phi]$}
 	\RightLabel{$C-Id$}
-	\TrinaryInfC{$El(id(a),~(x).c)~=c(a)~\in~C(a,a)~[\Gamma]$}
+	\TrinaryInfC{$El(id(a),~c)~=c(a)~\in~C(a,a)~[\Gamma]$}
 	\DisplayProof
 \end{scriptsize}

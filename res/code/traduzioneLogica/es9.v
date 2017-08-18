@@ -1,5 +1,4 @@
 From mathcomp Require Import ssreflect.
-Notation erefl := refl_equal.
 
 Lemma ex_falso P : False -> P.
 Proof.
