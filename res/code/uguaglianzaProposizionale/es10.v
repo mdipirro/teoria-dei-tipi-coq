@@ -1,0 +1,1 @@
+Inductive N0 : Set :=.
