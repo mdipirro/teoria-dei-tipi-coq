@@ -83,3 +83,40 @@ Un altro modo per leggere i due eliminatori è il seguente. Quello di Leibniz di
 
 I due tipi non sono quindi isomorfi, a meno di aggiungere l'assioma di Streicher, che di fatto riporta alle condizioni favorevoli di $pf1$, o, equivalentemente, l'assioma di Unicità delle Prove di Identità.
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es5.v}
+
+\subsection{Alcuni esercizi della Sezione 5 rifatti con le nuove uguaglianze}
+\subsubsection{Esercizio 2}
+\begin{thm}
+	Con quale uguaglianza è possibile derivare un proof-term $q\in Id(B, f(x), f(y)) [x\in A, y\in A, w\in Id(A, x, y)]$, dove $f(x)\in B[x\in A]$?
+\end{thm}
+Può essere derivato con entrambe le uguaglianze, infatti:
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es2Sezione5.v}
+
+\subsubsection{Esercizio 3}
+\begin{thm} Trovare un proof-term
+	\[ \mathbf{pf}\in P(b)\ [a\in A, b\in A, z\in P(a), w\in \Id{A}{a}{b}]\]
+\end{thm}
+Può essere derivato con entrambe le uguaglianze, infatti:
+
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es3Sezione5.v}
+
+\subsubsection{Esercizio 5}
+\begin{thm}
+	Con quale uguaglianza è derivabile il proof-term $pf\in Id(N_1, x, \ast)~[x\in N_1]$?
+\end{thm}
+Si deriva con entrambe le uguaglianze, infatti:
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es5Sezione5.v}
+
+\subsubsection{Esercizio 6}
+\begin{thm}
+	Con quale uguaglianza è possibile definire l'addizione tra naturali e derivare i due proof-terms $pf_1\in Id(nat, x+0,x)~[x\in Nat]$ e $pf_2\in Id(nat, 0+x,x)~[x\in Nat]$?
+\end{thm}
+Con entrambe le uguaglianze, infatti:
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es6Sezione5.v}
+
+\subsubsection{Esercizio 8}
+L'esercizio può essere risolto usando entrambe le uguaglianze.
+\paragraph{Leibniz}
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es8Sezione5MartinLof.v}
+\paragraph{Gentzen}
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es8Sezione5Path.v}
