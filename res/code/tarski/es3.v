@@ -13,24 +13,22 @@ move=> abs.
 by apply ex_falso.
 Qed.
 
+(* Definizione di k *)
+
 Definition k (x: nat) : Set :=
 match x with
   | 0 => Empty_set
-  | S n => unit
+  | S _ => unit
 end.
 
-Definition T (u: Set) : Type := u.
+(* Dimostro il se e solo se dimostrando separatamente le due direzioni *)
 
-Lemma eq_simm (A: Type) (x y: A) : (x = y) -> (y = x).
-Proof.
-move=> xy.
-by rewrite //=.
-Qed.
+Definition T (u: Set) : Type := u.
 
 Lemma Tx_Ty (x y: Set) (w: x = y) : forall z: T x, T y.
 Proof.
 move=> Tx.
-by rewrite (eq_simm Set x y w).
+by rewrite (eq_sym w).
 Qed.
 
 Lemma Ty_Tx (x y: Set) (w: x = y) : forall z: T y, T x.

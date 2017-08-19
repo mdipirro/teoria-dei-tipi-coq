@@ -13,8 +13,8 @@ Premesse:
 \[a_4(x,y)~\in~D(\stackrel{\wedge}{List(x)})~[\Gamma,x~in~U_0,y\in D(x)]\]
 \[a_5(x,y,z,u)~\in~D(\stackrel{\wedge}{Id}(x,y,z))~[\Gamma,x~\in~U_0,y\in T(x),z\in T(x), u\in D(x)]\]
 \[a_6(x,y,z,u)~\in~D(x\stackrel{\wedge}{+}y)~[\Gamma,x\in U_0,y\in U_0,z\in D(x), u\in D(y)]\]
-\[a_7(x,y,z,u)~\in~D(\stackrel{\wedge}{\Pi}_{w~\in~T(x)}y(w)))~[\Gamma,x\in U_0,y\in~T(x)~\to~U_0,z\in D(x), u\in D(c(x))]\]
-\[a_8(x,y,z,u)~\in~D(\stackrel{\wedge}{\Sigma}_{w~\in~T(x)}y(w)))~[\Gamma,x\in U_0,y\in~T(x)~\to~U_0,z\in D(x), u\in D(c(x))]\]
+\[a_7(x,y,z,u)~\in~D(\stackrel{\wedge}{\Pi}_{w~\in~T(x)}y(w)))~[\Gamma,x\in U_0,y\in~T(x)~\to~U_0,z\in D(x), u\in D(y(x))]\]
+\[a_8(x,y,z,u)~\in~D(\stackrel{\wedge}{\Sigma}_{w~\in~T(x)}y(w)))~[\Gamma,x\in U_0,y\in~T(x)~\to~U_0,z\in D(x), u\in D(y(x))]\]
 \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
 \[El(a,a_1,a_2,a_3,a_4,a_5,a_6,a_7,a_8)~\in~D(a)\]
 
@@ -24,12 +24,24 @@ Premesse:
 	
 	Dimostrare poi che questa interpretazione \textit{rende vero} $Id(Nat,~0~1)~[]$ e quindi \textit{rende falso} $\neg Id(Nat,~0~1)~[]$. Ovvero l'interpretazione costruita è un \textit{modello in teoria dei tipi della proposizione} $0~=_{Nat}~1$ ed è un \textit{contromodello in teoria dei tipi della proposizione} $\neg 0~=_{Nat}~1$.
 \end{thm}
+Questa interpretazione della logica è valida perché ogni sequente vero della logica corrisponde ad un proof-term che abita un tipo. Infatti il falso corrisponde ad $N_0$, inabitato, e il vero a $N_1$, abitato. Ogni tipo non dipendente viene mappato in $N_1$, e quindi resta correttamente abitato dal proof-term $\star$. La corrispondenza è valida anche per gli altri tipi, infatti:
+\begin{itemize}
+	\item $List(A)$ viene mappato in $N_1$, ed è abitato per quanto detto in precedenza.
+	\item $A~+~B$ viene mappato in $N_0$ se e solo se $A^J~=~B^J~=~N_0$. Di conseguenza se anche solo uno dei due tipi $A$ e $B$ non è $N_0$ la somma disgiunta viene mappata in $N_1$, ed è corretto visto che uno dei due tipi è abitato ed è possibile formare un elemento di $A~+~B$ utilizzando gli elementi dell'unico tipo abitato (usando $inl$ o $inr$ se sono abitati $A$ o $B$, rispettivamente).
+	\item $A~\times~B$ viene mappato in $N_0$ se anche solo uno dei due tipi è $N_0$. Questo è corretto, dato che non è possibile formare elementi di $\times$ senza avere elementi di entrambi i tipi coinvolti.
+	\item $Id(A,t,s)$ viene mappato in $A^J$. Di conseguenza se $A$ è abitato lo sarà anche $Id(A,t,s)$, dato che è possibile costruire elementi di $A$ e che $A$ avrà sicuramente delle regole che definiscono quando due elementi sono uguali.
+	\item $\Pi_{x\in A}B(x)$ viene mappato in $N_0$ se e solo se $A^J~=~N_1$ e $B^J~=~N_0$, cioè se la premessa è abitata, ma la conclusione no (e quindi l'implicazione è falsa). Questo è corretto, perché assicura che tutte i tipi $\Pi$ tali che $B^J~=~N_1$ oppure $A^J~=~N_0$ sono abitati (giustamente, perché corrispondono a situazioni in cui la conclusione è vera e in cui la premessa è falsa).
+	\item $\Sigma_{x\in A}B(x)$ viene mappato in $N_1$ se e solo se $A^J~=~B^J~=~N_1$. Questo è corretto perché ci assicura che $\Sigma$ è abitato se e solo se entrambi i tipi coinvolti sono abitati. Dato che questo tipo corrisponde al quantificatore esistenziale, se uno dei due fosse $N_0$ si avrebbe che l'esiste non vale, o perché il dominio non è abitato, o perché non lo è il codominio.
+\end{itemize}
+Per quanto detto l'interpretazione in esame è ammissibile. 
+
+A questo punto $Id(Nat,0,1)~true~[]$ viene mappato in $N_1$. Di conseguenza la proposizione corrisponde a $N_1$, che è abitato da $\star$, rappresentato dal proof-term $eq\_0\_1$. Dato che $Id(Nat,0,1)~true~[]$ è derivabile, si ha che $\neg Id(Nat,0,1)~true~[]$ è falso. La sua interpretazione corrisponde a $\Pi_{x\in Id(Nat,0,1)}N_0~\equiv~N_1~\to~N_0~\equiv~N_0$, che infatti non è abitato. La sua ulteriore negazione è vera e rappresentata dal proof-term $neq\_0\_1$. La sua interpretazione, infatti, corrisponde a $(N_1~\to~N_0)~\to~N_0~\equiv~N_0~\to~N_0~\equiv~N_1$.
 \lstinputlisting[language=Coq]{res/code/tarski/es2.v}
 
 \subsection{Esercizio 3}
 \begin{thm}
 	Dimostrare in teoria dei tipi con un universo, ad esempio $U_0$, che si può derivare
-	\[\not~Id(Nat, 0, 1)~true~[]\]
+	\[\neg~Id(Nat, 0, 1)~true~[]\]
 \end{thm}
-Viene definita una funzione $k:~Nat~\to~U_0$ tale che $k(0)~=~N_0$ e $k(1)~=~N_1$. Dopodiché si dimostra che vale $T(x)~\iff~T(y)~[\Gamma,~x~\in~U_0,~y~\in~U_0,~w~\in~Id(U_0,~x,~y)]$. Se è possibile dimostrare questo allora, ponendo $x~=~k(0)$ e $y~=~k(1)$ si ottiene una prova $w$ di $Id(U_0,~N_0,~N_1)$ e di conseguenza $T(x)~\iff~T(y)~\equiv~T(N_0)~\iff~T(N_1)~\equiv~N_0~\iff~N_1~\equiv~False$. È possibile definire $k$ e provare l'equivalenza come segue.
+Viene definita una funzione $k:~Nat~\to~U_0$ tale che $k(0)~=~N_0$ e $k(1)~=~N_1$. Dopodiché si dimostra che vale $T(x)~\iff~T(y)~[\Gamma,~x~\in~U_0,~y~\in~U_0,~w~\in~Id(U_0,~x,~y)]$. Se è possibile dimostrare questo, ponendo $x~=~k(0)$ e $y~=~k(1)$ si ottiene una prova $w$ di $Id(U_0,~N_0,~N_1)$ e di conseguenza $T(x)~\iff~T(y)~\equiv~T(N_0)~\iff~T(N_1)~\equiv~N_0~\iff~N_1~\equiv~False$. È possibile definire $k$ e provare l'equivalenza come segue.
 \lstinputlisting[language=Coq]{res/code/tarski/es3.v}
