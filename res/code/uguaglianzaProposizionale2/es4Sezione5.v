@@ -8,14 +8,14 @@ apply: erefl.
 Defined.
 
 (*
-Dato che nell'esercizio 10.3 è stato dimostrato l'isomorfismo tra l'uguaglianza
+Dato che nell'esercizio 10.3 e' stato dimostrato l'isomorfismo tra l'uguaglianza
 di MartinLof e quella con Path Induction (quella di Coq), lo uso per svolgere
 questo esercizio. Le funzioni f e g sono quelle definite in 10.3 e la
-definizione di MartinLof è quella data in precedenza.
+definizione di MartinLof e' quella data in precedenza.
 
-La definizione di pf_m si basa sulla transitività dell'uguaglianza, di cui ho
+La definizione di pf_m si basa sulla transitivita' dell'uguaglianza, di cui ho
 due prove w1 e w2 e sull'isomorfismo con l'uguaglianza di Coq. In questo modo
-la definizione di pf_m è molto più semplice e leggibile.
+la definizione di pf_m e' molto piu' semplice e leggibile.
 *)
 
 Definition f {A} (x y: A) (m: MartinLof.eq A x y) : x = y.

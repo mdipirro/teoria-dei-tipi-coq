@@ -95,7 +95,8 @@ Può essere derivato con entrambe le uguaglianze, infatti:
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es2Sezione5.v}
 
 \subsubsection{Esercizio 3}
-\begin{thm} Trovare un proof-term
+\begin{thm} 
+	Con quale uguaglianza è possibile derivare un proof-term
 	\[ \mathbf{pf}\in P(b)\ [a\in A, b\in A, z\in P(a), w\in \Id{A}{a}{b}]\]
 \end{thm}
 Può essere derivato con entrambe le uguaglianze, infatti:
@@ -104,7 +105,7 @@ Può essere derivato con entrambe le uguaglianze, infatti:
 
 \subsubsection{Esercizio 4}\label{es4Sez5}
 \begin{thm}
-	Trovare un proof-term
+	Con quale uguaglianza è possibile derivare un proof-term
 	\[ \mathbf{pf} \in \Id{A}{a}{c}\ [a\in A, b\in A, c\in A, w_1 \in \Id{A}{a}{b}, w_2 \in \Id{A}{b}{c} ] \]
 \end{thm}
 
@@ -128,8 +129,12 @@ Con entrambe le uguaglianze, infatti:
 
 \setcounter{subsubsection}{7}
 \subsubsection{Esercizio 8}
+\begin{thm}
+	Si dimostri che esiste un proof-term \textbf{pf} tale che
+	\[pf~\in~Id(Nat, x~+_1~y, x~+_2~y)~[x~\in~Nat,~y~\in~Nat]\]
+\end{thm}
 L'esercizio può essere risolto usando entrambe le uguaglianze.
-\paragraph{Leibniz}
+\paragraph{Martin Lof}
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es8Sezione5MartinLof.v}
-\paragraph{Gentzen}
+\paragraph{Path Induction}
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es8Sezione5Path.v}
