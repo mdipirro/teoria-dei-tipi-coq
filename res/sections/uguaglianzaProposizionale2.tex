@@ -44,7 +44,7 @@ Si nota che le regole di introduzione sono corrispondenti al numero $k$, e vanno
 
 Si nota che le regole di computazione sono tante quante $k$, con valori da $0$ a $k-1$.
 
-\subsection{Esercizio 3}
+\subsection{Esercizio 3}\label{isomMLPI}
 \begin{thm}
 	Si dimostri che il tipo dell'uguaglianza proposizionale di Martin-Lof è isomorfo a quello dell'uguaglianza proposizionale con Path Induction.
 \end{thm}
@@ -84,7 +84,9 @@ Un altro modo per leggere i due eliminatori è il seguente. Quello di Leibniz di
 I due tipi non sono quindi isomorfi, a meno di aggiungere l'assioma di Streicher, che di fatto riporta alle condizioni favorevoli di $pf1$, o, equivalentemente, l'assioma di Unicità delle Prove di Identità.
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es5.v}
 
-\subsection{Alcuni esercizi della Sezione 5 rifatti con le nuove uguaglianze}
+\subsection{Esercizi della Sezione 5 rifatti con le nuove uguaglianze}
+Di seguito sono svolti gli esercizi di definizione di proof-terms presenti nella Sezione 5. Vengono presentate le derivazioni sia con l'uguaglianza di Martin Lof che con quella di Coq. Dato che Coq utilizza l'uguaglianza con Path Induction, e che l'esercizio \ref{isomMLPI} mostra che questa uguaglianza è isomorfa a quella di Martin Lof, sarebbe sufficiente definire i proof-terms basandosi su una sola delle due. Per isomorfismo, poi, sarebbe possibile ottenere anche un proof-term nell'altra uguaglianza applicando le funzioni $f$ e $g$ definite in \ref{isomMLPI}. L'esercizio \ref{es4Sez5} utilizza questo approccio: viene derivato un proof-term nell'uguaglianza con Path Induction e, successivamente, viene definito quello di Martin Lof. Gli altri esercizi, invece, mostrano la definizione dei proof-terms utilizzando le due uguaglianze in modo esplicito.
+\setcounter{subsubsection}{1}
 \subsubsection{Esercizio 2}
 \begin{thm}
 	Con quale uguaglianza è possibile derivare un proof-term $q\in Id(B, f(x), f(y)) [x\in A, y\in A, w\in Id(A, x, y)]$, dove $f(x)\in B[x\in A]$?
@@ -100,6 +102,16 @@ Può essere derivato con entrambe le uguaglianze, infatti:
 
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es3Sezione5.v}
 
+\subsubsection{Esercizio 4}\label{es4Sez5}
+\begin{thm}
+	Trovare un proof-term
+	\[ \mathbf{pf} \in \Id{A}{a}{c}\ [a\in A, b\in A, c\in A, w_1 \in \Id{A}{a}{b}, w_2 \in \Id{A}{b}{c} ] \]
+\end{thm}
+
+Può essere derivato con entrambe le uguaglianze, infatti:
+
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es4Sezione5.v}
+
 \subsubsection{Esercizio 5}
 \begin{thm}
 	Con quale uguaglianza è derivabile il proof-term $pf\in Id(N_1, x, \ast)~[x\in N_1]$?
@@ -114,6 +126,7 @@ Si deriva con entrambe le uguaglianze, infatti:
 Con entrambe le uguaglianze, infatti:
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es6Sezione5.v}
 
+\setcounter{subsubsection}{7}
 \subsubsection{Esercizio 8}
 L'esercizio può essere risolto usando entrambe le uguaglianze.
 \paragraph{Leibniz}
