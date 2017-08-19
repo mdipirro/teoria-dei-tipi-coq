@@ -1,4 +1,5 @@
 \newpage
+\setcounter{section}{4}
 \section{Tipo dell'uguaglianza proposizionale alla Gentzen/Lawvere e alla Leibniz}
 \subsection{Esercizio 1}
 \begin{thm}
@@ -39,14 +40,14 @@ Può essere derivato con entrambe le uguaglianze, infatti:
 Si deriva con entrambe le uguaglianze, infatti:
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es5corretto.v}
 
-\subsubsection{Esercizio 6}
+\subsection{Esercizio 6}
 \begin{thm}
 	Con quale uguaglianza è possibile definire l'addizione tra naturali e derivare i due proof-terms $pf_1\in Id(nat, x+0,x)~[x\in Nat]$ e $pf_2\in Id(nat, 0+x,x)~[x\in Nat]$?
 \end{thm}
 Con entrambe le uguaglianze, infatti:
 \lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es6corretto.v}
 
-\subsubsection{Esercizio 7}
+\subsection{Esercizio 7}
 \begin{thm}
 	Quali assiomi dell'aritmetica di Peano sono derivabili con i tipi descritti finora?
 \end{thm}
@@ -132,8 +133,11 @@ Per cui
 \[w \equiv \mathrm{El}_{\mathrm{Nat}}(a, \mathrm{id}(\suc{x}), (z,r).\mathrm{El}_{\mathrm{Id}}(r, (x'').\mathrm{id}(\suc{x''})) \]
 
 \subsubsection{Esercizio completo in Coq}
-\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es8.v}
-
+L'esercizio può essere risolto usando entrambe le uguaglianze.
+\paragraph{Leibniz}
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es8Leibniz.v}
+\paragraph{Gentzen}
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale/es8Gentzen.v}
 
 \subsection{Esercizio 9}
 \begin{thm}
