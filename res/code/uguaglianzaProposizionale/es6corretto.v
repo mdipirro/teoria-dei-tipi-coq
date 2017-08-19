@@ -15,9 +15,6 @@ Qed.
 
 Definition pf2_l (x: nat): Leibniz.eq (0 + x) x.
 Proof.
-elim: x.
-  apply: Leibniz.refl.
-move=> n hp.
 rewrite //=.
 Qed.
 
@@ -34,9 +31,6 @@ Qed.
 
 Definition pf2_g (x: nat): Gentzen.eq (0 + x) x.
 Proof.
-elim: x.
-  apply: Gentzen.refl.
-move=> n hp.
 rewrite //=.
 Qed.
 

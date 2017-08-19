@@ -1,19 +1,23 @@
 From mathcomp Require Import ssreflect.
-Notation erefl := refl_equal.
 
-Definition iduni {A} (a: A) (p: a = a): p = (erefl a).
+Inductive MartinLof (A: Type) : A -> A -> Type :=
+| ml_refl x : MartinLof A x x.
+
+Definition iduni {A} (a: A) (p: MartinLof A a a): 
+MartinLof _ p (ml_refl A a).
 Proof.
 Admitted.
 
-Lemma C_Iduni {A} (a: A): (iduni a (erefl a)) = (erefl (erefl a)).
+Lemma C_Iduni {A} (a: A): 
+MartinLof _ (iduni a (ml_refl A a)) (ml_refl (MartinLof A a a) (ml_refl A a)).
 Proof.
 Admitted.
 
-Definition pf {A} (a: A) (b: A):
-  forall w1: a = b, 
-    (forall w2: a = b, (w1 = w2)).
+Definition pf1 {A} (a: A) (b: A):
+  forall w1: MartinLof A a b, 
+    (forall w2: MartinLof A a b, MartinLof (MartinLof A a b) w1 w2).
 Proof.
-move=> w1 w2.
+intros.
 destruct w1.
-by destruct (iduni a w2).
+by destruct (iduni x w2).
 Defined.
