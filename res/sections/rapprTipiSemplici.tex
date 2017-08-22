@@ -1,5 +1,26 @@
 \newpage
 \section{Rappresentazione dei tipi semplici in teoria dei tipi dipendenti}
+\subsection{Esercizio 1}
+\begin{thm}
+	Si dimostri che se $a~=~b~\in~A~[\Gamma]$ è derivabile nella teoria dei tipi con le regole finora introdotte allora esiste un proof-term \textbf{pf} tale che $pf~\in~Id(A,a,b)~[\Gamma]$.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/rappreTipiSemplici/es1.v}
+
+\subsection{Esercizio 2}
+\begin{thm}
+	La $\eta$-conversione del tipo prodotto, ovvero
+	\[<\pi_1(z),\pi_2(z)>~=~z~\in~A~\times~B~[z~\in~A~\times~B]\]
+	è derivabile?
+	
+	È derivabile la corrispondente uguaglianza proposizionale, ovvero esiste un proof-term \textbf{pf} tale che
+	\[pf~\in~Id(A\times B,<\pi_1(z),\pi_2(z)>,z)~[z~\in~A~\times~B]\]
+	è derivabile nella teoria dei tipi dipendenti?
+\end{thm}
+La $\eta$-conversione del prodotto non è derivabile in teoria dei tipi in quanto $z$ è una variabile, e quindi è in forma normale non canonica, mentre la coppia è in forma normale canonica. Qui il teorema di forma normale non serve, visto che $z$ non è termine chiuso. Infatti, se due termini sono convertibili (uguali definizionalmente), allora le loro forme normali (che in teoria dei tipi esistono e sono uniche) devono essere identiche (sintatticamente). Siccome i due termini della $\eta$-conversione sono già in forma normale, e chiaramente non identici, l’uguaglianza definizionale non può valere.
+
+Al contrario si deriva facilmente che esiste un proof-term per la relativa uguaglianza proposizionale.
+\lstinputlisting[language=Coq]{res/code/rappreTipiSemplici/es2.v}
+
 \subsection{Lemma 8.1}
 \begin{lem}
 	Supposto che $A~type~[]$ e $B~type~[]$ siano derivabili nella teoria dei tipi con le regole finora introdotte, allora in tal teoria è derivabile anche $\Pi_{x\in A}B~type~[]$, e lo si può usare per interpretare il tipo semplice $A\to B$ con le sue regole di introduzione, eliminazione e relativa $\beta$-conversione.
@@ -152,24 +173,3 @@ Anche in questo caso non è più necessaria la premessa $M(z)type[z\in\Sigma_{x\
 	\DisplayProof
 \end{center}
 \endproof
-
-\subsection{Esercizio 1}
-\begin{thm}
-	Si dimostri che se $a~=~b~\in~A~[\Gamma]$ è derivabile nella teoria dei tipi con le regole finora introdotte allora esiste un proof-term \textbf{pf} tale che $pf~\in~Id(A,a,b)~[\Gamma]$.
-\end{thm}
-\lstinputlisting[language=Coq]{res/code/rappreTipiSemplici/es1.v}
-
-\subsection{Esercizio 2}
-\begin{thm}
-	La $\eta$-conversione del tipo prodotto, ovvero
-	\[<\pi_1(z),\pi_2(z)>~=~z~\in~A~\times~B~[z~\in~A~\times~B]\]
-	è derivabile?
-	
-	È derivabile la corrispondente uguaglianza proposizionale, ovvero esiste un proof-term \textbf{pf} tale che
-	\[pf~\in~Id(A\times B,<\pi_1(z),\pi_2(z)>,z)~[z~\in~A~\times~B]\]
-	è derivabile nella teoria dei tipi dipendenti?
-\end{thm}
-La $\eta$-conversione del prodotto non è derivabile in teoria dei tipi in quanto $z$ è una variabile, e quindi è in forma normale non canonica, mentre la coppia è in forma normale canonica. Qui il teorema di forma normale non serve, visto che $z$ non è termine chiuso. Infatti, se due termini sono convertibili (uguali definizionalmente), allora le loro forme normali (che in teoria dei tipi esistono e sono uniche) devono essere identiche (sintatticamente). Siccome i due termini della $\eta$-conversione sono già in forma normale, e chiaramente non identici, l’uguaglianza definizionale non può valere.
-
-Al contrario si deriva abbastanza facilmente che esiste un proof-term per la relativa uguaglianza proposizionale.
-\lstinputlisting[language=Coq]{res/code/rappreTipiSemplici/es2.v}
