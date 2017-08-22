@@ -1,26 +1,5 @@
 \newpage
 \section{Come tradurre la logica predicativa con uguaglianza in teoria dei tipi}
-\subsection{Lemma 9.2}
-\begin{lem}
-	L'interpretazione CHM di un sequente di formule $\Sigma~\vdash~\Delta$ con variabili nel contesto tipato $\Gamma$ è \textit{valida in teoria dei tipi} se e solo se esiste un \textbf{proof-term pf} tale che 
-	\[pf~\in~(\Sigma^{\&})^I~\to~(\Delta^{\vee})^I~[\Gamma]\]
-	
-	è derivabile.
-\end{lem}
-
-\proof \mbox{} \\
-
-$\to$ L'interpretazione CHM di un sequente $\Sigma~\vdash~\Delta$ è il tipo $(\Delta^{\vee})^I~type~[\Gamma,~(\Sigma^{\&})^I]$, e il sequente è valido se e solo se esiste un proof-term $pf'$ tale che 
-$pf'~\in~(\Delta^{\vee})^I~[\Gamma,~(\Sigma^{\&})^I]$. Visto che l'interpretazione CHM è valida per ipotesi, si ha che $(\Delta^{\vee})^I$ è abitato sulla base di $\Gamma$ e di $(\Sigma^{\&})^I$, ed esiste un tale $pf'$.
-
-Questo rende vera la premessa di $I-\to$, cioè $c(x)~\in~(\Delta^{\vee})^I~[\Gamma,~x\in(\Sigma^{\&})^I]$, ovvero $c(x)~\equiv~pf'$. Di conseguenza il tipo $(\Sigma^{\&})^I~\to~(\Delta^{\vee})^I$ è abitato, perché è valida la premessa della sua regola di introduzione. È quindi possibile definire $pf$ a partire da quest'ultima, cioè $pf~\equiv~\lambda x^{(\Sigma^{\&})^I}.c(x)$.
-
-\vspace{0.2in}
-$\leftarrow$ Si ha per ipotesi un proof-term $pf$ tale che $pf~\in~(\Sigma^{\&})^I~\to~(\Delta^{\vee})^I~[\Gamma]$. $pf$ è stato derivato utilizzando $I-\to$, e quindi è del tipo $\lambda x^{(\Sigma^{\&})^I}.c(x)$, dato un $c(x)~\in~C~[\Gamma,~x~\in~(\Sigma^{\&})^I]$. Di conseguenza l'interpretazione è valida, perché il proof-term $pf'$ abitante del tipo 
-$(\Delta^{\vee})^I~type~[\Gamma,~(\Sigma^{\&})^I]$ è esattamente $c(x)$.
-
-\endproof
-
 \subsection{Esercizio 1}
 \begin{thm}[Assioma di Scelta] Si mostri che la traduzione CHM della logica nella teoria dei tipi rende valido l'assioma di scelta
 	\[ (\forall x\in A)\ (\exists y\in B)\  R(x, y)\ \to\ (\exists f\in A\to B)\ (\forall x\in A)\ R(x, f(x))\ \mathrm{true}\ [\ ] \]
@@ -117,3 +96,24 @@ Siano $\Phi$ e $\Psi$ due proposizioni.
 	Verificare che tutti gli assiomi di Peano sono validi in teoria dei tipi con le regole finora introdotte e interpretando le formule logiche come descritto.
 \end{thm}
 \lstinputlisting[language=Coq]{res/code/traduzioneLogica/es9.v}
+
+\subsection{Lemma 9.2}
+\begin{lem}
+	L'interpretazione CHM di un sequente di formule $\Sigma~\vdash~\Delta$ con variabili nel contesto tipato $\Gamma$ è \textit{valida in teoria dei tipi} se e solo se esiste un \textbf{proof-term pf} tale che 
+	\[pf~\in~(\Sigma^{\&})^I~\to~(\Delta^{\vee})^I~[\Gamma]\]
+	
+	è derivabile.
+\end{lem}
+
+\proof \mbox{} \\
+
+$\to$ L'interpretazione CHM di un sequente $\Sigma~\vdash~\Delta$ è il tipo $(\Delta^{\vee})^I~type~[\Gamma,~(\Sigma^{\&})^I]$, e il sequente è valido se e solo se esiste un proof-term $pf'$ tale che 
+$pf'~\in~(\Delta^{\vee})^I~[\Gamma,~(\Sigma^{\&})^I]$. Visto che l'interpretazione CHM è valida per ipotesi, si ha che $(\Delta^{\vee})^I$ è abitato sulla base di $\Gamma$ e di $(\Sigma^{\&})^I$, ed esiste un tale $pf'$.
+
+Questo rende vera la premessa di $I-\to$, cioè $c(x)~\in~(\Delta^{\vee})^I~[\Gamma,~x\in(\Sigma^{\&})^I]$, ovvero $c(x)~\equiv~pf'$. Di conseguenza il tipo $(\Sigma^{\&})^I~\to~(\Delta^{\vee})^I$ è abitato, perché è valida la premessa della sua regola di introduzione. È quindi possibile definire $pf$ a partire da quest'ultima, cioè $pf~\equiv~\lambda x^{(\Sigma^{\&})^I}.c(x)$.
+
+\vspace{0.2in}
+$\leftarrow$ Si ha per ipotesi un proof-term $pf$ tale che $pf~\in~(\Sigma^{\&})^I~\to~(\Delta^{\vee})^I~[\Gamma]$. $pf$ è stato derivato utilizzando $I-\to$, e quindi è del tipo $\lambda x^{(\Sigma^{\&})^I}.c(x)$, dato un $c(x)~\in~C~[\Gamma,~x~\in~(\Sigma^{\&})^I]$. Di conseguenza l'interpretazione è valida, perché il proof-term $pf'$ abitante del tipo 
+$(\Delta^{\vee})^I~type~[\Gamma,~(\Sigma^{\&})^I]$ è esattamente $c(x)$.
+
+\endproof
