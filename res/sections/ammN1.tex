@@ -1,0 +1,349 @@
+\textbf{Singoletto}
+
+\textbf{ind-type-1} Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\DisplayProof
+\end{center}
+
+Se si applica S a $\pi_2$ si ottiene $N_1~type~[\Gamma,z\in N_1]$, cioè la conclusione di $ind-type-1$:
+
+\begin{center}
+	\AxiomC{$\pi_1$}
+	\noLine
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\AxiomC{$\pi_2$}
+	\noLine
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\BinaryInfC{$N_1~type~[\Gamma,z\in N_1]$}
+	\DisplayProof
+\end{center}
+
+\textbf{ind-type-2} Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$N_1=N_1 type [\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\DisplayProof
+\end{center}
+
+Se si applicano S e Ref a $\pi_2$ si ottiene $N_1=N_1~type~[\Gamma,z\in N_1]$, cioè la conclusione di $ind-type-2$:
+
+\begin{center}
+	\AxiomC{$\pi_1$}
+	\noLine
+	\UnaryInfC{$N_1=N_1 type [\Gamma]$}
+	\AxiomC{$\pi_2$}
+	\noLine
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\BinaryInfC{$N_1=N_1~type~[\Gamma,z\in N_1]$}
+	\DisplayProof
+\end{center}
+
+\textbf{ind-type-3} Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\DisplayProof
+\end{center}
+
+Se si applica I-S a $\pi_2$ si ottiene $\star\in N_1 [\Gamma,z\in N_1]$, cioè la conclusione di $ind-type-3$:
+
+\begin{center}
+	\AxiomC{$\pi_1$}
+	\noLine
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\AxiomC{$\pi_2$}
+	\noLine
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\BinaryInfC{$\star\in N_1 [\Gamma,z\in N_1]$}
+	\DisplayProof
+\end{center}
+
+\textbf{ind-type-4} Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$\star=\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\DisplayProof
+\end{center}
+
+Se si applicano S, I-S e Ref a $\pi_2$ si ottiene $\star=\star\in N_1 [\Gamma,z\in N_1]$, cioè la conclusione di $ind-type-4$:
+
+\begin{center}
+	\AxiomC{$\pi_1$}
+	\noLine
+	\UnaryInfC{$\star=\star\in N_1[\Gamma]$}
+	\AxiomC{$\pi_2$}
+	\noLine
+	\UnaryInfC{$\Gamma,~z\in N_1~cont$}
+	\BinaryInfC{$\star=\star\in N_1 [\Gamma,z\in N_1]$}
+	\DisplayProof
+\end{center}
+
+\textbf{sub-typ} Dato che il tipo singoletto non è dipendente, i tipi $A_1,\dots,A_n(a_1,\dots,a_{n-1}), C$ sono tutti $N_1$. Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~x_1\in N_1~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma,~x_1\in N_1]$}
+	\UnaryInfC{\vdots}
+	\UnaryInfC{$N_1~type~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\DisplayProof
+\end{center}
+
+Quindi le premesse della regola sono derivabili. Inoltre, in assenza di tipi dipendenti, $\pi_1$ rappresenta la conclusione di $sub-typ$.
+
+\textbf{sub-eq-typ} Dato che il tipo singoletto non è dipendente, i tipi $A_1,\dots,A_n(a_1,\dots,a_{n-1}), C$ sono tutti $N_1$. Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$\star=\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~x_1\in N_1~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma,~x_1\in N_1]$}
+	\UnaryInfC{\vdots}
+	\UnaryInfC{$N_1~type~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\DisplayProof
+\end{center}
+
+Quindi le premesse della regola sono derivabili. Inoltre, applicando Ref dopo la prima applicazione di S in $\pi_2$ si ottiene $N_1=N_1~type~[\Gamma]$, cioè la conclusione di $sub-eq-typ$:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$N_1=N_1~type~[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+\textbf{sub-Eqtyp} Dato che il tipo singoletto non è dipendente, i tipi $A_1,\dots,A_n(a_1,\dots,a_{n-1}), C, D$ sono tutti $N_1$. Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~x_1\in N_1~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma,~x_1\in N_1]$}
+	\UnaryInfC{\vdots}
+	\UnaryInfC{$N_1~type~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$N_1=N_1~type~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\DisplayProof
+\end{center}
+
+Quindi le premesse della regola sono derivabili. Inoltre, applicando Ref dopo la prima applicazione di S in $\pi_2$ si ottiene $N_1=N_1~type~[\Gamma]$, ovvero la conclusione di $sub-Eqtyp$:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$N_1=N_1~type~[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+\textbf{sub-eq-Eqtyp} Dato che il tipo singoletto non è dipendente, i tipi $A_1,\dots,A_n(a_1,\dots,a_{n-1}), C, D$ sono tutti $N_1$. Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$\star=\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~x_1\in N_1~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma,~x_1\in N_1]$}
+	\UnaryInfC{\vdots}
+	\UnaryInfC{$N_1~type~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$N_1=N_1~type~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\DisplayProof
+\end{center}
+
+Quindi le premesse della regola sono derivabili. Inoltre, applicando Ref dopo la prima applicazione di S in $\pi_2$ si ottiene $N_1=N_1~type~[\Gamma]$, cioè la conclusione di $sub-eq-Eqtyp$:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$N_1=N_1~type~[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+\textbf{sub-ter} Dato che il tipo singoletto non è dipendente, i tipi $A_1,\dots,A_n(a_1,\dots,a_{n-1}), C$ sono tutti $N_1$. Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~x_1\in N_1~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma,~x_1\in N_1]$}
+	\UnaryInfC{\vdots}
+	\UnaryInfC{$\Gamma,x_1\in N_1,\dots,x_n\in N_1~cont$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\DisplayProof
+\end{center}
+
+Quindi le premesse della regola sono derivabili. Inoltre, in assenza di tipi dipendenti, $\pi_1$ rappresenta anche la derivazione della regola $sub-ter$.
+
+\textbf{sub-eqter} Dato che il tipo singoletto non è dipendente, i tipi $A_1,\dots,A_n(a_1,\dots,a_{n-1}), C$ sono tutti $N_1$. Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~x_1\in N_1~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma,~x_1\in N_1]$}
+	\UnaryInfC{\vdots}
+	\UnaryInfC{$\Gamma,x_1\in N_1,\dots,x_n\in N_1~cont$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$\star=\star\in N_1~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\DisplayProof
+\end{center}
+
+Quindi le premesse della regola sono derivabili. Inoltre, applicando Ref a $\pi_1$ si ottiene la conclusione della regola $sub-eqter$:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$\star=\star\in N_1[\Gamma]$}
+	\DisplayProof
+\end{center}
+
+\textbf{sub-eq-ter} Dato che il tipo singoletto non è dipendente, i tipi $A_1,\dots,A_n(a_1,\dots,a_{n-1}), C$ sono tutti $N_1$. Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$\star=\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~x_1\in N_1~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma,~x_1\in N_1]$}
+	\UnaryInfC{\vdots}
+	\UnaryInfC{$\Gamma,x_1\in N_1,\dots,x_n\in N_1~cont$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\DisplayProof
+\end{center}
+
+Quindi le premesse della regola sono derivabili. Inoltre, in assenza di tipi dipendenti, $\pi_1$ rappresenta anche la derivazione della regola $sub-eq-ter$.
+
+\textbf{sub-eq-eqter} Dato che il tipo singoletto non è dipendente, i tipi $A_1,\dots,A_n(a_1,\dots,a_{n-1}), C$ sono tutti $N_1$. Siano $\pi_1$ e $\pi_2$ i seguenti alberi di derivazione, rispettivamente:
+
+\begin{center}
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1[\Gamma]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$\star=\star\in N_1[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$\Gamma~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma]$}
+	\RightLabel{Fc}
+	\UnaryInfC{$\Gamma,~x_1\in N_1~cont$}
+	\RightLabel{S}
+	\UnaryInfC{$N_1~type~[\Gamma,~x_1\in N_1]$}
+	\UnaryInfC{\vdots}
+	\UnaryInfC{$\Gamma,x_1\in N_1,\dots,x_n\in N_1~cont$}
+	\RightLabel{I-S}
+	\UnaryInfC{$\star\in N_1~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\RightLabel{Ref}
+	\UnaryInfC{$\star=\star\in N_1~[\Gamma,x_1\in N_1,\dots,x_n\in N_1]$}
+	\DisplayProof
+\end{center}
+
+Quindi le premesse della regola sono derivabili. Inoltre, in assenza di tipi dipendenti, $\pi_1$ rappresenta anche la derivazione della regola $sub-eq-eqter$.
