@@ -1,0 +1,111 @@
+\newpage
+\setcounter{section}{3}
+\section{Somma Disgiunta}
+\subsection{Esercizio 1}
+\begin{thm}
+	Definire il tipo booleano B come tipo semplice e provare che è rappresentabile da $N_1 + N_1$.
+\end{thm}
+\proof
+Le regole sono le seguenti:
+
+	\begin{scriptsize}
+		\vspace{0.2in}
+		\AxiomC{$\Gamma~cont$}
+		\RightLabel{$I_1-B$}
+		\UnaryInfC{$0 \in B~[\Gamma]$}
+		\DisplayProof\qquad
+		\AxiomC{$\Gamma~cont$}
+		\RightLabel{$I_2-B$}
+		\UnaryInfC{$1 \in B~[\Gamma]$}
+		\DisplayProof\qquad
+		\AxiomC{$\Gamma~cont$}
+		\RightLabel{$F-B$}
+		\UnaryInfC{$B~type~[\Gamma]$}
+		\DisplayProof
+		
+		\vspace{0.2in}
+		\AxiomC{$M(x)~type~[\Gamma,~x~\in~B]$}
+		\AxiomC{$z~\in~B~[\Gamma]$}
+		\AxiomC{$a~\in~M(0)~[\Gamma]$}
+		\AxiomC{$b~\in~M(1)~[\Gamma]$}
+		\RightLabel{$E-B$}
+		\QuaternaryInfC{$\mathrm{El}_B(z, a, b) \in M(z)~[\Gamma]$}
+		\DisplayProof
+		
+		\vspace{0.2in}
+		\AxiomC{$M(z)~type~[\Gamma,~z~\in~B]$}
+		\AxiomC{$a~\in~M(0)~[\Gamma]$}
+		\AxiomC{$b~\in~M(1)~[\Gamma]$}
+		\RightLabel{$C_1-B$}
+		\TrinaryInfC{$\mathrm{El}_B(0, a, b)~=~a \in M(0)~[\Gamma]$}
+		\DisplayProof
+		
+		\vspace{0.2in}
+		\AxiomC{$M(z)~type~[\Gamma,~z~\in~B]$}
+		\AxiomC{$a~\in~M(0)~[\Gamma]$}
+		\AxiomC{$b~\in~M(1)~[\Gamma]$}
+		\RightLabel{$C_2-B$}
+		\TrinaryInfC{$\mathrm{El}_B(1, a, b)~=~b \in M(1)~[\Gamma]$}
+		\DisplayProof
+	\end{scriptsize}
+
+\vspace{0.5in}Riscritte per utilizzare $N_1~+~N_1$:
+
+\begin{scriptsize}
+	\vspace{0.2in}
+	\AxiomC{$a \in N_1~[\Gamma]$}
+	\RightLabel{$I_1-B$}
+	\UnaryInfC{$inl(a) \in B~[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$b \in N_1~[\Gamma]$}
+	\RightLabel{$I_2-B$}
+	\UnaryInfC{$inr(b) \in B~[\Gamma]$}
+	\DisplayProof\qquad
+	\AxiomC{$N_1~type~[\Gamma]$}
+	\RightLabel{$F-B$}
+	\UnaryInfC{$B~type~[\Gamma]$}
+	\DisplayProof
+	
+	\vspace{0.2in}
+	\AxiomC{$M(z)~type~[\Gamma,~z~\in~B]$}
+	\AxiomC{$w~\in~B~[\Gamma]$}
+	\AxiomC{$a(x)~\in~M(inl(x))~[\Gamma,x~\in~N_1]$}
+	\AxiomC{$b(x)~\in~M(inr(x))~[\Gamma,x~\in~N_1]$}
+	\RightLabel{$E-B$}
+	\QuaternaryInfC{$\mathrm{El}_B(w, a, b) \in M(w)~[\Gamma]$}
+	\DisplayProof
+	
+	\vspace{0.2in}
+	\AxiomC{$M(z)~type~[\Gamma,~z~\in~B]$}
+	\AxiomC{$c~\in~N_1~[\Gamma]$}
+	\AxiomC{$a(x)~\in~M(inl(x))~[\Gamma,x~\in~N_1]$}
+	\AxiomC{$b(x)~\in~M(inr(x))~[\Gamma,x~\in~N_1]$}
+	\RightLabel{$C_1-B$}
+	\QuaternaryInfC{$\mathrm{El}_B(inl(c), a, b)~=~a \in M(inl(c))~[\Gamma]$}
+	\DisplayProof
+	
+	\vspace{0.2in}
+	\AxiomC{$M(z)~type~[\Gamma,~z~\in~B]$}
+	\AxiomC{$c~\in~N_1~[\Gamma]$}
+	\AxiomC{$a(x)~\in~M(inl(x))~[\Gamma,x~\in~N_1]$}
+	\AxiomC{$b(x)~\in~M(inr(x))~[\Gamma,x~\in~N_1]$}
+	\RightLabel{$C_2-B$}
+	\QuaternaryInfC{$\mathrm{El}_B(inr(c), a, b)~=~b \in M(inr(c))~[\Gamma]$}
+	\DisplayProof
+\end{scriptsize}
+
+\vspace{0.5in}In Coq:
+\lstinputlisting[language=Coq]{res/code/sommaDisgiunta/es1.v}
+\endproof
+
+\subsection{Esercizio 2}
+\begin{thm}
+	Definire la funzione predecessore tale che $p(0) = 0$ e $p(succ(n)) = n$.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/sommaDisgiunta/es2.v}
+
+\subsection{Esercizio 3}
+\begin{thm}
+	Dimostrare che esistono i termini $dec(z)~\in Nat~[z~\in~N_1~+~Nat]$ e $cod(w)~\in~N_1~+~Nat~[w~\in~Nat]$ tali che, per ogni numerale $n$ vale $dec(cod(0))~=~0$ e $dec(cod(n))~=~n$.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/sommaDisgiunta/es3.v}

@@ -1,0 +1,175 @@
+\newpage
+\section{Rappresentazione dei tipi semplici in teoria dei tipi dipendenti}
+\subsection{Lemma 8.1}
+\begin{lem}
+	Supposto che $A~type~[]$ e $B~type~[]$ siano derivabili nella teoria dei tipi con le regole finora introdotte, allora in tal teoria è derivabile anche $\Pi_{x\in A}B~type~[]$, e lo si può usare per interpretare il tipo semplice $A\to B$ con le sue regole di introduzione, eliminazione e relativa $\beta$-conversione.
+\end{lem}
+
+\proof
+Dato che $A$ e $B$ sono tipi semplici, la premessa di $F-\Pi$ non necessita della variabile $x\in A$. La regola diventa:
+
+\begin{center}
+	\AxiomC{$A~type~[]$}
+	\AxiomC{$B~type~[]$}
+	\RightLabel{$F-\to$}
+	\BinaryInfC{$A\to B~type~[]$}
+	\DisplayProof
+\end{center}
+
+\vspace{0.3in}
+La regola di introduzione resta simile, con l'unica differenza legata al tipo $B$, e non $B(x)~[x\in A]$:
+
+\begin{center}
+	\AxiomC{$b(x)\in B~[x\in A]$}
+	\RightLabel{$I-\to$}
+	\UnaryInfC{$\lambda x^A.b(x)\in A\to B~[]$}
+	\DisplayProof
+\end{center}
+
+\vspace{0.3in}
+La regola di eliminazione del tipo $\Pi$ è la seguente:
+
+\begin{center}
+	\AxiomC{$a\in A[]$}
+	\AxiomC{$f\in \Pi_{x\in A}B(x)[]$}
+	\RightLabel{$E-\Pi$}
+	\BinaryInfC{$Ap(f,a)\in B(a)[]$}
+	\DisplayProof
+\end{center}
+
+Anche questa regola resta simile, con l'unico cambiamento legato a $B$:
+
+\begin{center}
+	\AxiomC{$a\in A[]$}
+	\AxiomC{$f\in A\to B[]$}
+	\RightLabel{$E-\to$}
+	\BinaryInfC{$Ap(f,a)\in B[]$}
+	\DisplayProof
+\end{center}
+
+\vspace{0.3in}
+La regola di computazione del tipo $\Pi$ è la seguente:
+
+\begin{center}
+	\AxiomC{$a\in A[]$}
+	\AxiomC{$b(x)\in B(x)[x\in A]$}
+	\RightLabel{$\beta C-\Pi$}
+	\BinaryInfC{$Ap(\lambda x^A.b(x),a)=b(a)\in B(a)[]$}
+	\DisplayProof
+\end{center}
+
+Anche in questo caso non ci sono grosse modifiche alla regola:
+
+\begin{center}
+	\AxiomC{$a\in A[]$}
+	\AxiomC{$b(x)\in B[x\in A]$}
+	\RightLabel{$\beta C-\to$}
+	\BinaryInfC{$Ap(\lambda x^A.b(x),a)=b(a)\in B[]$}
+	\DisplayProof
+\end{center}
+\endproof
+
+\subsection{Lemma 8.2}
+\begin{lem}
+	Supposto che $A~type~[]$ e $B~type~[]$ siano derivabili nella teoria dei tipi con le regole finora introdotte, allora in tal teoria è derivabile anche $\Sigma_{x\in A}B~type~[]$, e lo si può usare per interpretare il tipo semplice $A\times B$ con le sue regole di introduzione, eliminazione e relative $\beta$-conversioni.
+\end{lem}
+
+\proof
+
+Dato che $A$ e $B$ sono tipi semplici, la premessa di $F-\Sigma$ non necessita della variabile $x\in A$. La regola diventa:
+
+\begin{center}
+	\AxiomC{$A~type~[]$}
+	\AxiomC{$B~type~[]$}
+	\RightLabel{$F-\times$}
+	\BinaryInfC{$A\times B~type~[]$}
+	\DisplayProof
+\end{center}
+
+\vspace{0.3in}
+Per lo stesso motivo anche la regola di introduzione non necessita delle premesse riguardanti il tipo dipendente B, e diventa:
+
+\begin{center}
+	\AxiomC{$a\in A~[]$}
+	\AxiomC{$b\in B~[]$}
+	\RightLabel{$I-\times$}
+	\BinaryInfC{$<a,b>~\in A\times B~[]$}
+	\DisplayProof
+\end{center}
+
+\vspace{0.3in}
+La regola di eliminazione del tipo $\Sigma$ è la seguente:
+
+\begin{center}
+	\AxiomC{$M(z)type[z\in\Sigma_{x\in A}B(x)]$}
+	\AxiomC{$d\in\Sigma_{x\in A}B(x)[]$}
+	\AxiomC{$m(x,y)\in M(<x,y>)[x\in A,y\in B(x)]$}
+	\RightLabel{$E-\Sigma$}
+	\TrinaryInfC{$El_{\Sigma}(d,m)\in M(d)[]$}
+	\DisplayProof
+\end{center}
+
+In questa regola non è più necessaria la premessa $M(z)type[z\in\Sigma_{x\in A}B(x)]$, dato che siamo in presenza di tipi semplici. Inoltre $d\in\Sigma_{x\in A}B(x)[]$ diventa $d\in A\times B []$, per lo stesso motivo. L'ultima premessa, $m(x,y)\in M(<x,y>)[x\in A,y\in B(x)]$, cambia a seconda del termine $m$ che consideriamo. Ci sono due casi, corrispondenti alle due proiezioni della coppia rappresentata dall'elemento canonico. Se $m(x,y)\equiv x$ si ha $M(<x,y>)\equiv A$ e $y\in B$ nel contesto. Se invece $m(x,y)\equiv y$, allora $M(<x,y>)\equiv B$. $m$ diventa quindi un termine costante e può essere definito direttamente all'interno dell'eliminatore, ottenendo due varianti della regola di eliminazione:
+
+\begin{center}
+	\AxiomC{$d\in A\times B []$}
+	\RightLabel{$E_1-\times$}
+	\UnaryInfC{$El(d,~(x,y).x)\in A[]$}
+	\DisplayProof\qquad
+	\AxiomC{$d\in A\times B []$}
+	\RightLabel{$E_2-\times$}
+	\UnaryInfC{$El(d,~(x,y).y)\in B[]$}
+	\DisplayProof
+\end{center}
+
+Possiamo rinominare, per chiarezza, i due eliminatori come segue: $El(d,~(x,y).x)\equiv\pi_1(d)$ e $El(d,~(x,y).y)\equiv\pi_2(d)$.
+
+\vspace{0.3in}
+La regola di computazione del tipo $\Sigma$ è la seguente:
+
+\begin{center}
+	\AxiomC{$M(z)type[z\in\Sigma_{x\in A}B(x)]$}
+	\AxiomC{$a\in A[]$}
+	\AxiomC{$b\in B(a)[]$}
+	\AxiomC{$m(x,y)\in M(<x,y>)[x\in A,y\in B(x)]$}
+	\RightLabel{$C-\Sigma$}
+	\QuaternaryInfC{$El_{\Sigma}(<a,b>,m)=m(a,b)\in M(<a,b>)[]$}
+	\DisplayProof
+\end{center}
+
+Anche in questo caso non è più necessaria la premessa $M(z)type[z\in\Sigma_{x\in A}B(x)]$, dato che siamo in presenza di tipi semplici. L'ultima premessa, $m(x,y)\in M(<x,y>)[x\in A,y\in B(x)]$, cambia a seconda del termine $m$ che consideriamo, come con le regola di eliminazione. Ci sono due casi, corrispondenti alle due proiezioni della coppia rappresentata dall'elemento canonico. Se $m(x,y)\equiv x$ si ha $M(<x,y>)\equiv A$ e $y\in B$ nel contesto. Se invece $m(x,y)\equiv y$, allora $M(<x,y>)\equiv B$. $m$ diventa quindi un termine costante e può essere definito direttamente all'interno dell'eliminatore, ottenendo due varianti della regola di computazione, nelle quali, naturalmente, $B$ non è un tipo dipendente:
+
+\begin{center}
+	\AxiomC{$a\in A[]$}
+	\AxiomC{$b\in B[]$}
+	\RightLabel{$\beta_1-\times$}
+	\BinaryInfC{$\pi_1(<a,b>)=a\in A[]$}
+	\DisplayProof\qquad
+	\AxiomC{$a\in A[]$}
+	\AxiomC{$b\in B[]$}
+	\RightLabel{$\beta_2-\times$}
+	\BinaryInfC{$\pi_2(<a,b>)=b\in B[]$}
+	\DisplayProof
+\end{center}
+\endproof
+
+\subsection{Esercizio 1}
+\begin{thm}
+	Si dimostri che se $a~=~b~\in~A~[\Gamma]$ è derivabile nella teoria dei tipi con le regole finora introdotte allora esiste un proof-term \textbf{pf} tale che $pf~\in~Id(A,a,b)~[\Gamma]$.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/rappreTipiSemplici/es1.v}
+
+\subsection{Esercizio 2}
+\begin{thm}
+	La $\eta$-conversione del tipo prodotto, ovvero
+	\[<\pi_1(z),\pi_2(z)>~=~z~\in~A~\times~B~[z~\in~A~\times~B]\]
+	è derivabile?
+	
+	È derivabile la corrispondente uguaglianza proposizionale, ovvero esiste un proof-term \textbf{pf} tale che
+	\[pf~\in~Id(A\times B,<\pi_1(z),\pi_2(z)>,z)~[z~\in~A~\times~B]\]
+	è derivabile nella teoria dei tipi dipendenti?
+\end{thm}
+La $\eta$-conversione del prodotto non è derivabile in teoria dei tipi in quanto $z$ è una variabile, e quindi è in forma normale non canonica, mentre la coppia è in forma normale canonica. Qui il teorema di forma normale non serve, visto che $z$ non è termine chiuso. Infatti, se due termini sono convertibili (uguali definizionalmente), allora le loro forme normali (che in teoria dei tipi esistono e sono uniche) devono essere identiche (sintatticamente). Siccome i due termini della $\eta$-conversione sono già in forma normale, e chiaramente non identici, l’uguaglianza definizionale non può valere.
+
+Al contrario si deriva abbastanza facilmente che esiste un proof-term per la relativa uguaglianza proposizionale.
+\lstinputlisting[language=Coq]{res/code/rappreTipiSemplici/es2.v}

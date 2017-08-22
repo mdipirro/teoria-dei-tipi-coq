@@ -1,0 +1,72 @@
+Regole ``classiche'' modificate per tenere conto di infiniti universi:
+
+\vspace{0.2in}
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$F-U_i$}
+\UnaryInfC{$U_i~type~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$I_1-U_0$}
+\UnaryInfC{$N_0~\in~U_0[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$I_2-U_0$}
+\UnaryInfC{$N_1~\in~U_0[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$I_3-U_0$}
+\UnaryInfC{$Nat~\in~U_0[\Gamma]$}
+\DisplayProof\qquad
+
+\vspace{0.2in}
+\AxiomC{$C(x)\in U_i~[\Gamma,x\in B]$}
+\AxiomC{$B\in U_i~[\Gamma]$}
+\RightLabel{$I_4-U_i$}
+\BinaryInfC{$\Sigma_{x\in B}C(x)\in U_i~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$C(x)\in U_i~[\Gamma,x\in B]$}
+\AxiomC{$B\in U_i~[\Gamma]$}
+\RightLabel{$I_5-U_i$}
+\BinaryInfC{$\Pi_{x\in B}C(x)\in U_i~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$B\in U_i~[\Gamma]$}
+\AxiomC{$C\in U_i~[\Gamma]$}
+\RightLabel{$I_6-U_i$}
+\BinaryInfC{$B+C\in U_i~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$B\in U_i~[\Gamma]$}
+\RightLabel{$I_7-U_i$}
+\UnaryInfC{$List(B)\in U_i~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$B\in U_i~[\Gamma]$}
+\AxiomC{$c\in B~[\Gamma]$}
+\AxiomC{$d\in B~[\Gamma]$}
+\RightLabel{$I_7-U_i$}
+\TrinaryInfC{$Id(B,c,d)\in U_i~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$A\in U_i~[\Gamma]$}
+\RightLabel{$E-U_i$}
+\UnaryInfC{$A~type~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+Regole per la gerarchia di universi:
+
+\vspace{0.2in}
+\AxiomC{$U_i~type~[\Gamma]$}
+\RightLabel{$I_9-U_{i+1}$}
+\UnaryInfC{$U_i\in U_{i+1}~[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+Regole per l'inclusione tra universi:
+
+\vspace{0.2in}
+\AxiomC{$A\in U_i~[\Gamma]$}
+\RightLabel{$I_9-U_{i+1}$}
+\UnaryInfC{$A\in U_{i+1}~[\Gamma]$}
+\DisplayProof

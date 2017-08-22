@@ -1,0 +1,119 @@
+\newpage
+\section{Come tradurre la logica predicativa con uguaglianza in teoria dei tipi}
+\subsection{Lemma 9.2}
+\begin{lem}
+	L'interpretazione CHM di un sequente di formule $\Sigma~\vdash~\Delta$ con variabili nel contesto tipato $\Gamma$ è \textit{valida in teoria dei tipi} se e solo se esiste un \textbf{proof-term pf} tale che 
+	\[pf~\in~(\Sigma^{\&})^I~\to~(\Delta^{\vee})^I~[\Gamma]\]
+	
+	è derivabile.
+\end{lem}
+
+\proof \mbox{} \\
+
+$\to$ L'interpretazione CHM di un sequente $\Sigma~\vdash~\Delta$ è il tipo $(\Delta^{\vee})^I~type~[\Gamma,~(\Sigma^{\&})^I]$, e il sequente è valido se e solo se esiste un proof-term $pf'$ tale che 
+$pf'~\in~(\Delta^{\vee})^I~[\Gamma,~(\Sigma^{\&})^I]$. Visto che l'interpretazione CHM è valida per ipotesi, si ha che $(\Delta^{\vee})^I$ è abitato sulla base di $\Gamma$ e di $(\Sigma^{\&})^I$, ed esiste un tale $pf'$.
+
+Questo rende vera la premessa di $I-\to$, cioè $c(x)~\in~(\Delta^{\vee})^I~[\Gamma,~x\in(\Sigma^{\&})^I]$, ovvero $c(x)~\equiv~pf'$. Di conseguenza il tipo $(\Sigma^{\&})^I~\to~(\Delta^{\vee})^I$ è abitato, perché è valida la premessa della sua regola di introduzione. È quindi possibile definire $pf$ a partire da quest'ultima, cioè $pf~\equiv~\lambda x^{(\Sigma^{\&})^I}.c(x)$.
+
+\vspace{0.2in}
+$\leftarrow$ Si ha per ipotesi un proof-term $pf$ tale che $pf~\in~(\Sigma^{\&})^I~\to~(\Delta^{\vee})^I~[\Gamma]$. $pf$ è stato derivato utilizzando $I-\to$, e quindi è del tipo $\lambda x^{(\Sigma^{\&})^I}.c(x)$, dato un $c(x)~\in~C~[\Gamma,~x~\in~(\Sigma^{\&})^I]$. Di conseguenza l'interpretazione è valida, perché il proof-term $pf'$ abitante del tipo 
+$(\Delta^{\vee})^I~type~[\Gamma,~(\Sigma^{\&})^I]$ è esattamente $c(x)$.
+
+\endproof
+
+\subsection{Esercizio 1}
+\begin{thm}[Assioma di Scelta] Si mostri che la traduzione CHM della logica nella teoria dei tipi rende valido l'assioma di scelta
+	\[ (\forall x\in A)\ (\exists y\in B)\  R(x, y)\ \to\ (\exists f\in A\to B)\ (\forall x\in A)\ R(x, f(x))\ \mathrm{true}\ [\ ] \]
+	
+\end{thm}
+
+\proof
+Occorre trovare un proof-term $\textbf{pf}$ del tipo
+\[\textbf{pf} \equiv \lambda w.p(w) \in \Pi_{x\in A}\Sigma_{y\in B}R(x,y)\to\ \Sigma_{f\in {\Pi_A B}}\Pi_{x\in A}R(x, f(x))\ [\ ] \]
+per cui basta avere un proof-term del tipo (introduzione di $\to$)
+\[ p(w) \in \Sigma_{f\in {\Pi_A B}}\Pi_{x\in A}R(x, f(x))\ [w\in \Pi_{x\in A}\Sigma_{y\in B}R(x,y) ] \]
+Avendo $w\in \Pi_{x\in A}\Sigma_{y\in B}R(x,y)$, usando l'eliminatore del $\Pi$ si ottiene 
+\[ \mathrm{Ap}(w, x)\in \Sigma_{y\in B}R(x,y) \]
+e quindi, usando l'eliminatore del $\Sigma$,
+\[ \pi_1(\mathrm{Ap}(w,x))\in B \qquad \pi_2(\mathrm{Ap}(w,x))\in R(x, \pi_1(\mathrm{Ap}(w, x)))\]
+pertanto possiamo definire
+\[ p(w) \equiv \langle \lambda x. \pi_1(\mathrm{Ap}(w, x)), \lambda x.\pi_2(\mathrm{Ap}(w, x))\rangle \]
+\endproof
+
+\subsection{Esercizio 2}
+\begin{thm}
+	Dire se il seguente giudizio è derivabile
+	\begin{scriptsize}
+		\[(\forall x \in A)(\exists y \in B)R(x, y) \to (\forall x_1\in A)(\forall x_2\in A)(\exists y_1\in B)(\exists y_2\in B)(( R(x_1, y_1)\ \wedge\ R(x_2, y_2))\ \wedge\  (x_1 =_A x_2\ \to y_1 =_B y_2))\]
+	\end{scriptsize}
+\end{thm}
+\proof
+Dobbiamo trovare un proof-term del seguente tipo
+\begin{scriptsize}
+	\[ \Pi_{x\in A}\Sigma_{y\in B}R(x, y) \to \Pi_{x_1\in A}\Pi_{x_2\in A}\Sigma_{y_1\in B}\Sigma_{y_2\in B}(R(x_1, y_1)\times R(x_2, y_2)\times (\Id{A}{x_1}{x_2} \to \Id{B}{y_1}{y_2}))\]
+\end{scriptsize}
+Avendo un elemento di $\Pi_{x\in A}\Sigma_{y\in B}R(x,y)$, per via della validità dell'Assioma di Scelta possiamo ottenere un elemento $f \in A \to B$ tale per cui $R(x, f(x))$ risulta abitato per ogni $x \in A$. A questo punto, dati $x_1, x_2 \in A$ possiamo scegliere
+\[ y_1 := f(x_1) \qquad y_2 := f(x_2) \]
+in modo che $R(x_1, y_1)$ e $R(x_2, y_2)$ siano abitati, e inoltre, dato un proof-term
+\[ w \in \Id{A}{x_1}{x_2}\]
+otteniamo
+\[ \mathrm{El}_{\mathrm{Id}}(w, (x').\mathrm{id}(f(x'))) \in \Id{B}{f(x_1)}{f(x_2)}\] ovvero un proof-term di 
+\[ \Id{B}{y_1}{y_2} \]
+come richiesto.
+\endproof
+
+\subsection{Esercizio 3}
+\begin{thm}
+	Supposto di rappresentare il tipo dei booleani come $Boole\equiv N_1~+~N_1$, con $0\equiv inl(*)$ e $1\equiv inr(*)$, e supposto che esista un proof-term $dis~\in~N_0~[z~\in~Id(Boole, 0, 1)]$, si dimostri che,dati due tipi \textit{A type} e \textit{B type} esiste una funzione
+	\[f(z)~\in~\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B))~[z~\in~A~+~B]\] \\
+	ed anche una funzione
+	\[g(w)~\in~A~+~B~[w~\in~\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B))]\]
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/traduzioneLogica/es3.v}
+
+\subsection{Esercizio 4}
+\begin{thm}
+	Le funzioni $f(z)$ e $g(w)$ stabiliscono un isomorfismo nel senso della definizione 9.6 tra $A~+~B$ e $\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B))$?
+\end{thm}
+Si, infatti è possibile definire due proof-terms \textbf{pf1} e \textbf{pf2} tali che \[pf_1~\in~Id(A~+~B, x,g(f(x)))~[\Gamma,~x~\in~A~+~B]\] e 
+\begin{scriptsize}
+\[pf_2~\in~Id(\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B)), y,f(g(y)))\]
+\[[\Gamma,~y~\in~\Sigma_{x\in {Boole}}~((Id(Boole,x,1)\rightarrow A)~\times~(Id(Boole,x,0)\rightarrow B))]\]
+\end{scriptsize}
+\lstinputlisting[language=Coq]{res/code/traduzioneLogica/es4.v}
+Tuttavia, in Coq, è impossibile provare l'esistenza di $pf2$ a causa della nozione troppo debole di uguaglianza estensionale delle funzioni. Quest'ultima è definita come
+\begin{lstlisting}[language=Coq]
+	forall f g : A -> B, (forall x : A, f x = g x) -> f = g.
+\end{lstlisting}
+ma non è disponibile in Coq per default. 
+
+\subsection{Esercizio 5}
+\begin{thm}
+	Quali regole di inferenza del calcolo dei sequenti della logica classica predicativa nelle dispense in http://www.math.unipd.it/~maietti/2lo16.html sono valide in teoria dei tipi, nel senso che conservano la validità dei sequenti coinvolti nella regola?
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/traduzioneLogica/es5.v}
+
+\subsection{Esercizio 6}
+\begin{thm}
+	Si noti che in teoria dei tipi vale il seguente principio chiamato \textit{existence property under a context}: se $\exists y~\phi(y)~true~[\Gamma]$ allora esiste un proof-term \textbf{pf} tale che $\phi(pf)~true~[\Gamma]$.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/traduzioneLogica/es6.v}
+
+\subsection{Esercizio 7}
+\begin{thm}
+	Per ogni connettivo e quantificatore della logica predicativa con uguaglianza si descrivano le relative regole di formazione, introduzione, eliminazione ed uguaglianza che risultano ammissibili in teoria dei tipi.
+\end{thm}
+Siano $\Phi$ e $\Psi$ due proposizioni.
+\input{res/sections/regoleConPT}
+
+\subsection{Esercizio 8}
+\begin{thm}
+	Per ogni connettivo e quantificatore della logica predicativa con uguaglianza si descrivano le relative regole con giudizi del tipo $\phi~prop~[\Gamma]$ e $\phi~true~[\Gamma]$ di formazione, introduzione ed eliminazione che risultano ammissibili in teoria dei tipi.
+\end{thm}
+\input{res/sections/regoleConPropTrue}
+
+\subsection{Esercizio 9}
+\begin{thm}
+	Verificare che tutti gli assiomi di Peano sono validi in teoria dei tipi con le regole finora introdotte e interpretando le formule logiche come descritto.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/traduzioneLogica/es9.v}
