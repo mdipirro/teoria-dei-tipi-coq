@@ -1,0 +1,18 @@
+\newpage
+\section{Versione estensionale della teoria dei tipi}
+Coq non dispone dell'uguaglianza estensionale per default, ma è possibile aggiungerla attraverso la libreria \texttt{FunctionalExtensionality}. Grazie all'assioma di estensionalità delle funzioni è quindi possibile risolvere i primi due esercizi.
+\subsection{Esercizio 1}
+\begin{thm}
+	Si provi che in presenza dell’uguaglianza proposizionale estensionale vale l’estensionalità delle funzioni ovvero, dati due termini derivabili $f(x)\in B(x) [x\in A]$ e $g(x)\in B(x) [x\in A]$ si può	derivare
+	
+	\[ Eq(\Pi_{x\in A}B(x), \lambda x\in A.f(x), \lambda x\in A.g(x))~[w\in \Pi_{x\in A}Eq(B(x), f(x), g(x))]\]
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/estensionale/es1.v}
+
+\subsection{Esercizio 2}
+\begin{thm}
+	Si provi che in presenza dell’uguaglianza proposizionale estensionale vale l’estensionalità delle funzioni ovvero, dato un termine derivabile $f\in\Pi_{x\in A} B(x) [\Gamma]$ si può derivare
+	
+	\[ \lambda x.f(x)~=~f\in\Pi_{x\in A} B(x) [\Gamma] \]
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/estensionale/es2.v}
