@@ -1,0 +1,148 @@
+\paragraph{And} \mbox{} \\
+\AxiomC{$\Psi~prop$}
+\AxiomC{$\Phi~prop$}
+\RightLabel{$F-\wedge$}
+\BinaryInfC{$\Psi \wedge \Phi~prop$}
+\DisplayProof\qquad
+\AxiomC{$\Psi~true$}
+\AxiomC{$\Phi~true$}
+\RightLabel{$I-\wedge$}
+\BinaryInfC{$\Psi \wedge \Phi~true$}
+\DisplayProof\qquad
+\AxiomC{$\Psi \wedge \Phi~true$}
+\RightLabel{$E_L-\wedge$}
+\UnaryInfC{$\Psi~true$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$\Psi \wedge \Phi~true$}
+\RightLabel{$E_R-\wedge$}
+\UnaryInfC{$\Phi~true$}
+\DisplayProof
+
+\paragraph{Or} \mbox{} \\
+\AxiomC{$\Psi~prop$}
+\AxiomC{$\Phi~prop$}
+\RightLabel{$F-\vee$}
+\BinaryInfC{$\Psi \vee \Phi~prop$}
+\DisplayProof\qquad
+\AxiomC{$\Psi~true$}
+\RightLabel{$I_L-\vee$}
+\UnaryInfC{$\Psi \vee \Phi~true$}
+\DisplayProof\qquad
+\AxiomC{$\Phi~true$}
+\RightLabel{$I_R-\vee$}
+\UnaryInfC{$\Psi \vee \Phi~true$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$\Psi \vee \Phi~true$}
+\AxiomC{}
+\RightLabel{$u$}
+\UnaryInfC{$\Psi~true$}
+\noLine
+\UnaryInfC{$\vdots$}
+\noLine
+\UnaryInfC{$\chi~true$}
+\AxiomC{}
+\RightLabel{$w$}
+\UnaryInfC{$\Phi~true$}
+\noLine
+\UnaryInfC{$\vdots$}
+\noLine
+\UnaryInfC{$\chi~true$}
+\RightLabel{$\vee E^{u,w}$}
+\TrinaryInfC{$\chi~true$}
+\DisplayProof
+
+\paragraph{Implicazione} \mbox{} \\
+\AxiomC{$\Psi~prop$}
+\AxiomC{$\Phi~prop$}
+\RightLabel{$F-\to$}
+\BinaryInfC{$\Psi \to \Phi~prop$}
+\DisplayProof\qquad
+\AxiomC{}
+\RightLabel{$u$}
+\UnaryInfC{$\Psi~true$}
+\noLine
+\UnaryInfC{$\vdots$}
+\noLine
+\UnaryInfC{$\Phi~true$}
+\RightLabel{$I^u-\to$}
+\UnaryInfC{$\Psi\to\Phi~true$}
+\DisplayProof\qquad
+\AxiomC{$\Psi\to\Phi~true$}
+\AxiomC{$\Psi~true$}
+\RightLabel{$E-\to$}
+\BinaryInfC{$\Phi~true$}
+\DisplayProof
+
+\paragraph{Negazione} \mbox{} \\
+\AxiomC{$\Phi~prop$}
+\RightLabel{$F-\neg$}
+\UnaryInfC{$\neg\Phi~prop$}
+\DisplayProof\qquad
+\AxiomC{$\Psi\to\perp~true$}
+\RightLabel{$I-\neg$}
+\UnaryInfC{$\neg\Psi~true$}
+\DisplayProof\qquad
+\AxiomC{$\neg\Psi~true$}
+\RightLabel{$E-\neg$}
+\UnaryInfC{$\Psi\to\perp~true$}
+\DisplayProof
+
+\paragraph{Per ogni} \mbox{} \\
+\AxiomC{$\Psi~prop$}
+\RightLabel{$F-\forall$}
+\UnaryInfC{$\forall~x.\Psi~prop$}
+\DisplayProof\qquad
+\AxiomC{[a/x]$\Psi~true$}
+\RightLabel{$I^{a}-\forall$}
+\UnaryInfC{$\forall x. \Psi(x)~true$}
+\DisplayProof\qquad
+\AxiomC{$\forall x. \Psi(x)~true$}
+\RightLabel{$E-\forall$}
+\UnaryInfC{[t/x]$\Psi(x)~true$}
+\DisplayProof
+
+\paragraph{Esiste} \mbox{} \\
+\AxiomC{$\Psi~prop$}
+\RightLabel{$F-\exists$}
+\UnaryInfC{$\exists x.\Psi(x)~prop$}
+\DisplayProof\qquad
+\AxiomC{[t/x]$\Psi(t)~true$}
+\RightLabel{$I-\exists$}
+\UnaryInfC{$\exists x. \Psi(x)~true$}
+\DisplayProof\qquad
+\AxiomC{$\exists x. \Psi(x)~true$}
+\AxiomC{}
+\RightLabel{$u$}
+\UnaryInfC{[a/x]$\Psi(x)~true$}
+\noLine
+\UnaryInfC{$\vdots$}
+\noLine
+\UnaryInfC{$\chi~true$}
+\RightLabel{$E^{a,u}-\exists$}
+\BinaryInfC{$\chi~true$}
+\DisplayProof
+
+\paragraph{Uguaglianza} \mbox{} \\
+\AxiomC{$\Psi~prop$}
+\RightLabel{$F-=$}
+\UnaryInfC{$\Psi~=~\Psi~prop$}
+\DisplayProof\qquad
+\AxiomC{$\Phi\to\Psi~true$}
+\AxiomC{$\Psi\to\Phi~true$}
+\RightLabel{$I-=$}
+\BinaryInfC{$\Psi=\Phi~true$}
+\DisplayProof\qquad
+
+\vspace{0.2in}
+\AxiomC{$\Psi=\Phi~true$}
+\RightLabel{$E_1-=$}
+\UnaryInfC{$\Psi\to\Phi~true$}
+\DisplayProof\qquad
+\AxiomC{$\Psi=\Phi~true$}
+\RightLabel{$E_2-=$}
+\UnaryInfC{$\Phi\to\Psi~true$}
+\DisplayProof

@@ -1,0 +1,83 @@
+\newpage
+\setcounter{section}{2}
+\section{Tipi singoletto, delle liste e dei numeri naturali}
+\subsection{Esercizio 1}
+\begin{thm}
+	Dati i tipi singoletto e delle liste è possibile definire il tipo dei numeri naturali Nat?
+\end{thm}
+Si è possibile, è sufficiente considerare un numero naturale come la concatenazione di tanti elementi singoletto. 
+
+\subsection{Esercizio 2}
+\begin{thm}
+	Definire l'operazione di \textit{append} tra due liste di tipo A, tale che $append(x, nil) = x$.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/singolettoListNat/es2.v}
+
+\subsection{Esercizio 3}
+\begin{thm}
+	Definire le operazioni \textit{back}, \textit{front}, \textit{last}, \textit{first} per le liste.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/singolettoListNat/es3.v}
+
+\subsection{Esercizio 4}
+\begin{thm}
+	Definire un'operazione binaria \textit{bin} sui naturali.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/singolettoListNat/es4.v}
+
+\subsection{Esercizio 5}
+\begin{thm}
+	Definire l'operazione di addizione tale che $x + 0 = x$
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/singolettoListNat/es5.v}
+
+\subsection{Esercizio 6}
+\begin{thm}
+	Definire l'operazione di addizione tale che $0 + y = y$
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/singolettoListNat/es6.v}
+
+\subsection{Esercizio 7}
+\begin{thm}
+	Definire l'operazione di moltiplicazione tale che $x * 0 = 0$
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/singolettoListNat/es7.v}
+
+\subsection{Esercizio 8}
+\begin{thm}
+	Definire l'operazione di reverse sulle liste di tipo A.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/singolettoListNat/es8.v}
+
+\subsection{Esercizio importante}
+\textit{Si formulino le regole dell'uguaglianza per il tipo dei numeri naturali.}
+\begin{center}
+	\AxiomC{$m~=~m'~\in~Nat~[\Gamma]$}
+	\RightLabel{$I_2-EQ-Nat$}
+	\UnaryInfC{$succ(m)~=~succ(m')~\in~Nat~[\Gamma]$}
+	\DisplayProof
+	
+	\vspace{0.2in}
+	\begin{small}
+		\AxiomC{$m=m'\in Nat[\Gamma]$}
+		\AxiomC{$e(x,y)=e'(x,y)\in D(succ(x))[\Gamma,x\in Nat, y\in D(x)]$}
+		\noLine
+		\UnaryInfC{$D(x)type[\Gamma,x\in Nat]$}
+		\AxiomC{$d=d'\in D(0)[\Gamma]$}
+		\RightLabel{$E-EQ-Nat$}
+		\TrinaryInfC{$El_{Nat}(m,d,e)~=~El_{Nat}(m',d',e')~\in~D(m)~[\Gamma]$}
+		\DisplayProof
+	\end{small}
+\end{center}
+
+\subsection{Proposizione 3.1}
+\begin{prop}
+	La teoria dei tipi che include tutte le regole finora descritte eccetto quelle di indebolimento e quelle di sostituzione rende ammissibili le regole di indebolimento della sezione 2.3.3 e anche quelle di sostituzione della sezione 2.3.4.
+\end{prop}
+\proof \mbox{} \\
+\input{res/sections/ammN1}
+
+\textbf{List e Nat}
+
+La dimostrazione di ammissibilità per i tipi $List$ e $Nat$ è uguale a quella per il tipo $N_1$.
+\endproof
