@@ -1,6 +1,17 @@
 \newpage
 \section{Versione estensionale della teoria dei tipi}
-Coq non dispone dell'uguaglianza estensionale per default, ma è possibile aggiungerla attraverso la libreria \texttt{FunctionalExtensionality}. Grazie all'assioma di estensionalità delle funzioni è quindi possibile risolvere i primi due esercizi.
+Coq non dispone dell'uguaglianza estensionale per default, ma è possibile aggiungerla per le funzioni attraverso la libreria \texttt{FunctionalExtensionality}. Grazie all'assioma di estensionalità delle funzioni è quindi possibile risolvere i primi due esercizi.
+
+Inoltre, non è possibile definire l'uguaglianza estensionale così come è stata definita nelle regole della sezione 13 delle note del corso. Il problema è che la regola di computazione richiede di poter derivare il giudizio $p=eq_C\in Eq(C,c,d)$, dato un $p\in eq~C~c~d$. Questo giudizio non può essere derivato perché i due elementi $p $ e $eq_C$ hanno due tipi diversi, rispettivamente $Eq(C,c,d)$ e $Eq(C,c,c)$. Data l'impossibilità di definire gli assiomi corrispondenti alle regole, e data l'assenza di uguaglianza estensionale in Coq, per gli esercizi da 3 a 7 sono stati codificati i tipi presentati e fornite le funzioni $f$ e $g$.
+
+%Questa uguaglianza è stata quindi definita come segue, con una piccola modifica alla regola di computazione.
+%\lstinputlisting[language=Coq]{res/code/estensionale/ext.v}
+%Si nota che l'ultimo assioma, che dovrebbe essere 
+%\[ Axiom~el\_refl~:~forall~(C: Type)~(c~d:~C)~(p:~eq~C~c~d),~p~=~refl~C~c. \]
+%è al contrario 
+%\[ Axiom~el\_refl~:~forall~(C:~Type)~(c~d:~C)~(p:~eq~C~c~c),~eq~C~c~d. \]
+%Il problema dell'assioma originale è che il tipo di $p$ è $eq~C~c~d$, mentre quello di $refl~C~c$, elemento canonico di $eq$, è $eq~C~c~c$. Per ovviare a questo problema è stata modificata leggermente la regola. Sapendo che un qualsiasi proof-term $p$ di $eq~C~c~d$ è uguale all'elemento canonico $eq~C~c~c$, ho inserito nelle premesse l'elemento canonico, derivando da questo la prova $p$. Con questa versione dell'uguaglianza estensionale è possibile risolvere tutti gli esercizi.
+
 \subsection{Esercizio 1}
 \begin{thm}
 	Si provi che in presenza dell’uguaglianza proposizionale estensionale vale l’estensionalità delle funzioni ovvero, dati due termini derivabili $f(x)\in B(x) [x\in A]$ e $g(x)\in B(x) [x\in A]$ si può	derivare
@@ -16,3 +27,35 @@ Coq non dispone dell'uguaglianza estensionale per default, ma è possibile aggiu
 	\[ \lambda x.f(x)~=~f\in\Pi_{x\in A} B(x) [\Gamma] \]
 \end{thm}
 \lstinputlisting[language=Coq]{res/code/estensionale/es2.v}
+
+\subsection{Esercizio 3}
+\begin{thm}
+	Dimostrare che il tipo somma indiciata è isomorfo al tipo di somma indiciata indebolita una volta aggiunto alla teoria dei tipi.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/estensionale/es3.v}
+
+\subsection{Esercizio 4}
+\begin{thm}
+	In presenza dell’uguaglianza proposizionale estensionale mostrare che il tipo delle liste è isomorfo ad un tipo lista detto non dipendente le cui regole da aggiungere alla teoria dei tipi sono quelle del	tipo lista già introdotto per quanto riguarda le regole di introduzione mentre la loro regola di eliminazione è ristretta a valere per tipi non dipendenti dal tipo lista stesso e le regole di computazioni includono l’unicità dell’eliminatore oltre alle regole di computazione del tipo lista dipendente adattate al caso dell’eliminazione verso tipi non dipendenti.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/estensionale/es4.v}
+
+\subsection{Esercizio 5}
+\begin{thm}
+	Scrivere le regole del tipo dei numeri naturali con eliminazione verso tipi non dipendenti e mostrare che il tipo dei naturali ottenuto, indicato con \textit{ndNat}, una volta aggiunto alla teoria dei tipi con uguaglianza proposizionale estensionale risulta isomorfo al tipo dei naturali \textit{Nat} precedentemente definito.
+\end{thm}
+\input{res/sections/regoleNat}
+Di seguito la codifica di $ndNat$ in Coq e la definizioni delle funzioni che compongono l'isomorfismo.
+\lstinputlisting[language=Coq]{res/code/estensionale/es5.v}
+
+\subsection{Esercizio 6}
+\begin{thm}
+	Mostrare che all’interno della teoria dei tipi con uguaglianza proposizionale estensionale il tipo somma indiciata risulta isomorfo al tipo somma indiciata estensionale con proiezioni.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/estensionale/es6.v}
+
+\subsection{Esercizio 7}
+\begin{thm}
+	Mostrare che all’interno della teoria dei tipi con uguaglianza proposizionale estensionale le regole di eliminazione e conversione del tipo somma binaria possono essere sostituite da quelle definite nell'esercizio 13.7.
+\end{thm}
+\lstinputlisting[language=Coq]{res/code/estensionale/es7.v}
