@@ -1,0 +1,55 @@
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$F-ndNat$}
+\UnaryInfC{$ndNat~type~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$\Gamma~cont$}
+\RightLabel{$I_1-ndNat$}
+\UnaryInfC{$0\in ndNat~[\Gamma]$}
+\DisplayProof\qquad
+\AxiomC{$m\in Nat~[\Gamma]$}
+\RightLabel{$I_2-ndNat$}
+\UnaryInfC{$suc(m)\in ndNat~[\Gamma]$}
+\DisplayProof\qquad
+
+\vspace{0.2in}
+\AxiomC{$D~type~[\Gamma]$}
+\AxiomC{$m\in ndNat[\Gamma]$}
+\AxiomC{$d\in D[\Gamma]$}
+\AxiomC{$e(x,z)\in D[\Gamma,x\in ndNat, z\in D]$}
+\RightLabel{$E-ndNat$}
+\QuaternaryInfC{$El_{ndNat}(m,d,e)\in D[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$D~type~[\Gamma]$}
+\AxiomC{$d\in D[\Gamma]$}
+\AxiomC{$e(x,z)\in D[\Gamma,x\in ndNat, z\in D]$}
+\RightLabel{$C_1-ndNat$}
+\TrinaryInfC{$El_{ndNat}(0,d,e)~=d~\in D[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\AxiomC{$D~type~[\Gamma]$}
+\AxiomC{$m\in ndNat[\Gamma]$}
+\AxiomC{$d\in D[\Gamma]$}
+\AxiomC{$e(x,z)\in D[\Gamma,x\in ndNat, z\in D]$}
+\RightLabel{$C_2-ndNat$}
+\QuaternaryInfC{$El_{ndNat}(succ(m),d,e)=e(m,El_{ndNat}(m,d,e))\in D[\Gamma]$}
+\DisplayProof
+
+\vspace{0.2in}
+\begin{center}
+	$D~type~[\Gamma]$\qquad
+	$d\in D[\Gamma]$\qquad
+	$e(x,z)\in D[\Gamma,x\in ndNat, z\in D]$
+	
+	\vspace{0.2in}
+	$t(y)\in D[\Gamma,y\in ndNat]$\qquad
+	$m\in ndNat[\Gamma]$
+	
+	\vspace{0.2in}
+	$t(0)=d\in D[\Gamma]$\qquad
+	$t(succ(x))= e(t(x),z)[\Gamma,x\in ndNat, z\in D]$
+	\par\noindent\rule{\textwidth}{0.4pt}
+	$El_{ndNat}(m,d,e)=t(m)$
+\end{center}
