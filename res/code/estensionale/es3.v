@@ -29,22 +29,3 @@ Definition g (B: Type) (C: B -> Type) (w: WeakSum.wsig B C) : sig B C.
 Proof.
 apply: (WeakSum.el w (fun b c => sigI b c)).
 Defined.
-
-Arguments f {_ _} _.
-Arguments g {_ _} _.
-
-Definition pf1 (B: Type) (C: B -> Type) (s: sig B C) :
-  ext.eq _ (g (f s)) s.
-Proof.
-destruct s.
-simpl.
-apply: ext.el_refl (sig B C) (g (WeakSum.pair b c)) (sigI b c) 
-  (ext.refl (sig B C) (g (WeakSum.pair b c))).
-Defined.
-
-Definition pf2 (B: Type) (C: B -> Type) (w: WeakSum.wsig B C) :
-  ext.eq _ (f (g w)) w.
-Proof.
-apply: (ext.el_refl (WeakSum.wsig B C) (f (g w)) w 
-  (ext.refl (WeakSum.wsig B C) (f (g w)))).
-Defined.

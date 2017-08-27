@@ -33,23 +33,3 @@ Proof.
 apply (sigI (ExtIndSum.pi_1 e) (ExtIndSum.pi_2 e)).
 Defined.
 
-Arguments f {_ _} _.
-Arguments g {_ _} _.
-
-Definition pf1 (B: Type) (C: B -> Type) (s: sig B C) : 
-  ext.eq _ (g (f s)) s.
-Proof.
-destruct s.
-simpl.
-apply: ext.el_refl (sig B C) (g (ExtIndSum.esumI b c)) (sigI b c) 
-  (ext.refl (sig B C) (g (ExtIndSum.esumI b c))).
-Defined.
-
-Definition pf2 (B: Type) (C: B -> Type) (e: ExtIndSum.esum B C) : 
-  ext.eq _ (f (g e)) e.
-Proof.
-simpl.
-rewrite ExtIndSum.eta.
-apply ext.refl.
-Defined.
-

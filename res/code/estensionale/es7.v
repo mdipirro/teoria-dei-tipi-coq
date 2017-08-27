@@ -33,23 +33,3 @@ Definition g {C D} (s: sum.sum C D) : sum C D.
 Proof.
 apply: (sum.el s (fun x => inl x) (fun y => inr y)).
 Defined.
-
-Arguments f {_ _} _.
-Arguments g {_ _} _.
-
-Definition pf1 {C D} (s: sum C D) : ext.eq (sum C D) (g (f s)) s.
-Proof.
-destruct s.
-  simpl.
-  apply: ext.el_refl (sum C D) (g (sum.inl c)) (inl c) 
-    (ext.refl (sum C D) (g (sum.inl c))).
-simpl.
-apply: ext.el_refl (sum C D) (g (sum.inr d)) (inr d) 
-    (ext.refl (sum C D) (g (sum.inr d))).
-Defined.
-
-Definition pf2 {C D} (s: sum.sum C D) : ext.eq (sum.sum C D) (f (g s)) s.
-Proof.
-apply: ext.el_refl (sum.sum C D) (f (g s)) s
-    (ext.refl (sum.sum C D) (f (g s))).
-Defined.

@@ -33,23 +33,3 @@ Definition g {C} (n: List.ndList C) : list C.
 Proof.
 apply: (List.el C (list C) nil n (fun c l => cons c l)).
 Defined.
-
-Arguments f {_} _.
-Arguments g {_} _.
-
-Definition pf1 (C: Type) (l: list C) : ext.eq _ (g (f l)) l.
-Proof.
-elim: l.
-  simpl.
-  apply: (ext.el_refl (list C) (g List.nil) nil
-    (ext.refl (list C) (g List.nil))).
-move=> a l H.
-apply: (ext.el_refl (list C) (g (f (cons a l))) (cons a l)
-    (ext.refl (list C) (g (f (cons a l))))).
-Defined.
-
-Definition pf2 (C: Type) (l: List.ndList C) : ext.eq _ (f (g l)) l.
-Proof.
-apply: (ext.el_refl (List.ndList C) (f (g l)) l
-  (ext.refl (List.ndList C) (f (g l)))).
-Defined.
