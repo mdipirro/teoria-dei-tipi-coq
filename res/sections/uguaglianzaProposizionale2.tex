@@ -44,6 +44,11 @@ Si nota che le regole di introduzione sono corrispondenti al numero $k$, e vanno
 
 Si nota che le regole di computazione sono tante quante $k$, con valori da $0$ a $k-1$.
 
+Fissato $k=3$, di seguito viene mostrata la dimostrazione dell'isomorfismo tra questo tipo e il tipo dei numeri naturali minori o uguali di $k$.
+\lstinputlisting[language=Coq]{res/code/uguaglianzaProposizionale2/es2.v}
+
+L'idea di base del lemma $val\_inj$ è la seguente: per ogni predicato booleano $P$ di tipo $T$, la proiezione canonica $\{x:~T~|~P~x~=~true\}~\to~T$ è iniettiva. Infatti, qualsiasi due dimostrazioni di uguaglianza tra booleani sono esse stesse uguali, cioè l'uguaglianza tra booleani è \textit{proof irrelevant}. Di conseguenza, l'uguaglianza di $\{x:~T~|~P~x~=~true\}$ è completamente determinata dall'elemento $x$, mentre l'effettivo proof-term è, appunto, irrilevante.
+
 \subsection{Esercizio 3}\label{isomMLPI}
 \begin{thm}
 	Si dimostri che il tipo dell'uguaglianza proposizionale di Martin-Lof è isomorfo a quello dell'uguaglianza proposizionale con Path Induction.
