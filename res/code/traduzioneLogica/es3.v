@@ -1,6 +1,7 @@
 From mathcomp Require Import ssreflect.
 
 Inductive Boole :=
+Inductive Boole :=
   | inlb (a: unit)
   | inrb (b: unit).
 
@@ -39,4 +40,4 @@ destruct p.
 destruct x.
 apply (inr (b (eq_inla_inltt a0))).
 apply (inl (a (eq_inra_inrtt b0))).
-Qed.
+Defined.
