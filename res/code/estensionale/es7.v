@@ -33,3 +33,16 @@ Definition g {C D} (s: sum.sum C D) : sum C D.
 Proof.
 apply: (sum.el s (fun x => inl x) (fun y => inr y)).
 Defined.
+
+Definition pf1 {C D} (s: sum C D) : g (f s) = s.
+Proof.
+destruct s.
+  simpl.
+  apply: (sum.c1 c (fun x => inl x) (fun y => inr y)).
+simpl.
+apply: (sum.c2 d (fun x => inl x) (fun y => inr y)).
+Defined.
+
+Definition pf2 {C D} (s: sum.sum C D) : f (g s) = s.
+Proof.
+Admitted.

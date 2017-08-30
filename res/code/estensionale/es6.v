@@ -22,14 +22,15 @@ Axiom eta : forall (B: Type) (C: B -> Type) (d: esum B C),
 
 End ExtIndSum.
 
-Definition f (B: Type) (C: B -> Type) (s: sig B C) : ExtIndSum.esum B C.
-Proof.
-destruct s.
-apply (ExtIndSum.esumI b c).
-Defined.
+Definition f (B: Type) (C: B -> Type) (s: sig B C) : ExtIndSum.esum B C :=
+match s with 
+  sigI b c => ExtIndSum.esumI b c
+end.
 
-Definition g (B: Type) (C: B -> Type) (e: ExtIndSum.esum B C) : sig B C.
-Proof.
-apply (sigI (ExtIndSum.pi_1 e) (ExtIndSum.pi_2 e)).
-Defined.
+Definition g (B: Type) (C: B -> Type) (e: ExtIndSum.esum B C) : sig B C :=
+sigI (ExtIndSum.pi_1 e) (ExtIndSum.pi_2 e).
+
+Arguments f {_ _} _.
+Arguments g {_ _} _.
+
 
