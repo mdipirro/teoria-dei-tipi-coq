@@ -65,7 +65,6 @@ Qed.
 
 Definition pf1 {A} (x y: A) (l: Leibniz.eq x y) : eq l (g x y (f x y l)).
 Proof.
-Check (Leibniz.e_id_l A (fun x y => forall l, l = f x y (g x y l)) x y l).
 apply: (Leibniz.e_id_l A (fun x y => forall l, l = f x y (g x y l)) x y l).
 move=> x0 l0.
 apply: (LeibnizR.UIP A x0 x0 l0 (f x0 x0 (g x0 x0 l0))).
