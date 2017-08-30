@@ -2,9 +2,7 @@
 \section{Versione estensionale della teoria dei tipi}
 Coq non dispone dell'uguaglianza estensionale per default, ma è possibile aggiungerla per le funzioni attraverso la libreria \texttt{FunctionalExtensionality}. Grazie all'assioma di estensionalità delle funzioni è quindi possibile risolvere i primi due esercizi.
 
-Inoltre, non è possibile definire l'uguaglianza estensionale così come è stata definita nelle regole della sezione 13 delle note del corso. Il problema è che la regola di computazione richiede di poter derivare il giudizio $p=eq_C\in Eq(C,c,d)$, dato un $p\in eq~C~c~d$. Questo giudizio non può essere derivato perché i due elementi $p $ e $eq_C$ hanno due tipi diversi, rispettivamente $Eq(C,c,d)$ e $Eq(C,c,c)$. Data l'impossibilità di definire gli assiomi corrispondenti alle regole, e data l'assenza di uguaglianza estensionale in Coq, per gli esercizi da 3 a 7 sono stati codificati i tipi presentati e fornite le funzioni $f$ e $g$.
-
-Infine, Coq non consente di definire tipi induttivi senza una regola di eliminazione verso un tipo dipendente. Di conseguenza i tipi degli esercizi 3, 4, 5, 6 e 7 sono stati definiti nella loro versione assiomatica. Questo rende però impossibile applicare le tattiche di prova viste a lezione (come \texttt{case}, \texttt{elim} o \texttt{destruct}) ai tipi definiti, in quanto non induttivi, e, di conseguenza, rende impossibile procedere per casi o per induzione.
+Inoltre, Coq non consente di definire tipi induttivi senza una regola di eliminazione verso un tipo dipendente. Di conseguenza i tipi degli esercizi 3, 4, 5, 6 e 7 sono stati definiti nella loro versione assiomatica. Questo rende però impossibile applicare le tattiche di prova viste a lezione (come \texttt{case}, \texttt{elim} o \texttt{destruct}) ai tipi definiti, in quanto non induttivi, e, di conseguenza, rende impossibile procedere per casi o per induzione.
 
 %Questa uguaglianza è stata quindi definita come segue, con una piccola modifica alla regola di computazione.
 %\lstinputlisting[language=Coq]{res/code/estensionale/ext.v}
